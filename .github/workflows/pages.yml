@@ -1,19 +1,22 @@
 name: Build & Deploy
 
+# ─ Permissions ──────────────────────────────────────────────────────────────
+# Grant just enough rights for Pages to push your build back up to gh‑pages.
+permissions:
+  contents: read       # we only need to read the repo
+  pages: write         # allow writing to gh‑pages
+  id-token: write      # (required by peaceiris/actions-gh‑pages@v3)
+
 on:
   push:
     branches:
       - main
 
-permissions:
-  pages: write
-  id-token: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code (full history)
         uses: actions/checkout@v3
         with:
           fetch-depth: 0

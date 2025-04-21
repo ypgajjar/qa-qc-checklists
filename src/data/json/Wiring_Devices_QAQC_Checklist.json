@@ -1,0 +1,83 @@
+[
+  {
+    "id": "A. Submittals & Layout Verification"
+  },
+  {
+    "id": 1,
+    "text": "Approved wiring device schedule reviewed and matched to architectural layout"
+  },
+  {
+    "id": 2,
+    "text": "Device types (decora, tamper-resistant, GFCI, USB, dimmer) coordinated with spec and finishes"
+  },
+  {
+    "id": 3,
+    "text": "Height and spacing checked against accessibility standards and project specs"
+  },
+  {
+    "id": "B. Rough-in Inspection"
+  },
+  {
+    "id": 4,
+    "text": "Box sizes adequate for conductor fill and mounting"
+  },
+  {
+    "id": 5,
+    "text": "Conductors terminated properly with no exposed copper"
+  },
+  {
+    "id": 6,
+    "text": "GND conductors bonded to box (if metal) and device grounding terminal"
+  },
+  {
+    "id": 7,
+    "text": "AFCI/GFCI circuits connected to correct line/load terminals and identified properly"
+  },
+  {
+    "id": "C. Trim-out Inspection"
+  },
+  {
+    "id": 8,
+    "text": "Devices securely mounted flush to wall finish (GWB, tile, concrete, wood)"
+  },
+  {
+    "id": 9,
+    "text": "Cover plates flush, aligned, undamaged, and color-matched"
+  },
+  {
+    "id": 10,
+    "text": "GFCI receptacles tested for trip and reset functions"
+  },
+  {
+    "id": 11,
+    "text": "Dimmer switches and multi-way switches tested for function"
+  },
+  {
+    "id": 12,
+    "text": "USB outlets powered and tested with load"
+  },
+  {
+    "id": "D. Final Testing & Closeout"
+  },
+  {
+    "id": 13,
+    "text": "All receptacles voltage-tested for polarity and grounding"
+  },
+  {
+    "id": 14,
+    "text": "Device labeling complete (breaker ID, circuit ref) where applicable"
+  },
+  {
+    "id": 15,
+    "text": "As-built location drawings and inspection logs submitted"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA C22.1 (CEC Section 26, 86), NEC Article 210 & 406, UL 498, CSA B651"
+  },
+  {
+    "id": "• Manufacturer Specs: Leviton, Lutron, Hubbell, Eaton, Pass & Seymour, Schneider Electric"
+  }
+]

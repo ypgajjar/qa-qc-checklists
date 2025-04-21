@@ -1,0 +1,101 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Flooring type (LVT, VCT, sheet vinyl, rubber) and pattern match finish schedule and approved submittals"
+  },
+  {
+    "id": 2,
+    "text": "Adhesive, moisture barrier, and levelling compound match manufacturer’s system"
+  },
+  {
+    "id": 3,
+    "text": "Baseboards, nosings, reducer strips, and accessories confirmed on site"
+  },
+  {
+    "id": 4,
+    "text": "Materials stored flat, clean, and conditioned for 24–48 hrs per manufacturer"
+  },
+  {
+    "id": "B. Substrate Preparation"
+  },
+  {
+    "id": 5,
+    "text": "Subfloor dry, flat, smooth, and cleaned of dust or debris"
+  },
+  {
+    "id": 6,
+    "text": "Floor levelled to spec (typically ≤1/8” in 10 feet)"
+  },
+  {
+    "id": 7,
+    "text": "Moisture content and RH tested and within limits for flooring system"
+  },
+  {
+    "id": "C. Layout & Installation"
+  },
+  {
+    "id": 8,
+    "text": "Layout approved and aligned with architectural drawing or reference point"
+  },
+  {
+    "id": 9,
+    "text": "Directional arrows followed (if LVT or rubber planks)"
+  },
+  {
+    "id": 10,
+    "text": "Adhesive applied uniformly, allowed open time, and flooring rolled as per spec"
+  },
+  {
+    "id": 11,
+    "text": "Expansion joints installed at required locations and door thresholds"
+  },
+  {
+    "id": 12,
+    "text": "No bubbles, curling, or hollow spots in finished surface"
+  },
+  {
+    "id": "D. Finish Trims & Accessories"
+  },
+  {
+    "id": 13,
+    "text": "Cove base or straight base installed cleanly and tight to wall"
+  },
+  {
+    "id": 14,
+    "text": "Transition strips secure and smooth at doorways or flooring changes"
+  },
+  {
+    "id": 15,
+    "text": "Stairs: nosings, treads, and risers properly aligned and glued"
+  },
+  {
+    "id": "E. Final Inspection & Punch"
+  },
+  {
+    "id": 16,
+    "text": "Surface clean and free from residue, adhesive stains, or scuff marks"
+  },
+  {
+    "id": 17,
+    "text": "Visual inspection completed by contractor and consultant"
+  },
+  {
+    "id": 18,
+    "text": "Closeout documents submitted (warranties, cleaning instructions, adhesives used)"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASTM F710, ASTM F1869, ASTM F2170 – Substrate Conditions"
+  },
+  {
+    "id": "• NBC, LEED VOC Compliance"
+  },
+  {
+    "id": "• Manufacturer Specs: Tarkett, Armstrong, Forbo, Mondo, Mannington, Gerflor"
+  }
+]

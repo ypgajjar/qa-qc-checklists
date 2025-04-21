@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Pre-Excavation Preparation"
+  },
+  {
+    "id": 1,
+    "text": "Stamped IFC drawings, geotechnical report, and excavation plan reviewed"
+  },
+  {
+    "id": 2,
+    "text": "Underground utility locates (One Call) completed and visible on site"
+  },
+  {
+    "id": 3,
+    "text": "Traffic, erosion control, and safety barriers installed"
+  },
+  {
+    "id": "B. Excavation Work"
+  },
+  {
+    "id": 4,
+    "text": "Excavation performed to lines, grades, slopes, and benches per IFC drawings"
+  },
+  {
+    "id": 5,
+    "text": "Dewatering systems active if groundwater or rainfall present"
+  },
+  {
+    "id": 6,
+    "text": "Temporary shoring/slope protection installed if required by geotechnical engineer"
+  },
+  {
+    "id": 7,
+    "text": "Excavated material stockpiled, protected, or hauled off site as per reuse criteria"
+  },
+  {
+    "id": "C. Bedding and Pipe Zone"
+  },
+  {
+    "id": 8,
+    "text": "Trench bottom leveled and free of rock or debris"
+  },
+  {
+    "id": 9,
+    "text": "Sand or gravel bedding compacted under and around pipe (as specified)"
+  },
+  {
+    "id": 10,
+    "text": "Proper pipe zone material placed and compacted in lifts to minimum cover depth"
+  },
+  {
+    "id": "D. Backfilling and Compaction"
+  },
+  {
+    "id": 11,
+    "text": "Select backfill placed in uniform lifts (max 150–300 mm) and moisture adjusted"
+  },
+  {
+    "id": 12,
+    "text": "Compaction equipment appropriate for trench size and lift depth"
+  },
+  {
+    "id": 13,
+    "text": "Field density tests performed at required intervals and meet minimum % Proctor"
+  },
+  {
+    "id": 14,
+    "text": "No frozen or organic material used in backfill"
+  },
+  {
+    "id": "E. Closeout & Records"
+  },
+  {
+    "id": 15,
+    "text": "Compaction test reports submitted by third-party testing agency"
+  },
+  {
+    "id": 16,
+    "text": "Excavation log/as-built grades submitted if requested"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASTM D1557, ASTM D6938, CSA A23.1, OH&S Excavation Guidelines"
+  },
+  {
+    "id": "• Project Geotechnical Report, Alberta Transportation Guidelines (if applicable)"
+  }
+]

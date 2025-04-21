@@ -1,0 +1,86 @@
+[
+  {
+    "id": "A. Material & Submittal Review"
+  },
+  {
+    "id": 1,
+    "text": "Cabinet type (semi-recessed, surface-mounted, recessed) and gauge match submittals and architectural intent"
+  },
+  {
+    "id": 2,
+    "text": "Cabinet finish (metal, stainless steel, painted, aluminum) matches schedule and corridor aesthetics"
+  },
+  {
+    "id": 3,
+    "text": "Fire extinguisher type (typically 10 lb ABC) and UL/ULC rating match fire protection drawings"
+  },
+  {
+    "id": 4,
+    "text": "Location, mounting type, signage, and visibility comply with fire code & consultant drawings"
+  },
+  {
+    "id": "B. Wall Conditions & Rough-In"
+  },
+  {
+    "id": 5,
+    "text": "Blocking or wall reinforcement installed for recessed/semi-recessed cabinets"
+  },
+  {
+    "id": 6,
+    "text": "Framing aligned and dimensioned to allow flush cabinet mounting"
+  },
+  {
+    "id": 7,
+    "text": "Fire rating of surrounding wall system maintained (cabinet rated or back box added if required)"
+  },
+  {
+    "id": "C. Installation – Cabinet & Extinguisher"
+  },
+  {
+    "id": 8,
+    "text": "Cabinet securely fastened, plumb, and level"
+  },
+  {
+    "id": 9,
+    "text": "Cabinet door swings open fully, operates without interference"
+  },
+  {
+    "id": 10,
+    "text": "Fire extinguisher securely mounted within cabinet using bracket or strap"
+  },
+  {
+    "id": 11,
+    "text": "Signage above cabinet mounted at visible height (typically 2100 mm AFF or as per AHJ)"
+  },
+  {
+    "id": "D. Tagging, Commissioning & Final Review"
+  },
+  {
+    "id": 12,
+    "text": "Fire extinguisher tagged and certified by licensed fire protection contractor"
+  },
+  {
+    "id": 13,
+    "text": "Expiry date verified and unit free from dents, damage, or paint overspray"
+  },
+  {
+    "id": 14,
+    "text": "Cabinet glass/panel not cracked or scratched; no stickers blocking visibility"
+  },
+  {
+    "id": 15,
+    "text": "Reviewed by life safety consultant, building official, or fire department"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC / NFPA 10 / CSA B355, ULC S508, UL/ULC Rating Labels"
+  },
+  {
+    "id": "• Local AHJ requirements (Fire Dept / Fire Commissioner)"
+  },
+  {
+    "id": "• Manufacturer Specs: JL Industries, Larsen’s, Potter-Roemer, CATO, Kidde, Amerex"
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Partition type (metal, plastic, phenolic, HDPE) and layout match submittals and architectural drawings"
+  },
+  {
+    "id": 2,
+    "text": "Accessories (grab bars, dispensers, mirrors, hooks, bins) match finish schedule and spec"
+  },
+  {
+    "id": 3,
+    "text": "Finish, color, mounting height, and orientation (left/right hand) confirmed"
+  },
+  {
+    "id": 4,
+    "text": "Anchors and backing appropriate for substrate (drywall, CMU, tile, etc.)"
+  },
+  {
+    "id": "B. Partition Installation"
+  },
+  {
+    "id": 5,
+    "text": "Pilasters plumb, panels square, doors operate smoothly"
+  },
+  {
+    "id": 6,
+    "text": "Gaps consistent and privacy maintained at front and between panels"
+  },
+  {
+    "id": 7,
+    "text": "Mounting system (overhead braced / floor mounted / ceiling hung) matches spec"
+  },
+  {
+    "id": 8,
+    "text": "Hardware tight, tamper-resistant, and complete"
+  },
+  {
+    "id": "C. Accessory Installation"
+  },
+  {
+    "id": 9,
+    "text": "Accessories mounted at correct heights and positions per accessibility code (ADA/CSA B651)"
+  },
+  {
+    "id": 10,
+    "text": "Grab bars installed at correct length, height, and anchoring points"
+  },
+  {
+    "id": 11,
+    "text": "Soap, paper towel, and toilet paper dispensers installed as per reflected room layouts"
+  },
+  {
+    "id": 12,
+    "text": "Mirrors installed at correct height, securely anchored"
+  },
+  {
+    "id": 13,
+    "text": "Baby change stations and waste receptacles installed per manufacturer instructions"
+  },
+  {
+    "id": "D. Final Walkthrough"
+  },
+  {
+    "id": 14,
+    "text": "All units clean, operational, and securely fastened"
+  },
+  {
+    "id": 15,
+    "text": "No sharp edges, misalignments, missing parts"
+  },
+  {
+    "id": 16,
+    "text": "Consultant and accessibility compliance inspection passed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 3, ADA, CSA B651 – Accessibility & Mounting Heights"
+  },
+  {
+    "id": "• ASTM A123, ASTM A167, NAAMM 500 Series, LEED"
+  },
+  {
+    "id": "• Manufacturer Specs: Bobrick, ASI, Bradley, Hadrian, Scranton, Koala Kare"
+  }
+]

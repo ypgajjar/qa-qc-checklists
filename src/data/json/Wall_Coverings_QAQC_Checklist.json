@@ -1,0 +1,93 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Wall covering type (vinyl, fabric, wood, FRP) and pattern matches finish schedule"
+  },
+  {
+    "id": 2,
+    "text": "Adhesive type and spread rate match approved submittals and manufacturer guidance"
+  },
+  {
+    "id": 3,
+    "text": "Accessory trims (corner guards, base reveals, end caps) reviewed and on site"
+  },
+  {
+    "id": 4,
+    "text": "Rolls or panels conditioned and inspected for dye lot or surface flaws"
+  },
+  {
+    "id": "B. Surface Preparation"
+  },
+  {
+    "id": 5,
+    "text": "Substrate clean, smooth, and sealed if required (especially drywall)"
+  },
+  {
+    "id": 6,
+    "text": "Primer or sizing applied to porous or gypsum surfaces per spec"
+  },
+  {
+    "id": 7,
+    "text": "Wall surface flat and free from bumps or defects visible through covering"
+  },
+  {
+    "id": "C. Installation – Sheet Vinyl or Fabric"
+  },
+  {
+    "id": 8,
+    "text": "Pattern alignment verified at seams and corners"
+  },
+  {
+    "id": 9,
+    "text": "Seams tight and not overlapped unless manufacturer allows"
+  },
+  {
+    "id": 10,
+    "text": "Corners tight and top edge aligned with control or datum line"
+  },
+  {
+    "id": "D. Installation – FRP or Wood Panel Systems"
+  },
+  {
+    "id": 11,
+    "text": "Panels cut cleanly, fit tight to corner trims, and gapped per spec"
+  },
+  {
+    "id": 12,
+    "text": "Adhesive coverage >95% with consistent contact on substrate"
+  },
+  {
+    "id": 13,
+    "text": "Mechanical fasteners installed per detail (if required)"
+  },
+  {
+    "id": "E. Finishing & Cleanup"
+  },
+  {
+    "id": 14,
+    "text": "All exposed trims and accessories installed straight and flush"
+  },
+  {
+    "id": 15,
+    "text": "Surface cleaned, no glue bleed, bubbles, or discoloration"
+  },
+  {
+    "id": 16,
+    "text": "Final walkthrough approved by consultant and punchlist cleared"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASTM F793 / F742, ASTM E84 – Wall Covering Fire and Physical Standards"
+  },
+  {
+    "id": "• LEED VOC Compliance, NFPA 101"
+  },
+  {
+    "id": "• Manufacturer Specs: Koroseal, Maharam, MDC, Marlite, Crane Composites"
+  }
+]

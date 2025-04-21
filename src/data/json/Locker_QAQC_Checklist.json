@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Material & Submittals"
+  },
+  {
+    "id": 1,
+    "text": "Locker type (metal, phenolic, HDPE, laminate) and configuration matches architectural specs & shop drawings"
+  },
+  {
+    "id": 2,
+    "text": "Color, finish, and accessories (benches, bases, end panels, numbers) match submittals"
+  },
+  {
+    "id": 3,
+    "text": "Locking system (padlock, built-in combo, key) matches project requirement and is operational"
+  },
+  {
+    "id": "B. Rough-In & Substrate Check"
+  },
+  {
+    "id": 4,
+    "text": "Wall and floor surface flat, level, and ready for locker mounting"
+  },
+  {
+    "id": 5,
+    "text": "Blocking/backing installed if required for wall-mounted or cantilever units"
+  },
+  {
+    "id": 6,
+    "text": "Power/data provisions confirmed (if electronic lock system is used)"
+  },
+  {
+    "id": "C. Locker Installation"
+  },
+  {
+    "id": 7,
+    "text": "Lockers installed level, aligned, and anchored securely to floor/wall"
+  },
+  {
+    "id": 8,
+    "text": "Doors open/close freely with no obstruction, rubbing, or misalignment"
+  },
+  {
+    "id": 9,
+    "text": "Gaps between rows, banks, or partitions consistent and compliant with manufacturer tolerances"
+  },
+  {
+    "id": 10,
+    "text": "Built-in locks functional and keyed alike (if specified); number plates installed in sequence"
+  },
+  {
+    "id": "D. Benches & Accessories"
+  },
+  {
+    "id": 11,
+    "text": "Benches installed securely, centered, and finished to match locker materials"
+  },
+  {
+    "id": 12,
+    "text": "Wall hooks, shoe compartments, coat rods installed as required"
+  },
+  {
+    "id": 13,
+    "text": "Locker toe-kicks or recessed bases installed flush with finished floor"
+  },
+  {
+    "id": "E. Final Review"
+  },
+  {
+    "id": 14,
+    "text": "Units free from dents, paint chips, scratches, or damaged edges"
+  },
+  {
+    "id": 15,
+    "text": "Lockers cleaned inside and out, dust/debris removed"
+  },
+  {
+    "id": 16,
+    "text": "Consultant walkthrough completed and signoff obtained"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NAAMM/HMMA 130-12, ADA/CSA B651 for bench heights, ASTM A1008 / A167"
+  },
+  {
+    "id": "• Manufacturer Specs: Penco, List Industries, Scranton, Lyon, Tufftec, Hollman"
+  }
+]

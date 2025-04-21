@@ -1,0 +1,115 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "All roof accessories (curbs, hatches, vents, anchors) match approved shop drawings and specifications"
+  },
+  {
+    "id": 2,
+    "text": "Roof curbs properly sized for equipment and coordinated with mechanical/electrical trades"
+  },
+  {
+    "id": 3,
+    "text": "Flashings, boots, collars, sealants, and fasteners approved by roofing system manufacturer"
+  },
+  {
+    "id": 4,
+    "text": "Materials delivered undamaged and stored in dry, secure location"
+  },
+  {
+    "id": "B. Curb & Hatch Installation"
+  },
+  {
+    "id": 5,
+    "text": "Curbs plumb, level, and fastened to roof deck/substrate"
+  },
+  {
+    "id": 6,
+    "text": "Roof hatch frame and lid installed per manufacturer's instruction"
+  },
+  {
+    "id": 7,
+    "text": "Curb and hatch heights comply with fall protection code and slope requirements"
+  },
+  {
+    "id": "C. Flashing Integration with Roofing System"
+  },
+  {
+    "id": 8,
+    "text": "Curb base flashed in using same membrane system (torch-on, TPO, etc.)"
+  },
+  {
+    "id": 9,
+    "text": "Vertical flashing extends up curb walls and overlapped by cap flashing"
+  },
+  {
+    "id": 10,
+    "text": "Round penetrations flashed using approved boots or pitch pockets filled and sealed"
+  },
+  {
+    "id": 11,
+    "text": "All seams welded (TPO) or bonded (SBS) and inspected by membrane manufacturer"
+  },
+  {
+    "id": "D. Mechanical & Electrical Penetrations"
+  },
+  {
+    "id": 12,
+    "text": "MEP trades coordinated for layout, timing, and type of roof penetrations"
+  },
+  {
+    "id": 13,
+    "text": "All conduits, ducts, and vents sealed watertight at roof entry points"
+  },
+  {
+    "id": 14,
+    "text": "Strapping, bracketing, and anchorage secured without damaging membrane"
+  },
+  {
+    "id": "E. Roof Safety & Anchors (if applicable)"
+  },
+  {
+    "id": 15,
+    "text": "Tie-back anchors, safety lines, and davit bases installed per engineered layout"
+  },
+  {
+    "id": 16,
+    "text": "All anchor systems fastened into structure and properly waterproofed"
+  },
+  {
+    "id": 17,
+    "text": "System tagged and certified by third-party as per provincial safety code (OH&S)"
+  },
+  {
+    "id": "F. Final Review"
+  },
+  {
+    "id": 18,
+    "text": "QA/QC visual and water-tightness inspection completed"
+  },
+  {
+    "id": 19,
+    "text": "Roofing consultant/manufacturer sign-off for membrane warranty"
+  },
+  {
+    "id": 20,
+    "text": "As-built drawings updated with roof penetration locations"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 & 9, OH&S Roof Anchor Guidelines"
+  },
+  {
+    "id": "• CSA Z259.16 – Fall Arrest Anchor Systems"
+  },
+  {
+    "id": "• Manufacturer Specs: Lexcor, Babcock-Davis, S-5!, RoofZone"
+  },
+  {
+    "id": "• Roofing Consultant or Warranty Provider Requirements"
+  }
+]

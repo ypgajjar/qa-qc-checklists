@@ -1,0 +1,166 @@
+[
+  {
+    "id": "A. Pre-Installation Checks"
+  },
+  {
+    "id": 1,
+    "text": "Submittals for system components (insulation, mesh, base coat, finish coat, fasteners) approved"
+  },
+  {
+    "id": 2,
+    "text": "EIFS installer certified by manufacturer"
+  },
+  {
+    "id": 3,
+    "text": "Pre-construction meeting completed with trades, GC, consultant"
+  },
+  {
+    "id": 4,
+    "text": "Mock-up panel approved (if required)"
+  },
+  {
+    "id": "B. Substrate Preparation"
+  },
+  {
+    "id": 5,
+    "text": "Wall substrate (e.g., sheathing) dry, clean, structurally sound"
+  },
+  {
+    "id": 6,
+    "text": "Fasteners flush and no protruding nails, screws, or damage"
+  },
+  {
+    "id": 7,
+    "text": "Control and expansion joint layout verified per drawings"
+  },
+  {
+    "id": "C. Moisture Barrier / WRB"
+  },
+  {
+    "id": 8,
+    "text": "WRB installed continuously with minimum 100 mm laps"
+  },
+  {
+    "id": 9,
+    "text": "All window/door openings wrapped and sealed with waterproof membrane"
+  },
+  {
+    "id": 10,
+    "text": "Sill flashing and pan flashing at rough openings completed before EIFS"
+  },
+  {
+    "id": 11,
+    "text": "Mesh or membrane embedded across sheathing joints (if required by system)"
+  },
+  {
+    "id": "D. Insulation Board Installation"
+  },
+  {
+    "id": 12,
+    "text": "Insulation boards of approved thickness and type"
+  },
+  {
+    "id": 13,
+    "text": "Adhesive applied with full coverage or ribbons as per manufacturer"
+  },
+  {
+    "id": 14,
+    "text": "Boards installed with staggered vertical joints, tight, and level"
+  },
+  {
+    "id": 15,
+    "text": "No gaps >2 mm between boards; foam applied at gaps and tooled"
+  },
+  {
+    "id": 16,
+    "text": "Mechanical fasteners used where required (especially over CMU)"
+  },
+  {
+    "id": 17,
+    "text": "Termination at grade min. 200 mm above finished grade unless otherwise specified"
+  },
+  {
+    "id": "E. Base Coat & Mesh Reinforcement"
+  },
+  {
+    "id": 18,
+    "text": "Reinforcing mesh fully embedded in wet base coat"
+  },
+  {
+    "id": 19,
+    "text": "Mesh overlaps a minimum of 65 mm (2.5”)"
+  },
+  {
+    "id": 20,
+    "text": "Backwrap at terminations (top, bottom, openings) and edges completed"
+  },
+  {
+    "id": 21,
+    "text": "Corner mesh installed at all external corners"
+  },
+  {
+    "id": 22,
+    "text": "Additional high-impact mesh at vulnerable locations (ground level, doors, etc.)"
+  },
+  {
+    "id": 23,
+    "text": "Base coat thickness checked as per spec (typically 1.5–3 mm)"
+  },
+  {
+    "id": "F. Finish Coat Application"
+  },
+  {
+    "id": 24,
+    "text": "Surface cleaned and dry before finish coat application"
+  },
+  {
+    "id": 25,
+    "text": "Finish coat applied uniformly with no visible mesh or patch marks"
+  },
+  {
+    "id": 26,
+    "text": "Finish color and texture matches approved mock-up or sample"
+  },
+  {
+    "id": 27,
+    "text": "Finish coat protected from rain until fully cured"
+  },
+  {
+    "id": "G. Final QA Review & Clean-Up"
+  },
+  {
+    "id": 28,
+    "text": "All terminations sealed and weeps installed at base of wall"
+  },
+  {
+    "id": 29,
+    "text": "Sealant joints between EIFS and dissimilar materials completed"
+  },
+  {
+    "id": 30,
+    "text": "Flashings visible and integrated with water-resistive barrier"
+  },
+  {
+    "id": 31,
+    "text": "QA/QC inspection completed and photos taken prior to scaffolding removal"
+  },
+  {
+    "id": 32,
+    "text": "Manufacturer warranty and install logbook submitted (if required)"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 & 9 – Moisture Protection & Cladding"
+  },
+  {
+    "id": "• EIMA / ASTM E2568, E2273 – EIFS Components & Drainage Systems"
+  },
+  {
+    "id": "• Manufacturer Guidelines: Dryvit, Sto, Senergy, Parex"
+  },
+  {
+    "id": "• LEED / Energy Code (if continuous insulation required)"
+  }
+]

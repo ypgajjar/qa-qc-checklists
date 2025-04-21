@@ -1,0 +1,98 @@
+[
+  {
+    "id": "A. Submittals & Design Review"
+  },
+  {
+    "id": 1,
+    "text": "Boiler type, input/output capacity, and efficiency rating match mechanical schedule"
+  },
+  {
+    "id": 2,
+    "text": "Shop drawings approved: piping, venting, wiring, flue route, expansion tanks, and pump layout"
+  },
+  {
+    "id": 3,
+    "text": "Boiler code compliance verified: CSA B149, ASME Section IV, local gas codes"
+  },
+  {
+    "id": "B. Delivery & Installation"
+  },
+  {
+    "id": 4,
+    "text": "Boiler delivered with CSA/ASME rating plates, installation manual, startup forms"
+  },
+  {
+    "id": 5,
+    "text": "Unit installed level, anchored, and isolated from structure"
+  },
+  {
+    "id": 6,
+    "text": "Primary/secondary piping connected with isolation, check, purge, balancing valves"
+  },
+  {
+    "id": 7,
+    "text": "Expansion tank, pressure relief valve, air separator, and drain valve installed as per design"
+  },
+  {
+    "id": 8,
+    "text": "Condensate drain (if condensing) installed with neutralizer and proper slope"
+  },
+  {
+    "id": "C. Electrical & Controls"
+  },
+  {
+    "id": 9,
+    "text": "Boiler panel wired with proper disconnect, fusing, and overload protection"
+  },
+  {
+    "id": 10,
+    "text": "BAS/DDC points connected: status, faults, flow, temperature, runtime"
+  },
+  {
+    "id": 11,
+    "text": "Outdoor reset and internal safeties verified: high limit, LWCO, gas valve lockout"
+  },
+  {
+    "id": "D. Venting & Gas"
+  },
+  {
+    "id": 12,
+    "text": "Combustion air and flue piping installed per manufacturer and local code"
+  },
+  {
+    "id": 13,
+    "text": "Leak check on all gas fittings performed with certified meter"
+  },
+  {
+    "id": 14,
+    "text": "CO monitor in place and vent termination meets clearance and distance standards"
+  },
+  {
+    "id": "E. Testing & Commissioning"
+  },
+  {
+    "id": 15,
+    "text": "Hydronic system flushed, pressure tested, and air purged"
+  },
+  {
+    "id": 16,
+    "text": "Boiler startup and combustion tuning completed by certified technician"
+  },
+  {
+    "id": 17,
+    "text": "Operating temperatures, pressure, and delta-T across loop verified"
+  },
+  {
+    "id": 18,
+    "text": "Manufacturer startup log and warranty registration completed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASHRAE 90.1, CSA B149 (Gas Code), NBC Part 6, CSA B51/B52, NECB 2020"
+  },
+  {
+    "id": "• Manufacturer Specs: Viessmann, Lochinvar, NTI, Cleaver-Brooks, Camus, Weil-McLain"
+  }
+]

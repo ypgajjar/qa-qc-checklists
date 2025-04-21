@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Submittals & Design Review"
+  },
+  {
+    "id": 1,
+    "text": "Tower type (induced draft, forced draft, open-loop, closed-loop) matches schedule and capacity"
+  },
+  {
+    "id": 2,
+    "text": "Structural supports, access platforms, vibration isolators detailed and reviewed"
+  },
+  {
+    "id": 3,
+    "text": "Piping layout and basin drain details approved and coordinated"
+  },
+  {
+    "id": "B. Delivery & Installation"
+  },
+  {
+    "id": 4,
+    "text": "Equipment delivered with factory inspection certificates, start-up forms, and manuals"
+  },
+  {
+    "id": 5,
+    "text": "Tower base installed level with clearance for service and airflow"
+  },
+  {
+    "id": 6,
+    "text": "Condenser water lines connected with flexible couplings, balancing valve, strainers, chemical injection ports"
+  },
+  {
+    "id": 7,
+    "text": "Vibration isolators and seismic restraints (if required) installed properly"
+  },
+  {
+    "id": 8,
+    "text": "Overflow, drain, and blowdown piping installed with proper backflow prevention"
+  },
+  {
+    "id": "C. Electrical & Controls"
+  },
+  {
+    "id": 9,
+    "text": "Fan motors and control panels connected, fused, and protected"
+  },
+  {
+    "id": 10,
+    "text": "Water level controller installed and tested (float, ultrasonic, or conductivity)"
+  },
+  {
+    "id": 11,
+    "text": "BAS/DDC integrated with status, fan speeds, basin heater, alarm, and trend points"
+  },
+  {
+    "id": "D. Testing & Commissioning"
+  },
+  {
+    "id": 12,
+    "text": "Flow rates balanced and pressure drop verified across tower"
+  },
+  {
+    "id": 13,
+    "text": "Motor rotation and speed control tested; fan vibration within limits"
+  },
+  {
+    "id": 14,
+    "text": "Basin filled and checked for leaks, overflow, and proper drainage"
+  },
+  {
+    "id": 15,
+    "text": "Water treatment system activated and commissioned"
+  },
+  {
+    "id": 16,
+    "text": "Start-up report and warranty registration submitted by manufacturer rep"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASHRAE 90.1, ASHRAE Guideline 12, NBC 2019, NECB"
+  },
+  {
+    "id": "• CTI STD-201, CSA B52, Local Water Bylaws (Blowdown Limits)"
+  },
+  {
+    "id": "• Manufacturer Specs: Evapco, BAC, Marley, SPX, Delta, Johnson Controls"
+  }
+]

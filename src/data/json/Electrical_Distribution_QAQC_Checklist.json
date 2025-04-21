@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Submittals & Design Review"
+  },
+  {
+    "id": 1,
+    "text": "Shop drawings approved for switchgear, breakers, panels, and one-line diagram match design intent"
+  },
+  {
+    "id": 2,
+    "text": "Coordination study, arc flash analysis, and short-circuit ratings reviewed and posted on equipment"
+  },
+  {
+    "id": 3,
+    "text": "Equipment space, clearances, and working distances per CEC/CSA C22.1 or NEC as applicable"
+  },
+  {
+    "id": "B. Equipment Installation"
+  },
+  {
+    "id": 4,
+    "text": "Switchboards, CDPs, and panelboards installed plumb and level, with seismic anchorage (if required)"
+  },
+  {
+    "id": 5,
+    "text": "Equipment labels, breaker identifications, and panel schedules legible and complete"
+  },
+  {
+    "id": 6,
+    "text": "Feeder cables installed with correct phasing, bend radius, torqueing of lugs per manufacturer's spec"
+  },
+  {
+    "id": 7,
+    "text": "Grounding electrode conductor (GEC), bonding conductors, and ground bus properly installed and tested"
+  },
+  {
+    "id": 8,
+    "text": "Equipment bonding verified: transformer to switchgear, panel to structure, enclosures"
+  },
+  {
+    "id": "C. Protection Devices & Testing"
+  },
+  {
+    "id": 9,
+    "text": "Breakers sized and labeled for circuit loads, AIC rating confirmed"
+  },
+  {
+    "id": 10,
+    "text": "Ground fault and arc fault protection verified where specified"
+  },
+  {
+    "id": 11,
+    "text": "Megger insulation resistance test performed on feeders and results recorded"
+  },
+  {
+    "id": 12,
+    "text": "Infrared scan performed on live gear to confirm no hotspots"
+  },
+  {
+    "id": "D. Commissioning & Documentation"
+  },
+  {
+    "id": 13,
+    "text": "Load balancing confirmed at panels and feeders"
+  },
+  {
+    "id": 14,
+    "text": "Voltage phase-to-phase and phase-to-neutral verified"
+  },
+  {
+    "id": 15,
+    "text": "As-built one-line diagrams, torque logs, breaker settings submitted"
+  },
+  {
+    "id": 16,
+    "text": "Electrical safety signage and PPE labeling complete"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA C22.1 (CEC), CEC Section 10, NEC Article 250, NFPA 70B"
+  },
+  {
+    "id": "• IEEE 242, IEEE 1584 (Arc Flash)"
+  },
+  {
+    "id": "• Manufacturer Specs: Eaton, Siemens, Schneider, ABB"
+  }
+]

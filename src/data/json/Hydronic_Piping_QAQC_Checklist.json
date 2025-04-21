@@ -1,0 +1,98 @@
+[
+  {
+    "id": "A. Submittals & Design Review"
+  },
+  {
+    "id": 1,
+    "text": "Approved piping materials, sizing, insulation, and layout as per spec and drawings"
+  },
+  {
+    "id": 2,
+    "text": "Isometric and spool drawings reviewed and coordinated with other trades"
+  },
+  {
+    "id": 3,
+    "text": "Supports, guides, and anchors designed for thermal expansion and contraction"
+  },
+  {
+    "id": "B. Installation – Piping & Valves"
+  },
+  {
+    "id": 4,
+    "text": "Pipes installed level/plumb with correct slope (especially for air removal and drains)"
+  },
+  {
+    "id": 5,
+    "text": "Isolation valves, strainers, unions, balancing valves, pressure/temp ports installed per plans"
+  },
+  {
+    "id": 6,
+    "text": "Expansion loops or joints in place for long runs; no pipe stress or unsupported sections"
+  },
+  {
+    "id": 7,
+    "text": "Flexible connectors installed at pumps and equipment"
+  },
+  {
+    "id": 8,
+    "text": "Pipe identification labels and flow direction arrows in place"
+  },
+  {
+    "id": "C. Equipment & Components"
+  },
+  {
+    "id": 9,
+    "text": "Air separator, expansion tank, and automatic air vents installed correctly and operational"
+  },
+  {
+    "id": 10,
+    "text": "Glycol feeder installed, filled, and relief protection in place (if applicable)"
+  },
+  {
+    "id": 11,
+    "text": "Hydronic pumps installed with correct orientation, isolators, and accessible"
+  },
+  {
+    "id": "D. Testing & Insulation"
+  },
+  {
+    "id": 12,
+    "text": "Pressure test (typically 1.5x working pressure or per spec) witnessed and passed"
+  },
+  {
+    "id": 13,
+    "text": "Flushing and chemical cleaning completed; water sample submitted for analysis"
+  },
+  {
+    "id": 14,
+    "text": "System filled, de-aired, and flow direction confirmed"
+  },
+  {
+    "id": 15,
+    "text": "Pipe insulation installed: correct thickness, vapor barrier sealed, no exposed gaps"
+  },
+  {
+    "id": "E. Closeout"
+  },
+  {
+    "id": 16,
+    "text": "As-built drawings submitted with piping routes, valves, and test data"
+  },
+  {
+    "id": 17,
+    "text": "O&M manuals provided for pumps, feeders, valves, tanks, and flushing log"
+  },
+  {
+    "id": 18,
+    "text": "AHJ and mechanical engineer signoff completed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASHRAE 90.1, 55, NBC Part 6, NECB, CSA B51, B52, ANSI/ASHRAE 111 (Testing)"
+  },
+  {
+    "id": "• Manufacturer Specs: Bell & Gossett, Taco, Armstrong, Grundfos, Flexcon, Victaulic"
+  }
+]

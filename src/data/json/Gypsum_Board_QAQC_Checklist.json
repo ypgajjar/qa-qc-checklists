@@ -1,0 +1,108 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Gypsum type (regular, Type X, mold-resistant, tile backer) matches location and submittals"
+  },
+  {
+    "id": 2,
+    "text": "Stud spacing, type, and gauge confirmed prior to boarding"
+  },
+  {
+    "id": 3,
+    "text": "Fasteners, corner beads, trims, and backing materials match approved schedule/spec"
+  },
+  {
+    "id": "B. Framing Inspection (Prior to Boarding)"
+  },
+  {
+    "id": 4,
+    "text": "Wall framing inspected for plumb, alignment, and proper backing at openings and fixtures"
+  },
+  {
+    "id": 5,
+    "text": "Inspections (electrical, plumbing, firestopping) signed off before boarding"
+  },
+  {
+    "id": 6,
+    "text": "Fire/sound insulation and sealants installed prior to drywall closure"
+  },
+  {
+    "id": "C. Board Installation"
+  },
+  {
+    "id": 7,
+    "text": "Boards installed with staggered vertical joints; horizontal joints centered on framing"
+  },
+  {
+    "id": 8,
+    "text": "Screws spaced correctly (typically 12\" o.c. field / 8\" o.c. edge unless otherwise specified)"
+  },
+  {
+    "id": 9,
+    "text": "No overdriven screws, excessive gaps, or damaged boards"
+  },
+  {
+    "id": 10,
+    "text": "Acoustic sealant applied at top/bottom plates and control joints (where required)"
+  },
+  {
+    "id": "D. Finishing / Taping"
+  },
+  {
+    "id": 11,
+    "text": "All joints taped and finished to specified level (e.g., Level 4 or 5 finish)"
+  },
+  {
+    "id": 12,
+    "text": "Control joints, corner beads, and reveals installed straight and clean"
+  },
+  {
+    "id": 13,
+    "text": "Compound sanding free from ridges, gouges, or scratches"
+  },
+  {
+    "id": "E. Specialty Assemblies"
+  },
+  {
+    "id": 14,
+    "text": "Shaft wall, fire-rated walls, chase walls completed to UL/WH assembly details"
+  },
+  {
+    "id": 15,
+    "text": "Moisture-resistant boards used in wet areas per spec"
+  },
+  {
+    "id": 16,
+    "text": "Lead-lined, acoustic, or impact-resistant boards verified where required"
+  },
+  {
+    "id": "F. QA/QC & Final Punch"
+  },
+  {
+    "id": 17,
+    "text": "Walls and ceilings visually inspected for level/plumb and uniformity"
+  },
+  {
+    "id": 18,
+    "text": "Closeout documents submitted (UL assembly IDs, mock-up approvals if required)"
+  },
+  {
+    "id": 19,
+    "text": "Surface ready for paint or finish without defects"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 9, ASTM C840 / C1396, GA-216 / GA-214 – Gypsum Board"
+  },
+  {
+    "id": "• UL Design Assemblies, WHI, CGC, CertainTeed, National Gypsum Specs"
+  },
+  {
+    "id": "• LEED / Acoustic Rating / Firestop Inspection Guidelines"
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Insulation type (batt, board, spray foam, rigid, blown-in) per approved submittal and spec"
+  },
+  {
+    "id": 2,
+    "text": "R-value matches architectural and energy code requirements"
+  },
+  {
+    "id": 3,
+    "text": "Products stored dry and protected from damage"
+  },
+  {
+    "id": 4,
+    "text": "Fire-resistance rating (if required) confirmed for application"
+  },
+  {
+    "id": "B. Substrate Readiness & Placement"
+  },
+  {
+    "id": 5,
+    "text": "Framing cavities clean, dry, and free of debris prior to installation"
+  },
+  {
+    "id": 6,
+    "text": "Mechanical, plumbing, and electrical installations completed and inspected before insulation"
+  },
+  {
+    "id": 7,
+    "text": "Vapor barrier (if applicable) coordinated and verified"
+  },
+  {
+    "id": "C. Installation - Batt/Rigid"
+  },
+  {
+    "id": 8,
+    "text": "Batt insulation fills cavities fully, without compression or gaps"
+  },
+  {
+    "id": 9,
+    "text": "No air gaps, voids, or bridging at corners, edges, or around framing"
+  },
+  {
+    "id": 10,
+    "text": "Rigid board insulation installed flush with substrate; joints taped or staggered as per spec"
+  },
+  {
+    "id": 11,
+    "text": "Around windows/doors fully insulated and fitted"
+  },
+  {
+    "id": "D. Spray Foam / Specialty Insulation"
+  },
+  {
+    "id": 12,
+    "text": "Sprayed foam thickness measured and matches spec"
+  },
+  {
+    "id": 13,
+    "text": "Foam not over-sprayed onto mechanical/electrical components"
+  },
+  {
+    "id": 14,
+    "text": "Off-gassing or curing complete before enclosure"
+  },
+  {
+    "id": "E. Final Review"
+  },
+  {
+    "id": 15,
+    "text": "Acoustic insulation installed between party walls, floors, and demising walls as per plans"
+  },
+  {
+    "id": 16,
+    "text": "All penetrations sealed and insulation restored after MEP work"
+  },
+  {
+    "id": 17,
+    "text": "QA/QC and consultant sign-off completed prior to drywall or cladding"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 & 9 – Thermal Performance"
+  },
+  {
+    "id": "• NECB / ASHRAE 90.1 – Energy Code Requirements"
+  },
+  {
+    "id": "• CSA A247 / CAN/ULC-S705.2 – Insulation Application Standards"
+  },
+  {
+    "id": "• LEED / Energy Efficiency Standards (if applicable)"
+  }
+]

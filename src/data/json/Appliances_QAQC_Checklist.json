@@ -1,0 +1,87 @@
+[
+  {
+    "id": "A. Equipment Review & Delivery"
+  },
+  {
+    "id": 1,
+    "text": "Appliance type, model, and finish (stainless, white, black) match approved schedule"
+  },
+  {
+    "id": 2,
+    "text": "Appliance dimensions and electrical/mechanical specs match rough-in layout"
+  },
+  {
+    "id": 3,
+    "text": "Delivery confirmed with no visible damage or missing parts"
+  },
+  {
+    "id": 4,
+    "text": "Manuals, warranty info, and installation hardware provided"
+  },
+  {
+    "id": "B. Rough-In Coordination"
+  },
+  {
+    "id": 5,
+    "text": "Electrical outlet location, voltage, amperage, and receptacle type match appliance requirement"
+  },
+  {
+    "id": 6,
+    "text": "Water supply and drain stub-outs installed (for dishwashers, ice makers, laundry)"
+  },
+  {
+    "id": 7,
+    "text": "Gas connection & shutoff accessible and code-compliant (if applicable)"
+  },
+  {
+    "id": 8,
+    "text": "Venting provided for exhaust-type units (e.g., dryer, range hood, microwave combo)"
+  },
+  {
+    "id": "C. Appliance Installation"
+  },
+  {
+    "id": 9,
+    "text": "Appliance leveled, secured, and connected to power/water/gas as applicable"
+  },
+  {
+    "id": 10,
+    "text": "Built-in units flush with adjacent cabinetry or counters"
+  },
+  {
+    "id": 11,
+    "text": "Seals and gaskets clean and properly aligned"
+  },
+  {
+    "id": 12,
+    "text": "Trim kits and accessory panels installed per manufacturer instruction"
+  },
+  {
+    "id": "D. Testing & Commissioning"
+  },
+  {
+    "id": 13,
+    "text": "Appliance started/tested and performs basic function without error"
+  },
+  {
+    "id": 14,
+    "text": "No noise, vibration, leaks, or error codes during test cycle"
+  },
+  {
+    "id": 15,
+    "text": "Breakers labeled and appliance circuits confirmed"
+  },
+  {
+    "id": 16,
+    "text": "Owner/user orientation provided or confirmed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC, CEC, CSA C22, CAN/ULC S600, ASTM F2324 (Appliance Testing)"
+  },
+  {
+    "id": "• Manufacturer Specs: Whirlpool, GE, Frigidaire, Samsung, Bosch, LG, Maytag, Electrolux"
+  }
+]

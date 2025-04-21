@@ -1,0 +1,108 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Panel type (ACM, IMP, corrugated) per approved shop drawings and submittals"
+  },
+  {
+    "id": 2,
+    "text": "Substrate prep materials, anchors, clips, subgirts, and sealants approved"
+  },
+  {
+    "id": 3,
+    "text": "Materials stored flat, dry, and protected from UV and physical damage"
+  },
+  {
+    "id": "B. Framing/Substructure Preparation"
+  },
+  {
+    "id": 4,
+    "text": "Structural supports/subgirts plumb, square, and fastened as per drawings"
+  },
+  {
+    "id": 5,
+    "text": "Back-up wall (sheathing, air barrier, insulation) complete before panel install"
+  },
+  {
+    "id": 6,
+    "text": "Control joints and expansion joints located as per architectural design"
+  },
+  {
+    "id": "C. Panel Installation"
+  },
+  {
+    "id": 7,
+    "text": "Panel layout follows approved elevation drawings (alignment, reveal lines)"
+  },
+  {
+    "id": 8,
+    "text": "ACM/IMP panels fastened with proper clips, screws, or concealed systems"
+  },
+  {
+    "id": 9,
+    "text": "Panel edges clean, straight, and protected with edge trims or finished reveals"
+  },
+  {
+    "id": 10,
+    "text": "Panel seams aligned, uniform spacing, and caulked (if exposed)"
+  },
+  {
+    "id": 11,
+    "text": "Protective film removed only after final inspection"
+  },
+  {
+    "id": "D. Openings, Corners & Transitions"
+  },
+  {
+    "id": 12,
+    "text": "Windows, doors, and louvers integrated with flashings and cladding system"
+  },
+  {
+    "id": 13,
+    "text": "External and internal corners detailed as per shop drawings"
+  },
+  {
+    "id": 14,
+    "text": "Transitions to other materials (e.g., stucco, masonry) sealed properly"
+  },
+  {
+    "id": 15,
+    "text": "Bottom of panels terminated above grade with proper closure"
+  },
+  {
+    "id": "E. Sealants & Final Review"
+  },
+  {
+    "id": 16,
+    "text": "All exposed joints sealed with compatible, UV-stable caulking"
+  },
+  {
+    "id": 17,
+    "text": "No oil-canning, deformation, or color inconsistency visible"
+  },
+  {
+    "id": 18,
+    "text": "QA/QC review completed with punch list items addressed"
+  },
+  {
+    "id": 19,
+    "text": "Manufacturer warranty or closeout documentation submitted"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 & 9 – Cladding & Environmental Separation"
+  },
+  {
+    "id": "• CSA A440.4 / ASTM E330 – Wind Load & Cladding Testing"
+  },
+  {
+    "id": "• Manufacturer Guidelines (e.g., Alucobond, Kingspan, Norbec)"
+  },
+  {
+    "id": "• LEED, NECB, and Building Envelope Consultant Specs"
+  }
+]

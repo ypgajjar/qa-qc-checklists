@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "text": "Formwork setup inspection"
+  },
+  {
+    "id": 2,
+    "text": "Reinforcement layout and fixing"
+  },
+  {
+    "id": 3,
+    "text": "Pre-pour review / access & readiness"
+  },
+  {
+    "id": 4,
+    "text": "Concrete delivery ticket check"
+  },
+  {
+    "id": 5,
+    "text": "Slump, temperature, air content test"
+  },
+  {
+    "id": 6,
+    "text": "Concrete pouring and vibration"
+  },
+  {
+    "id": 7,
+    "text": "Placement technique and finish monitoring"
+  },
+  {
+    "id": 8,
+    "text": "Specimen collection for compressive testing"
+  },
+  {
+    "id": 9,
+    "text": "Curing method and timing verification"
+  },
+  {
+    "id": 10,
+    "text": "Form stripping (beams, slabs, columns)"
+  },
+  {
+    "id": 11,
+    "text": "Surface defects and honeycombing check"
+  },
+  {
+    "id": 12,
+    "text": "Grouting of precast joints and embeds"
+  },
+  {
+    "id": 13,
+    "text": "Final QA sign-off and turnover for next trade"
+  }
+]

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Thermal break materials (insulating pads, blocks, composite shims, structural insulation) per submittals"
+  },
+  {
+    "id": 2,
+    "text": "System manufacturer and load ratings match structural/architectural specs"
+  },
+  {
+    "id": 3,
+    "text": "Product certification or test data provided (e.g., thermal resistance, compressive strength)"
+  },
+  {
+    "id": "B. Substrate & Interface Prep"
+  },
+  {
+    "id": 4,
+    "text": "Substrates (steel, concrete, aluminum) clean and prepared as per manufacturer's instructions"
+  },
+  {
+    "id": 5,
+    "text": "All mating components dimensionally checked for flatness and fit prior to install"
+  },
+  {
+    "id": "C. Installation – Curtain Wall / Window Systems"
+  },
+  {
+    "id": 6,
+    "text": "Thermal breaks in aluminum mullions installed continuously without gaps"
+  },
+  {
+    "id": 7,
+    "text": "Insulating strips snapped or bonded into frame with proper compression"
+  },
+  {
+    "id": 8,
+    "text": "Frames and sills sealed to adjacent air/vapor barrier without thermal bridging"
+  },
+  {
+    "id": "D. Installation – Steel Support & Connection Plates"
+  },
+  {
+    "id": 9,
+    "text": "Thermal isolator plates or bushings installed between cladding supports and structure"
+  },
+  {
+    "id": 10,
+    "text": "Insulating washers or sleeves used on through-bolts as required"
+  },
+  {
+    "id": 11,
+    "text": "No direct metal-to-metal contact between cladding fasteners and building frame"
+  },
+  {
+    "id": "E. Installation – Balconies & Slab Edges (Thermal Inserts)"
+  },
+  {
+    "id": 12,
+    "text": "Thermal isolation elements placed per structural drawings at balcony/slab interfaces"
+  },
+  {
+    "id": 13,
+    "text": "Rebar connections pass through insulation with proper cover and spacing maintained"
+  },
+  {
+    "id": 14,
+    "text": "Joint treatment between slab and facade integrates with WRB/vapor barrier"
+  },
+  {
+    "id": "F. Final QA Review & Documentation"
+  },
+  {
+    "id": 15,
+    "text": "All thermal break assemblies verified against shop drawings and manufacturer install guides"
+  },
+  {
+    "id": 16,
+    "text": "QA/QC and building envelope consultant sign-off completed before enclosing facade"
+  },
+  {
+    "id": 17,
+    "text": "Thermal break components labeled or tagged for traceability (if required by spec)"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NECB 2020, NBC Part 5 & 9 – Thermal Bridging and Envelope"
+  },
+  {
+    "id": "• CSA A440.6 / ASTM C1363 / ISO 10211 – Thermal Transmittance Testing"
+  },
+  {
+    "id": "• Manufacturer Specs: Schöck, Armatherm, Isokorb, Technoform"
+  },
+  {
+    "id": "• LEED / Passive House / Envelope Commissioning Requirements"
+  }
+]

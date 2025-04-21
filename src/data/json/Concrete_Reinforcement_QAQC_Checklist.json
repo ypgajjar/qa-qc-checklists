@@ -1,0 +1,105 @@
+[
+  {
+    "id": "A. Material Inspection"
+  },
+  {
+    "id": 1,
+    "text": "Reinforcement type and size as per approved structural drawings"
+  },
+  {
+    "id": 2,
+    "text": "Rebar is free from rust, oil, dirt, and deformation"
+  },
+  {
+    "id": 3,
+    "text": "Rebar mill certificates and delivery records available on-site"
+  },
+  {
+    "id": "B. Rebar Cutting, Bending, and Placement"
+  },
+  {
+    "id": 4,
+    "text": "Cutting and bending conforms to approved bar bending schedules"
+  },
+  {
+    "id": 5,
+    "text": "Rebar placed per layout and location indicated in structural drawings"
+  },
+  {
+    "id": 6,
+    "text": "Bars are correctly lapped, spliced, and offset per code requirements"
+  },
+  {
+    "id": 7,
+    "text": "Bar spacing and clearances maintained per drawings and CSA/ACI standards"
+  },
+  {
+    "id": 8,
+    "text": "Reinforcement properly tied using tie wire; ties are secure and trimmed"
+  },
+  {
+    "id": 9,
+    "text": "Mechanical couplers (if used) installed and torqued per manufacturer’s instructions"
+  },
+  {
+    "id": "C. Cover and Support"
+  },
+  {
+    "id": 10,
+    "text": "Bar supports (chairs, bolsters, spacers) used to maintain concrete cover"
+  },
+  {
+    "id": 11,
+    "text": "Minimum concrete cover provided per drawings and code (slabs, beams, walls, columns)"
+  },
+  {
+    "id": 12,
+    "text": "Rebar adequately secured to prevent displacement during pour"
+  },
+  {
+    "id": "D. Openings and Embedded Coordination"
+  },
+  {
+    "id": 13,
+    "text": "Rebar does not obstruct sleeves, openings, or embedded items"
+  },
+  {
+    "id": 14,
+    "text": "Dowels and anchors placed as per layout and fixed prior to pour"
+  },
+  {
+    "id": 15,
+    "text": "Coordination with electrical and mechanical embeds completed before closing"
+  },
+  {
+    "id": "E. Safety and Pre-Pour Review"
+  },
+  {
+    "id": 16,
+    "text": "Site safe and free from protruding bars or trip hazards"
+  },
+  {
+    "id": 17,
+    "text": "Reinforcement inspected and approved by QA/QC / structural / client (if required)"
+  },
+  {
+    "id": 18,
+    "text": "Photos taken for documentation and record"
+  },
+  {
+    "id": 19,
+    "text": "Inspection sign-off completed prior to placement"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA A23.3 – Design of Concrete Structures"
+  },
+  {
+    "id": "• ACI 318 / ACI 117 – Rebar Detailing and Placement"
+  },
+  {
+    "id": "• NBC Part 4 – Structural Design"
+  }
+]

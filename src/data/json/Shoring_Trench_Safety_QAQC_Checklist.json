@@ -1,0 +1,79 @@
+[
+  {
+    "id": "A. Submittals & Approvals"
+  },
+  {
+    "id": 1,
+    "text": "Excavation support drawings reviewed and stamped by professional engineer"
+  },
+  {
+    "id": 2,
+    "text": "Geotechnical recommendations on soil conditions and allowable excavation methods confirmed"
+  },
+  {
+    "id": 3,
+    "text": "Engineered shoring system or benching/sloping method selected based on soil type"
+  },
+  {
+    "id": "B. Installation of Support Systems"
+  },
+  {
+    "id": 4,
+    "text": "Trench box/sheet pile installed prior to personnel entry"
+  },
+  {
+    "id": 5,
+    "text": "Shoring systems installed per stamped plan and aligned with excavation profile"
+  },
+  {
+    "id": 6,
+    "text": "Bracing, wales, or hydraulic components installed securely and inspected for defects"
+  },
+  {
+    "id": 7,
+    "text": "Spoil piles placed minimum 1 m (3 ft) from trench edge"
+  },
+  {
+    "id": "C. Monitoring & Daily Inspection"
+  },
+  {
+    "id": 8,
+    "text": "Daily pre-entry trench inspections completed and documented by competent person"
+  },
+  {
+    "id": 9,
+    "text": "Inspections conducted after rain, vibration, or any soil movement"
+  },
+  {
+    "id": 10,
+    "text": "Warning signage and restricted zone markings clearly in place"
+  },
+  {
+    "id": 11,
+    "text": "Ladders or safe access provided for all trench depths >1.2 m (4 ft)"
+  },
+  {
+    "id": "D. Backfill & Removal"
+  },
+  {
+    "id": 12,
+    "text": "Backfill completed in lifts, with progressive removal of shoring equipment"
+  },
+  {
+    "id": 13,
+    "text": "No trench collapse, soil cave-ins, or structural issues during removal"
+  },
+  {
+    "id": 14,
+    "text": "Final inspection completed and documented prior to full demobilization"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• OH&S Code – Alberta (Part 32), OSHA 1926 Subpart P, CSA S269.1"
+  },
+  {
+    "id": "• Geotechnical Report, Stamped Shoring Plans, Trench Manufacturer Guidelines"
+  }
+]

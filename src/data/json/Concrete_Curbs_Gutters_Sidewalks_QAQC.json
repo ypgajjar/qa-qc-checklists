@@ -1,0 +1,86 @@
+[
+  {
+    "id": "A. Submittals & Review"
+  },
+  {
+    "id": 1,
+    "text": "IFC drawings, sections, and layout plan reviewed and staked"
+  },
+  {
+    "id": 2,
+    "text": "Concrete mix design (strength, slump, air content) approved by consultant or municipality"
+  },
+  {
+    "id": 3,
+    "text": "Accessibility features (slopes, detectable warning pads) detailed and approved"
+  },
+  {
+    "id": "B. Subgrade and Formwork"
+  },
+  {
+    "id": 4,
+    "text": "Subgrade compacted and proof rolled with no soft spots"
+  },
+  {
+    "id": 5,
+    "text": "Forms installed true to line/grade with proper slope for drainage"
+  },
+  {
+    "id": 6,
+    "text": "Expansion joints, dowels, and keyways placed where required"
+  },
+  {
+    "id": "C. Reinforcement & Embedments"
+  },
+  {
+    "id": 7,
+    "text": "Rebar or mesh installed with correct spacing and chair support"
+  },
+  {
+    "id": 8,
+    "text": "Sleeves/conduits for utilities or light poles installed before pour"
+  },
+  {
+    "id": "D. Concrete Placement and Finish"
+  },
+  {
+    "id": 9,
+    "text": "Concrete placed within time and temperature window (CSA A23.1 compliance)"
+  },
+  {
+    "id": 10,
+    "text": "Slump, air, and temperature tests performed at start of pour"
+  },
+  {
+    "id": 11,
+    "text": "Surface finished per spec (broom, smooth, etc.) with control joints cut or tooled"
+  },
+  {
+    "id": 12,
+    "text": "Curb face and radii troweled smoothly with no honeycombing"
+  },
+  {
+    "id": "E. Curing & Post-Pour"
+  },
+  {
+    "id": 13,
+    "text": "Curing compound applied or wet burlap/plastic used within 30 mins of finish"
+  },
+  {
+    "id": 14,
+    "text": "Barriers or flags in place to prevent damage from foot or vehicle traffic"
+  },
+  {
+    "id": 15,
+    "text": "Final inspection completed for slope, elevation, cracks, and finish"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA A23.1 & A23.2, NBC 2020 Part 3.8 (Accessibility)"
+  },
+  {
+    "id": "• City of Calgary / Edmonton Concrete Details, ASTM C143, C231, C1064"
+  }
+]

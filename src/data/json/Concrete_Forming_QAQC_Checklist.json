@@ -1,0 +1,112 @@
+[
+  {
+    "id": "A. General Formwork Requirements"
+  },
+  {
+    "id": 1,
+    "text": "Approved shop drawings for formwork available on-site"
+  },
+  {
+    "id": 2,
+    "text": "Form materials (plywood, steel, timber) clean and undamaged"
+  },
+  {
+    "id": 3,
+    "text": "All formwork built to correct dimensions, levels, and alignment"
+  },
+  {
+    "id": 4,
+    "text": "Forms erected per structural and architectural drawings"
+  },
+  {
+    "id": 5,
+    "text": "Surface treatment applied as per specification (form release agent, if required)"
+  },
+  {
+    "id": "B. Structural Support and Stability"
+  },
+  {
+    "id": 6,
+    "text": "Bracing and supports installed to prevent movement or deflection during pour"
+  },
+  {
+    "id": 7,
+    "text": "Shores, walers, and ties installed per formwork design"
+  },
+  {
+    "id": 8,
+    "text": "Adequate support provided for horizontal formwork and suspended slabs"
+  },
+  {
+    "id": "C. Openings and Embedded Items"
+  },
+  {
+    "id": 9,
+    "text": "All block-outs, sleeves, and box-outs in correct location and secure"
+  },
+  {
+    "id": 10,
+    "text": "Anchor bolts, dowels, and embeds installed as per approved layout"
+  },
+  {
+    "id": 11,
+    "text": "Electrical/MEP embeds coordinated and placed prior to closing forms"
+  },
+  {
+    "id": "D. Access and Pour Readiness"
+  },
+  {
+    "id": 12,
+    "text": "Access for concrete placement (pumps, hoses, chutes) verified"
+  },
+  {
+    "id": 13,
+    "text": "Openings for vibrator placement and form cleaning provided"
+  },
+  {
+    "id": 14,
+    "text": "Surfaces moistened prior to placement (if required)"
+  },
+  {
+    "id": "E. Tolerances and Safety"
+  },
+  {
+    "id": 15,
+    "text": "Tolerances within CSA A23.1 / NBC standards"
+  },
+  {
+    "id": 16,
+    "text": "Edge forms level and aligned (check top of slab)"
+  },
+  {
+    "id": 17,
+    "text": "Safety measures in place (guardrails, signage, ladders, etc.)"
+  },
+  {
+    "id": "F. Pre-Pour Review and Sign-off"
+  },
+  {
+    "id": 18,
+    "text": "Pre-pour inspection performed and signed by responsible authority"
+  },
+  {
+    "id": 19,
+    "text": "Photos taken for record prior to concrete placement"
+  },
+  {
+    "id": 20,
+    "text": "All approvals obtained from QA/QC, structural, and client (if applicable)"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA A23.1 – Concrete Materials & Methods of Construction"
+  },
+  {
+    "id": "• NBC Part 9 and 4 – General & Structural Design"
+  },
+  {
+    "id": "• ACI 347 – Guide to Formwork for Concrete (optional)"
+  }
+]

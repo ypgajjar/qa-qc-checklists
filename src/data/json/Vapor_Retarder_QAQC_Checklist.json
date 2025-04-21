@@ -1,0 +1,118 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Vapor retarder type and perm rating confirmed (e.g., ≤0.1 perm for Class I)"
+  },
+  {
+    "id": 2,
+    "text": "Product listed on approved submittals and compatible with adjacent materials"
+  },
+  {
+    "id": 3,
+    "text": "Sealants, tapes, and primers used are approved and compatible"
+  },
+  {
+    "id": 4,
+    "text": "Materials stored dry and undamaged prior to install"
+  },
+  {
+    "id": "B. Substrate Preparation"
+  },
+  {
+    "id": 5,
+    "text": "Substrate dry, clean, and smooth (no protrusions, moisture, or contaminants)"
+  },
+  {
+    "id": 6,
+    "text": "All penetrations pre-coordinated with trades"
+  },
+  {
+    "id": "C. Wall Application (Interior/Exterior)"
+  },
+  {
+    "id": 7,
+    "text": "Continuous installation without tears or holes"
+  },
+  {
+    "id": 8,
+    "text": "Seams overlapped (minimum 100 mm / 4”) and sealed with approved tape"
+  },
+  {
+    "id": 9,
+    "text": "Membrane turned up at floor slab and down over top plates / headers"
+  },
+  {
+    "id": 10,
+    "text": "Penetrations sealed with gaskets, boots, or tapes (MEP, structural)"
+  },
+  {
+    "id": 11,
+    "text": "Backed up with rigid board, batt insulation, or sheathing as per design"
+  },
+  {
+    "id": "D. Under-Slab Vapor Barrier (if applicable)"
+  },
+  {
+    "id": 12,
+    "text": "Sheet lapped a minimum of 150 mm (6”) and sealed"
+  },
+  {
+    "id": 13,
+    "text": "Penetrations (conduits, footings) sealed individually"
+  },
+  {
+    "id": 14,
+    "text": "No punctures or wrinkles under reinforcement or rebar"
+  },
+  {
+    "id": 15,
+    "text": "Vapor barrier extended under footings or up vertical face (as per detail)"
+  },
+  {
+    "id": "E. Roof Application (TPO/SBS Hybrid)"
+  },
+  {
+    "id": 16,
+    "text": "Vapor retarder installed over deck and under insulation as per spec"
+  },
+  {
+    "id": 17,
+    "text": "Torch or self-adhered membrane sealed at all laps and terminations"
+  },
+  {
+    "id": 18,
+    "text": "Mechanical fasteners used only where permitted by manufacturer"
+  },
+  {
+    "id": "F. Final Review & Coordination"
+  },
+  {
+    "id": 19,
+    "text": "QA/QC inspection with air barrier continuity check"
+  },
+  {
+    "id": 20,
+    "text": "Any repairs completed with full bond and continuity re-established"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 – Vapour Diffusion Control"
+  },
+  {
+    "id": "• CAN/CGSB 51.33, ASTM E96 – Vapor Retarder Classifications"
+  },
+  {
+    "id": "• NECB / Energy Codes"
+  },
+  {
+    "id": "• Manufacturer Specifications (e.g., Stego Wrap, Soprema, Henry, Blueskin)"
+  },
+  {
+    "id": "• Air/Vapor Barrier Continuity Testing Guidelines (if applicable)"
+  }
+]

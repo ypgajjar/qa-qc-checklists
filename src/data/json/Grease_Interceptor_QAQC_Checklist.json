@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Submittals & Pre-Installation"
+  },
+  {
+    "id": 1,
+    "text": "Interceptor/separator type, size, and capacity match mechanical schedules and local bylaw requirements"
+  },
+  {
+    "id": 2,
+    "text": "Manufacturer’s submittals stamped and reviewed; flow rate and retention volume confirmed"
+  },
+  {
+    "id": 3,
+    "text": "AHJ (e.g., city plumbing inspector) notified if pre-installation approval required"
+  },
+  {
+    "id": "B. Installation Checks"
+  },
+  {
+    "id": 4,
+    "text": "Concrete pad/support base level and sized to hold interceptor weight (if not slab-on-grade)"
+  },
+  {
+    "id": 5,
+    "text": "Pipe inlet/outlet slopes meet design (1–2%) and piping connected with flexible couplings or expansion joints"
+  },
+  {
+    "id": 6,
+    "text": "Cleanout installed on both sides of the tank for maintenance"
+  },
+  {
+    "id": 7,
+    "text": "Venting system connected to interceptor per manufacturer and local plumbing code"
+  },
+  {
+    "id": 8,
+    "text": "External sensors (if specified) for high-level or oil detection connected and tested"
+  },
+  {
+    "id": 9,
+    "text": "Signage or labelling provided above access covers or service ports"
+  },
+  {
+    "id": "C. Testing & Commissioning"
+  },
+  {
+    "id": 10,
+    "text": "System filled with water and observed for leaks or settlement before backfilling or concealment"
+  },
+  {
+    "id": 11,
+    "text": "Functional test completed: verify no bypass of interceptor; float/oil skimmer devices tested"
+  },
+  {
+    "id": 12,
+    "text": "Maintenance access clearance verified per local municipal code or design drawings"
+  },
+  {
+    "id": 13,
+    "text": "Initial cleaning scheduled prior to occupancy or system turnover"
+  },
+  {
+    "id": "D. Closeout"
+  },
+  {
+    "id": 14,
+    "text": "Operation manual, maintenance logbook, and manufacturer warranty submitted"
+  },
+  {
+    "id": 15,
+    "text": "Owner trained on cleaning schedule, maintenance frequency, and disposal records"
+  },
+  {
+    "id": 16,
+    "text": "Commissioning and inspection forms signed off by AHJ"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• National Plumbing Code (NPC Canada), CSA B481 Series (Grease Interceptors)"
+  },
+  {
+    "id": "• Local Municipal Bylaws (e.g., City of Calgary Sewer Bylaw 14M2012)"
+  },
+  {
+    "id": "• Manufacturer Specs: MIFAB, Schier, Zurn, Highland, Canplas, Rockford Separators"
+  }
+]

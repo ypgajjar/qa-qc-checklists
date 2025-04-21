@@ -1,0 +1,86 @@
+[
+  {
+    "id": "A. Submittals & Design Review"
+  },
+  {
+    "id": 1,
+    "text": "Access control riser diagram and door schedule approved and matches hardware and layout"
+  },
+  {
+    "id": 2,
+    "text": "Reader types (prox, keypad, biometric), controller specs, and power requirements reviewed"
+  },
+  {
+    "id": 3,
+    "text": "Locking hardware compatibility (fail-safe/fail-secure, strike vs. maglock) verified per code"
+  },
+  {
+    "id": "B. Door Hardware Installation"
+  },
+  {
+    "id": 4,
+    "text": "Electric strike, maglock, or motorized latch installed and aligned with door frame"
+  },
+  {
+    "id": 5,
+    "text": "Request-to-exit (REX) sensor or button installed per location and height standards"
+  },
+  {
+    "id": 6,
+    "text": "Door position switch (DPS) wired and positioned correctly"
+  },
+  {
+    "id": "C. Access Control Panels & Power"
+  },
+  {
+    "id": 7,
+    "text": "Control panel installed in secure location with UPS or battery backup"
+  },
+  {
+    "id": 8,
+    "text": "Cabling to readers, locks, DPS, and REX routed in conduit or raceway with labeling"
+  },
+  {
+    "id": 9,
+    "text": "All field devices terminated properly in control panel; fuses or breakers included"
+  },
+  {
+    "id": "D. Programming & Testing"
+  },
+  {
+    "id": 10,
+    "text": "Readers tested for authorized/unauthorized card access, door release"
+  },
+  {
+    "id": 11,
+    "text": "Lock relays tested for correct logic with DPS and REX inputs"
+  },
+  {
+    "id": 12,
+    "text": "Door held-open and forced-entry alarms tested and logged"
+  },
+  {
+    "id": 13,
+    "text": "Time zones, user access groups, and holidays configured"
+  },
+  {
+    "id": "E. Closeout & Documentation"
+  },
+  {
+    "id": 14,
+    "text": "As-built riser diagram, door detail drawings, and panel layout submitted"
+  },
+  {
+    "id": 15,
+    "text": "Commissioning log, event logs, and operator training completed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NFPA 101, UL 294, CSA C22.1, IBC 1010.1.9, CSA C282"
+  },
+  {
+    "id": "• Manufacturer Specs: HID, LenelS2, Gallagher, Honeywell, Genetec, Axis, Bosch"
+  }
+]

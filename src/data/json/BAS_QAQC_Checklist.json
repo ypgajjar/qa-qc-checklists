@@ -1,0 +1,93 @@
+[
+  {
+    "id": "A. Submittals & System Architecture"
+  },
+  {
+    "id": 1,
+    "text": "Control schematics, network diagrams, sequence of operations reviewed and approved by engineer"
+  },
+  {
+    "id": 2,
+    "text": "BAS panel locations coordinated with electrical rooms/mechanical areas and labeled per drawings"
+  },
+  {
+    "id": 3,
+    "text": "Network protocol confirmed (BACnet/IP, MSTP, Modbus, LonWorks, KNX, etc.) and devices properly mapped"
+  },
+  {
+    "id": "B. Panel Installation & Wiring"
+  },
+  {
+    "id": 4,
+    "text": "BAS panels mounted level, accessible, with nameplates, documentation pockets, and lockable doors"
+  },
+  {
+    "id": 5,
+    "text": "All I/O points wired per schematics, tagged, terminated, and free of interference"
+  },
+  {
+    "id": 6,
+    "text": "Shielded cabling, grounding, conduit penetrations sealed, and low-voltage segregation maintained"
+  },
+  {
+    "id": "C. Field Device Installation"
+  },
+  {
+    "id": 7,
+    "text": "Sensors (temperature, humidity, CO2, occupancy) installed per schedule and calibrated"
+  },
+  {
+    "id": 8,
+    "text": "Damper actuators, valve actuators, and flow meters installed, tested for stroke and feedback"
+  },
+  {
+    "id": 9,
+    "text": "Fire alarm and life safety interlocks connected and labeled"
+  },
+  {
+    "id": "D. Programming, Graphics, and Control Logic"
+  },
+  {
+    "id": 10,
+    "text": "Control programs uploaded, verified per sequence, and override protection enabled"
+  },
+  {
+    "id": 11,
+    "text": "User interface (graphics) reviewed for navigation, points labeling, and trend logs"
+  },
+  {
+    "id": 12,
+    "text": "Alarms configured for priority, email/text alerts, and event triggers"
+  },
+  {
+    "id": "E. Commissioning & Handover"
+  },
+  {
+    "id": 13,
+    "text": "Full point-to-point test completed (input/output validation) with signed off matrix"
+  },
+  {
+    "id": 14,
+    "text": "Trending and logging confirmed for energy usage, setpoints, and occupancy behavior"
+  },
+  {
+    "id": 15,
+    "text": "Operator training conducted and login credentials handed over securely"
+  },
+  {
+    "id": 16,
+    "text": "As-built control drawings, network diagram, backups, and user manuals submitted"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASHRAE Guideline 13, BACnet Standard 135, ANSI/ASHRAE 135.1, CSA C22.1"
+  },
+  {
+    "id": "• LEED EA Credit: Enhanced Commissioning"
+  },
+  {
+    "id": "• Manufacturer Specs: Johnson Controls, Honeywell, Siemens, Schneider, Delta Controls, Tridium Niagara"
+  }
+]

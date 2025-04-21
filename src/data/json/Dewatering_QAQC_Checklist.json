@@ -1,0 +1,93 @@
+[
+  {
+    "id": "A. Dewatering Plan & Setup"
+  },
+  {
+    "id": 1,
+    "text": "Geotechnical report reviewed for water table elevation, infiltration rate, and soil permeability"
+  },
+  {
+    "id": 2,
+    "text": "Dewatering method (sump pump, wellpoint, deep well, or cutoff trench) selected and reviewed by engineer"
+  },
+  {
+    "id": 3,
+    "text": "Dewatering layout, discharge path, and erosion/sediment control measures approved"
+  },
+  {
+    "id": "B. Installation of Equipment"
+  },
+  {
+    "id": 4,
+    "text": "Pumps installed on level pad or suspended to prevent vibration/tilt"
+  },
+  {
+    "id": 5,
+    "text": "Discharge hoses, header pipes, and electrical connections inspected"
+  },
+  {
+    "id": 6,
+    "text": "Power supply (generator or panel) tested and labeled"
+  },
+  {
+    "id": 7,
+    "text": "Check valves and standby pump(s) installed if system is continuous-duty"
+  },
+  {
+    "id": "C. Operation and Monitoring"
+  },
+  {
+    "id": 8,
+    "text": "Pump flow, head pressure, and drawdown rate monitored and logged daily"
+  },
+  {
+    "id": 9,
+    "text": "Sump pit maintained free of debris and sediment"
+  },
+  {
+    "id": 10,
+    "text": "Turbidity, pH, and flow volume monitored (if required by permit)"
+  },
+  {
+    "id": 11,
+    "text": "Ground settlement or trench instability monitored near dewatering area"
+  },
+  {
+    "id": "D. Discharge and Environmental Protection"
+  },
+  {
+    "id": 12,
+    "text": "Discharge location protected with sediment bags, filter socks, or vegetated buffer"
+  },
+  {
+    "id": 13,
+    "text": "Discharge path does not cause erosion, flooding, or backflow to excavation"
+  },
+  {
+    "id": 14,
+    "text": "Records maintained for municipal or environmental reporting (as applicable)"
+  },
+  {
+    "id": "E. Shutdown and Closeout"
+  },
+  {
+    "id": 15,
+    "text": "Pumps removed only after water table is confirmed stabilized and area dry"
+  },
+  {
+    "id": 16,
+    "text": "Sump pit and discharge path backfilled and restored as per site plan"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASTM D6391, CSA Z800, CSA A23.1 (Water-Cement Impact)"
+  },
+  {
+    "id": "• Environmental Protection and Enhancement Act (AB), Alberta Construction Safety Codes"
+  },
+  {
+    "id": "• Geotechnical Report and Consultant Specifications"
+  }
+]

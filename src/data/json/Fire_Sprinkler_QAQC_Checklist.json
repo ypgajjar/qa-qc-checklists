@@ -1,0 +1,113 @@
+[
+  {
+    "id": "A. Submittal & Regulatory Compliance"
+  },
+  {
+    "id": 1,
+    "text": "Sprinkler system type (wet, dry, pre-action) matches design scope and NFPA classification"
+  },
+  {
+    "id": 2,
+    "text": "Submittals reviewed and stamped by certified engineer (referencing NFPA 13, 25, local AHJ)"
+  },
+  {
+    "id": 3,
+    "text": "Hazard classification confirmed per occupancy (Light, OH-1, OH-2, Special Hazard, Lab) as per HMS & NFPA 13"
+  },
+  {
+    "id": 4,
+    "text": "Hydraulic calculations include 10 PSI safety margin, flow data current and traceable"
+  },
+  {
+    "id": 5,
+    "text": "Drawings include clear hydraulic reference points, compliant to AHJ and site-specific layout"
+  },
+  {
+    "id": "B. Material Delivery & Verification"
+  },
+  {
+    "id": 6,
+    "text": "UL/FM listed sprinkler heads, risers, valves, pressure gauges, tamper switches, and alarms confirmed"
+  },
+  {
+    "id": 7,
+    "text": "System piping verified per spec: Sched 40 black steel, grooved/cut per manufacturer, no torch-cutting"
+  },
+  {
+    "id": 8,
+    "text": "Isolation valves (OS&Y) accessible and clearly tagged with supervision where required"
+  },
+  {
+    "id": "C. Installation Checkpoints"
+  },
+  {
+    "id": 9,
+    "text": "Sprinkler head spacing, elevation, and clearances verified per NFPA 13 and ceiling condition"
+  },
+  {
+    "id": 10,
+    "text": "Pipe hangers and seismic bracing installed per NFPA 13, ANSI/AWWA and manufacturer's instructions"
+  },
+  {
+    "id": 11,
+    "text": "Pressure-reducing valves and relief piping installed and adjusted per location requirements"
+  },
+  {
+    "id": 12,
+    "text": "Air vents and flushing valves installed at system high/low points (for wet/dry systems)"
+  },
+  {
+    "id": "D. Commissioning & Testing"
+  },
+  {
+    "id": 13,
+    "text": "Hydrostatic test: 200 psi for 2 hours successfully passed and documented"
+  },
+  {
+    "id": 14,
+    "text": "Flow switches, tamper switches, pressure alarms triggered correctly"
+  },
+  {
+    "id": 15,
+    "text": "Main drain test completed; pressure drop within acceptable differential"
+  },
+  {
+    "id": 16,
+    "text": "Trip test completed (for dry or pre-action) with full reset and drain documented"
+  },
+  {
+    "id": 17,
+    "text": "Preaction panels tested for initiating circuits and functionality"
+  },
+  {
+    "id": "E. Closeout & Maintenance Setup"
+  },
+  {
+    "id": 18,
+    "text": "System tagged with updated hydraulic demand placards, head lists, and zone maps"
+  },
+  {
+    "id": 19,
+    "text": "Life Safety Records binder provided with inspection logs (initial/annual/monthly per NFC-AE 2019)"
+  },
+  {
+    "id": 20,
+    "text": "Inspection, Testing, and Maintenance forms completed (per CAN/ULC-S536, NFPA 25, Section 21 01 90B)"
+  },
+  {
+    "id": 21,
+    "text": "AHJ and insurance inspections passed, certificates submitted"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NFPA 13, 14, 25, CAN/ULC S524, CAN/ULC S536, NFC-AE 2019, NBC 2019"
+  },
+  {
+    "id": "• Alberta Infrastructure Spec 21 01 90, City of Calgary Responsibilities Guide"
+  },
+  {
+    "id": "• Manufacturer Specs: Viking, Tyco, Reliable, Victaulic, Globe, Watts, Wilkins"
+  }
+]

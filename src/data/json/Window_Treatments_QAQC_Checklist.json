@@ -1,0 +1,94 @@
+[
+  {
+    "id": "A. Material & Submittals Review"
+  },
+  {
+    "id": 1,
+    "text": "Shade/blind type, color, and openness factor matches submittals and finish schedule"
+  },
+  {
+    "id": 2,
+    "text": "Control type (manual chain, clutch, motorized) matches drawings and client requirement"
+  },
+  {
+    "id": 3,
+    "text": "Drapery track material, color, and pleat type confirmed (for curtains)"
+  },
+  {
+    "id": 4,
+    "text": "Safety compliance documents (e.g., chain tensioners, child-safety devices) included"
+  },
+  {
+    "id": "B. Rough Opening Coordination"
+  },
+  {
+    "id": 5,
+    "text": "Mounting type (inside jamb, surface, ceiling recessed) coordinated with ceiling/wall finish"
+  },
+  {
+    "id": 6,
+    "text": "Power rough-in location coordinated and voltage confirmed for motorized units"
+  },
+  {
+    "id": 7,
+    "text": "Any light gap mitigation requirements confirmed with architect/interior designer"
+  },
+  {
+    "id": "C. Installation Checks"
+  },
+  {
+    "id": 8,
+    "text": "Mounting brackets securely fastened to blocking or substrate"
+  },
+  {
+    "id": 9,
+    "text": "Shades/blinds level, aligned, and operate smoothly"
+  },
+  {
+    "id": 10,
+    "text": "Chain tensioners or wand controls installed as per manufacturer specs"
+  },
+  {
+    "id": 11,
+    "text": "Drapery moves smoothly on track, overlaps correctly, and returns properly"
+  },
+  {
+    "id": "D. Motorized Systems (if applicable)"
+  },
+  {
+    "id": 12,
+    "text": "Motor powered and controlled by wall switch, remote, or integrated control system"
+  },
+  {
+    "id": 13,
+    "text": "Programming complete for grouped, preset, or scene control"
+  },
+  {
+    "id": 14,
+    "text": "Wireless/Bluetooth/Zigbee compatibility confirmed (if required)"
+  },
+  {
+    "id": "E. Final Review"
+  },
+  {
+    "id": 15,
+    "text": "Shades/drapery free from creases, damage, misalignment"
+  },
+  {
+    "id": 16,
+    "text": "Closeout package submitted: warranties, operation manual, maintenance care"
+  },
+  {
+    "id": 17,
+    "text": "Client/consultant signoff completed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC, ANSI/WCMA A100.1, LEED EQ Credit: Daylight & Views"
+  },
+  {
+    "id": "• Manufacturer Specs: Hunter Douglas, Lutron, Mecho, Draper, Silent Gliss, Graber, Somfy"
+  }
+]

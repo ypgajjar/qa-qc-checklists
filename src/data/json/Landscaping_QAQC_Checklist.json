@@ -1,0 +1,76 @@
+[
+  {
+    "id": "A. Submittals & Site Prep"
+  },
+  {
+    "id": 1,
+    "text": "Landscape drawings, plant schedule, and planting notes reviewed and approved"
+  },
+  {
+    "id": 2,
+    "text": "Topsoil report (sieve analysis, pH, organic content) reviewed and approved"
+  },
+  {
+    "id": 3,
+    "text": "Plant and sod material submittals (nursery source, species, size) reviewed"
+  },
+  {
+    "id": 4,
+    "text": "Grading complete, debris removed, and irrigation sleeves installed"
+  },
+  {
+    "id": "B. Soil, Mulch & Preparation"
+  },
+  {
+    "id": 5,
+    "text": "Topsoil spread to required depth (typically 150–300 mm) and raked smooth"
+  },
+  {
+    "id": 6,
+    "text": "Mulch installed to specified thickness (e.g., 75 mm) around trees and beds"
+  },
+  {
+    "id": 7,
+    "text": "No mulch against tree trunks or plant stems"
+  },
+  {
+    "id": "C. Planting & Sod Installation"
+  },
+  {
+    "id": 8,
+    "text": "Trees planted at correct depth with trunk flare exposed"
+  },
+  {
+    "id": 9,
+    "text": "Shrubs and perennials spaced per planting plan"
+  },
+  {
+    "id": 10,
+    "text": "Sod laid tight with staggered joints and watered immediately"
+  },
+  {
+    "id": 11,
+    "text": "Tree staking done securely and does not damage bark"
+  },
+  {
+    "id": "D. Final Acceptance & Warranty Monitoring"
+  },
+  {
+    "id": 12,
+    "text": "Final inspection of plant health, placement, and finish grade"
+  },
+  {
+    "id": 13,
+    "text": "Irrigation system pressure-tested and zones verified prior to handover"
+  },
+  {
+    "id": 14,
+    "text": "Landscape maintenance plan and warranty period (typically 1–2 years) confirmed"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA Z614, ASTM D5268, A300 Tree Standards, City Landscape Specs, ISA Guidelines"
+  }
+]

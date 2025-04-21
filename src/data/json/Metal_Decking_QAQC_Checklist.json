@@ -1,0 +1,88 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Decking type, gauge, and profile match approved shop drawings and submittals"
+  },
+  {
+    "id": 2,
+    "text": "Deck panels free from damage (dents, corrosion, deformation)"
+  },
+  {
+    "id": 3,
+    "text": "Deck panels stored on level supports and protected from weather"
+  },
+  {
+    "id": "B. Installation – General"
+  },
+  {
+    "id": 4,
+    "text": "Decking installed with ribs facing the correct direction and aligned per drawings"
+  },
+  {
+    "id": 5,
+    "text": "Deck laps and end joints have minimum specified overlap (typically 2”)"
+  },
+  {
+    "id": 6,
+    "text": "Sheets are tightly butted, without gaps or misalignments"
+  },
+  {
+    "id": "C. Fastening and Anchorage"
+  },
+  {
+    "id": 7,
+    "text": "Welded deck: Welds are full and continuous at supports and side laps"
+  },
+  {
+    "id": 8,
+    "text": "Screwed deck: Screws driven as per manufacturer spacing/layout"
+  },
+  {
+    "id": 9,
+    "text": "Anchorage to structural steel verified with approved fastener/weld detail"
+  },
+  {
+    "id": 10,
+    "text": "Edge closures, pour stops, and angle supports properly installed and secured"
+  },
+  {
+    "id": "D. Openings and Penetrations"
+  },
+  {
+    "id": 11,
+    "text": "Openings cut only after layout verification and coordination with trades"
+  },
+  {
+    "id": 12,
+    "text": "Reinforcement or edge framing installed around large openings"
+  },
+  {
+    "id": "E. Safety and Final Review"
+  },
+  {
+    "id": 13,
+    "text": "Temporary bracing and safety measures (fall protection) in place"
+  },
+  {
+    "id": 14,
+    "text": "QA/QC inspection and consultant sign-off before concrete or roofing installation"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• CSA S136 – Cold-Formed Steel Structural Members"
+  },
+  {
+    "id": "• SDI (Steel Deck Institute) Standards – Installation, Design, Welding"
+  },
+  {
+    "id": "• Project Specifications and Drawings"
+  },
+  {
+    "id": "• NBC Part 4 – Structural Framing Requirements"
+  }
+]

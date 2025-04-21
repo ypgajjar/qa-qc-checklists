@@ -1,0 +1,126 @@
+[
+  {
+    "id": "A. Material Verification & Storage"
+  },
+  {
+    "id": 1,
+    "text": "Roofing membrane type (TPO, SBS, EPDM, etc.) as per approved submittal"
+  },
+  {
+    "id": 2,
+    "text": "Insulation type, R-value, and overlay board per drawing and CAN/ULC-S704 standard"
+  },
+  {
+    "id": 3,
+    "text": "Adhesives, sealants, cleaners, fasteners, and flashings per manufacturer recommendation"
+  },
+  {
+    "id": 4,
+    "text": "All materials protected from UV, rain, and stored dry on pallets/sleepers"
+  },
+  {
+    "id": "B. Pre-Installation Coordination"
+  },
+  {
+    "id": 5,
+    "text": "Pre-installation meeting conducted with roofing sub, consultant, and owner"
+  },
+  {
+    "id": 6,
+    "text": "Wind uplift calculations performed using NRC Wind-RCI tool and approved design submitted"
+  },
+  {
+    "id": 7,
+    "text": "All penetrations, vent stacks, drains, parapets prepared before install"
+  },
+  {
+    "id": "C. Substrate & Vapor Retarder Prep"
+  },
+  {
+    "id": 8,
+    "text": "Substrate dry, clean, firm, and approved by consultant"
+  },
+  {
+    "id": 9,
+    "text": "Vapor retarder membrane installed continuous with sealed laps and terminations"
+  },
+  {
+    "id": 10,
+    "text": "Nailers installed per detail and fastened with 300 kg/m resistance capacity"
+  },
+  {
+    "id": "D. Insulation & Overlay Board"
+  },
+  {
+    "id": 11,
+    "text": "Insulation boards staggered and tight, no gaps; damaged boards replaced"
+  },
+  {
+    "id": 12,
+    "text": "Overlay board installed using full bead adhesive per manufacturer’s spacing and coverage"
+  },
+  {
+    "id": "E. Membrane Installation"
+  },
+  {
+    "id": 13,
+    "text": "TPO/EPDM/SBS membrane installed straight with minimum overlap (typically 75–150 mm)"
+  },
+  {
+    "id": 14,
+    "text": "Membrane fastened per uplift specs; no overdriven fasteners"
+  },
+  {
+    "id": 15,
+    "text": "Field seams welded by trained operator using automatic hot-air welder; hand welds only for repairs"
+  },
+  {
+    "id": 16,
+    "text": "Exposed membrane cleaned with TPO Weathered Cleaner if >7 days old before welding"
+  },
+  {
+    "id": "F. Flashing & Penetrations"
+  },
+  {
+    "id": 17,
+    "text": "Base and curb flashings installed continuous, reinforced per spec"
+  },
+  {
+    "id": 18,
+    "text": "Drain pans, pipe boots, stack covers installed and welded/sealed correctly"
+  },
+  {
+    "id": 19,
+    "text": "Edge metal, termination bars, and sealants installed and approved"
+  },
+  {
+    "id": "G. Final Review & QA"
+  },
+  {
+    "id": 20,
+    "text": "QA/QC and third-party inspection conducted prior to warranty request"
+  },
+  {
+    "id": 21,
+    "text": "Walkway protection boards installed around rooftop units"
+  },
+  {
+    "id": 22,
+    "text": "Roofing warranty issued (10-year minimum full system) covering membrane and workmanship"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 & 9 – Roofing Systems"
+  },
+  {
+    "id": "• CSA A123.21 / ULC-S704 / ULC-S107 – Membrane and Roofing Systems"
+  },
+  {
+    "id": "• Manufacturer Specs: Firestone, Soprema, Carlisle, Lexcan, etc."
+  },
+  {
+    "id": "• ARCA Roofing Standards Manual, Wind-RCI Tool, LEED/Energy Star (if applicable)"
+  }
+]

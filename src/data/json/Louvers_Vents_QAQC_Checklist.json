@@ -1,0 +1,100 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Louver/grille type and model matches mechanical/equipment schedule"
+  },
+  {
+    "id": 2,
+    "text": "Louvers tested per AMCA/ASHRAE for free area, pressure drop, and water infiltration"
+  },
+  {
+    "id": 3,
+    "text": "Finish (e.g., anodized, powder coat) and color match architectural elevations"
+  },
+  {
+    "id": 4,
+    "text": "Accessories (bird screen, insect screen, blank-offs) received and match submittals"
+  },
+  {
+    "id": "B. Rough Opening Prep"
+  },
+  {
+    "id": 5,
+    "text": "Framed or masonry opening level, plumb, square"
+  },
+  {
+    "id": 6,
+    "text": "Flashing, sill pan, and air barrier tie-ins prepped prior to install"
+  },
+  {
+    "id": 7,
+    "text": "Coordination with mechanical and cladding trades complete before install"
+  },
+  {
+    "id": "C. Installation of Louvers/Vents"
+  },
+  {
+    "id": 8,
+    "text": "Louver frame fastened with anchors per manufacturer’s recommendation"
+  },
+  {
+    "id": 9,
+    "text": "Sealant applied continuously around perimeter"
+  },
+  {
+    "id": 10,
+    "text": "Bird/insect screens installed on interior side (unless specified otherwise)"
+  },
+  {
+    "id": 11,
+    "text": "Interior duct or exhaust connections secured and aligned"
+  },
+  {
+    "id": "D. Louver Banks / Architectural Grilles"
+  },
+  {
+    "id": 12,
+    "text": "Multi-section louvers aligned for uniform reveals, depth, and spacing"
+  },
+  {
+    "id": 13,
+    "text": "Continuous flashings and trim pieces installed between joined sections"
+  },
+  {
+    "id": 14,
+    "text": "Decorative/architectural grilles aligned and secured against wind rattle"
+  },
+  {
+    "id": "E. Final Inspection & Performance"
+  },
+  {
+    "id": 15,
+    "text": "Free air opening confirmed per design (ducting or building automation reviewed if required)"
+  },
+  {
+    "id": 16,
+    "text": "Water test or pressure performance tested (if required by consultant/spec)"
+  },
+  {
+    "id": 17,
+    "text": "Manufacturer’s warranty and closeout documentation submitted"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• NBC Part 5 & 6, ASHRAE 62.1, NECB – Mechanical Ventilation"
+  },
+  {
+    "id": "• AMCA 500-L, 500-D, 511 – Louver Testing Standards"
+  },
+  {
+    "id": "• Manufacturer Specs: Airolite, Ruskin, Greenheck, Nailor, Titus"
+  },
+  {
+    "id": "• Envelope Consultant Coordination Requirements"
+  }
+]

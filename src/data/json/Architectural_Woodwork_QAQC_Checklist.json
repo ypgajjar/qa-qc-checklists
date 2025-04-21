@@ -1,0 +1,105 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Wood species, veneers, and finishes as per approved shop drawings and submittals"
+  },
+  {
+    "id": 2,
+    "text": "Hardware (hinges, pulls, glides) matches schedule and samples"
+  },
+  {
+    "id": 3,
+    "text": "Moisture content of wood within acceptable range (6–10%)"
+  },
+  {
+    "id": 4,
+    "text": "All materials stored in climate-controlled, dry environment"
+  },
+  {
+    "id": "B. Millwork & Cabinetry Installation"
+  },
+  {
+    "id": 5,
+    "text": "Cabinets leveled, shimmed, and secured to framing/substrate"
+  },
+  {
+    "id": 6,
+    "text": "Cabinet joints tight and even; face frames flush"
+  },
+  {
+    "id": 7,
+    "text": "Wall panels and trim align with control lines and are plumb and level"
+  },
+  {
+    "id": 8,
+    "text": "Wood blocking in walls confirmed prior to installation of shelving/mirrors"
+  },
+  {
+    "id": 9,
+    "text": "Coordination with appliance contractor completed and clearances verified prior to millwork start"
+  },
+  {
+    "id": 10,
+    "text": "Gaps between millwork and adjacent surfaces caulked or finished per spec"
+  },
+  {
+    "id": 11,
+    "text": "Exposed fasteners minimized and placed neatly or concealed"
+  },
+  {
+    "id": "C. Doors, Trim & Baseboards"
+  },
+  {
+    "id": 12,
+    "text": "Trim and casing cut cleanly, aligned properly at corners and joints"
+  },
+  {
+    "id": 13,
+    "text": "Baseboards installed with tight joints and straight alignments"
+  },
+  {
+    "id": 14,
+    "text": "Window stools, aprons, and sills installed square and flush"
+  },
+  {
+    "id": 15,
+    "text": "Wood doors checked for swing, clearance, and consistent margins"
+  },
+  {
+    "id": "D. Finish Review"
+  },
+  {
+    "id": 16,
+    "text": "Sanding, staining, or sealing completed with uniform appearance"
+  },
+  {
+    "id": 17,
+    "text": "No tool marks, dents, glue stains, or paint drips visible"
+  },
+  {
+    "id": 18,
+    "text": "All surfaces clean, undamaged, and protected until turnover"
+  },
+  {
+    "id": 19,
+    "text": "QA/QC sign-off and client walk-through complete"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• AWI (Architectural Woodwork Standards) – Current Edition"
+  },
+  {
+    "id": "• NBC Part 9 – Finishing Materials and Trim Requirements"
+  },
+  {
+    "id": "• LEED/Environmental Requirements (if applicable)"
+  },
+  {
+    "id": "• Project Shop Drawings and Finish Schedule"
+  }
+]

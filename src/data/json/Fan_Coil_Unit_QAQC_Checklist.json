@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Submittals & Design Review"
+  },
+  {
+    "id": 1,
+    "text": "Fan coil type (horizontal, vertical, recessed, exposed) and configuration matches mechanical schedule"
+  },
+  {
+    "id": 2,
+    "text": "Coil type (2-pipe/4-pipe, chilled water, hot water, electric) verified with model and performance data"
+  },
+  {
+    "id": 3,
+    "text": "Shop drawings approved: unit dimensions, connection locations, controls, access clearances"
+  },
+  {
+    "id": "B. Delivery & Installation"
+  },
+  {
+    "id": 4,
+    "text": "Units delivered intact, factory-sealed, with O&M manuals and data plates"
+  },
+  {
+    "id": 5,
+    "text": "Unit installed plumb, level, and securely supported with isolation mounts or hangers"
+  },
+  {
+    "id": 6,
+    "text": "Coil piping connected with unions, isolation valves, balancing valves, and strainers"
+  },
+  {
+    "id": 7,
+    "text": "Drain pans trapped, sloped, insulated, and connected to sanitary drain"
+  },
+  {
+    "id": 8,
+    "text": "Access panels and filters fully accessible per O&M"
+  },
+  {
+    "id": "C. Electrical & Controls"
+  },
+  {
+    "id": 9,
+    "text": "Fan motors wired and confirmed with correct voltage, phasing, overload protection"
+  },
+  {
+    "id": 10,
+    "text": "Thermostat or BAS control wiring connected and labeled"
+  },
+  {
+    "id": 11,
+    "text": "Condensate pump (if applicable) tested and routed properly"
+  },
+  {
+    "id": "D. Commissioning & Final Checks"
+  },
+  {
+    "id": 12,
+    "text": "Unit started and airflow verified in all speeds"
+  },
+  {
+    "id": 13,
+    "text": "Coil flows balanced (flow rate GPM verified), delta-T across coil acceptable"
+  },
+  {
+    "id": 14,
+    "text": "Fan noise and vibration checked"
+  },
+  {
+    "id": 15,
+    "text": "Final cleaning and filter installation completed"
+  },
+  {
+    "id": 16,
+    "text": "Warranty forms and closeout documentation submitted"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASHRAE 55, 62.1, SMACNA Air Outlets, NBC 2019 Part 6, NECB 2020"
+  },
+  {
+    "id": "• CSA C22.1 (Electrical), CSA B52 (Refrigeration where applicable)"
+  },
+  {
+    "id": "• Manufacturer Specs: Daikin, Carrier, Trane, Magic Aire, Innova, Jaga, Unilux"
+  }
+]

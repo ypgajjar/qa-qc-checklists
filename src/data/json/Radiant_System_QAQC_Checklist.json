@@ -1,0 +1,90 @@
+[
+  {
+    "id": "A. Submittals & Coordination"
+  },
+  {
+    "id": 1,
+    "text": "Radiant tubing layout, spacing, loop lengths, and zone controls match approved drawings"
+  },
+  {
+    "id": 2,
+    "text": "Coordination confirmed with concrete team, slab contractor, and electrical/sprinkler trades"
+  },
+  {
+    "id": 3,
+    "text": "Tubing submittals reviewed for material, size, oxygen barrier rating, and bending radius"
+  },
+  {
+    "id": "B. Installation – Tubing & Insulation"
+  },
+  {
+    "id": 4,
+    "text": "Slab insulation installed continuous under piping (rigid or reflective insulation per spec)"
+  },
+  {
+    "id": 5,
+    "text": "Tubing fastened securely with clips, mesh ties, or rail system – no uplift or float potential"
+  },
+  {
+    "id": 6,
+    "text": "Loop lengths verified per schedule; max circuit lengths not exceeded"
+  },
+  {
+    "id": 7,
+    "text": "Protective sleeves at expansion joints and penetrations"
+  },
+  {
+    "id": 8,
+    "text": "Manifolds mounted securely, with accessible headers and labeled loops"
+  },
+  {
+    "id": "C. Pressure Test & Concrete Pour"
+  },
+  {
+    "id": 9,
+    "text": "Tubing filled with water/glycol and pressure-tested (typically 100 psi for 2 hrs) before slab pour"
+  },
+  {
+    "id": 10,
+    "text": "Concrete poured while system under pressure and monitored throughout"
+  },
+  {
+    "id": 11,
+    "text": "No damage or kinks during pour; tubing locations marked on slab post-pour"
+  },
+  {
+    "id": "D. Controls, Balancing & Final Check"
+  },
+  {
+    "id": 12,
+    "text": "Mixing valves, thermostatic heads, actuators, and control wiring installed as per zone map"
+  },
+  {
+    "id": 13,
+    "text": "Flow meters balanced at manifold; return temps verified for each loop"
+  },
+  {
+    "id": 14,
+    "text": "Controls tested for heating/cooling switching and temperature modulation"
+  },
+  {
+    "id": "E. Closeout"
+  },
+  {
+    "id": 15,
+    "text": "As-built drawings include tubing layout, manifold IDs, test results"
+  },
+  {
+    "id": 16,
+    "text": "O&M manual and balancing report submitted, startup complete"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• ASHRAE 55, CSA B214, NBC 2019, NECB"
+  },
+  {
+    "id": "• Manufacturer Specs: Uponor, Viega, Rehau, Watts Radiant, Roth"
+  }
+]

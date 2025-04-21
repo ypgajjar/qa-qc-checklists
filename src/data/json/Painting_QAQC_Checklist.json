@@ -1,0 +1,97 @@
+[
+  {
+    "id": "A. Material Verification"
+  },
+  {
+    "id": 1,
+    "text": "Paint/coating type (latex, epoxy, enamel, elastomeric) matches approved submittals and room finish schedule"
+  },
+  {
+    "id": 2,
+    "text": "Finish type confirmed (e.g., flat, eggshell, semi-gloss, gloss) per room use"
+  },
+  {
+    "id": 3,
+    "text": "Approved primers, sealers, patching materials on site"
+  },
+  {
+    "id": 4,
+    "text": "MSDS and VOC compliance data submitted for all materials"
+  },
+  {
+    "id": "B. Surface Preparation"
+  },
+  {
+    "id": 5,
+    "text": "Substrates dry, dust-free, patched, and sanded smooth"
+  },
+  {
+    "id": 6,
+    "text": "Gypsum surfaces finished to Level 4 or 5 (as specified) prior to paint"
+  },
+  {
+    "id": 7,
+    "text": "Masking and protection of adjacent surfaces completed"
+  },
+  {
+    "id": 8,
+    "text": "Primer applied and allowed proper cure time"
+  },
+  {
+    "id": "C. Application of Paint/Coating"
+  },
+  {
+    "id": 9,
+    "text": "First coat applied evenly with proper coverage and no lap marks"
+  },
+  {
+    "id": 10,
+    "text": "Final coat applied with no visible roller marks, streaks, holidays"
+  },
+  {
+    "id": 11,
+    "text": "Coats applied per manufacturer recommendation (dry film thickness, coverage rates)"
+  },
+  {
+    "id": 12,
+    "text": "Approved tools used (roller, brush, airless sprayer) for specified system"
+  },
+  {
+    "id": "D. Touch-Up & Final Review"
+  },
+  {
+    "id": 13,
+    "text": "Touch-up performed where required and finish matches adjacent areas"
+  },
+  {
+    "id": 14,
+    "text": "Transition lines clean and crisp (walls to ceiling, casing to wall, etc.)"
+  },
+  {
+    "id": 15,
+    "text": "No drips, overspray, or damage to other trades"
+  },
+  {
+    "id": 16,
+    "text": "Clean-up complete and all protection removed"
+  },
+  {
+    "id": 17,
+    "text": "Final signoff by consultant or owner rep"
+  },
+  {
+    "id": "Code/Standard References:"
+  },
+  {
+    "id": "• MPI Standards, MasterFormat 09 91 00, GreenGuard Certifications"
+  },
+  {
+    "id": "• VOC Compliance per CAN/CGSB-1.501, LEED"
+  },
+  {
+    "id": "• Manufacturer Specs: Sherwin-Williams, Benjamin Moore, Cloverdale, PPG"
+  },
+  {
+    "id": "• Surface Prep & Application Guidelines: PDCA / MPI Painting Standards"
+  }
+]

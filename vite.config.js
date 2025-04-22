@@ -1,9 +1,9 @@
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// vite.config.js
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production'
-    ? '/qa-qc-checklists/'
-    : '/',
-  plugins: [react()],
+  base: import.meta.env.PROD ? '/qa-qc-checklists/' : '/',   // 👍 prod, but dev still “/”
 })
+

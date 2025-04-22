@@ -1,13 +1,14 @@
-// src/data/templates.js
-const modules = import.meta.glob("./json/*.json", { eager: true });
-
-export const templates = Object.fromEntries(
-  Object.entries(modules).map(([filePath, module]) => {
-    // filePath will look like './json/Electrical QAQC.json'
-    const name = filePath
-      .split("/")
-      .pop()
-      .replace(/\.json$/, "");
-    return [name, module.default];
-  })
-);
+export default {
+  General: [
+    { id: 'first', name: 'Project Startup' },
+    { id: 'submittal', name: 'Submittal QAQC' }
+  ],
+  Electrical: [
+    { id: 'lighting', name: 'Lighting QAQC' },
+    { id: 'cableTray', name: 'Cable Tray QAQC' }
+  ],
+  AHU: [
+    { id: 'ahuA', name: 'AHU QAQC Checklist' }
+    // …and so on for your 80+
+  ]
+}

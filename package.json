@@ -4,15 +4,20 @@
   "homepage": "https://ypgajjar.github.io/qa-qc-checklists",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy":   "gh-pages -d docs",
-    "dev":      "vite",
-    "build":    "vite build",
-    "serve":    "vite preview"
+    "deploy": "gh-pages -d docs",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
+    "@heroicons/react": "^2.2.0",
+    "@tanstack/react-table": "^8.21.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "xlsx": "^0.18.5"
+    "react-router-dom": "^6.30.0",
+    "xlsx": "^0.18.5",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

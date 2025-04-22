@@ -3,9 +3,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/qa‑qc‑checklists/',
-  plugins: [ react() ],
-  build: {
-    outDir: 'docs'
-  }
+  base: './',
+  plugins: [react()],
+  build: { outDir: 'docs' }
 })
+

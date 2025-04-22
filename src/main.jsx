@@ -1,24 +1,27 @@
+// src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.jsx";
 import "./index.css";
 
-import RootLayout from "./layout/RootLayout";
-import ChecklistPage from "./pages/ChecklistPage";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    { path: "/", element: <App /> },
+    // catch‑all so you don’t get a 404 if someone refreshes on a nested route
+    { path: "*", element: <App /> },
+  ],
   {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      { index: true, element: <div className="p-6">Select a checklist…</div> },
-      { path: "checklists/:slug", element: <ChecklistPage /> },
-    ],
-  },
-]);
+    // this tells React Router that everything lives under `/qa-qc-checklists/`
+    // in dev this will automatically be `/`
+    basename: import.meta.env.BASE_URL,
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );

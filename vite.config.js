@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/qa-qc-checklists/', // This must match your GitHub repo name
+  base: '/qa-qc-checklists/', // required for GitHub Pages under a subfolder
   build: {
-    outDir: 'docs', // This is required for GitHub Pages
+    outDir: 'docs', // required for GitHub Pages
   },
   plugins: [react()],
-});
+})

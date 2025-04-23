@@ -1,6 +1,7 @@
 {
   "name": "qa-qc-checklists",
   "version": "0.0.0",
+  "homepage": "https://ypgajjar.github.io/qa-qc-checklists",
   "private": true,
   "scripts": {
     "dev": "vite",

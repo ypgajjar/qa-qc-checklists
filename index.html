@@ -1,111 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ConstructCheck | QA-QC Inspection Checklists</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    .sidebar { width: 20rem; background: #fff; border-right: 1px solid #e5e7eb; position: fixed; height: 100%; overflow-y: auto; }
-    .sidebar .item:hover { background: #f3f4f6; }
-    #mainContent { margin-left: 20rem; padding: 1.5rem; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #e5e7eb; padding: 0.5rem; }
-    th { background: #f9fafb; }
-    .signoff-input { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.25rem; }
-    .header-row td { background: #f3f4f6; }
-    .drag-handle { cursor: move; width: 1.5rem; text-align: center; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstructCheck Pro | QA-QC Inspection Checklists</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slightly lighter gray */
+        }
+
+        /* Sidebar styles */
+        #sidebar {
+            width: 20rem; /* Default width */
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0; /* Softer border */
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* Arrange header and content vertically */
+            transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+            z-index: 40;
+        }
+        #sidebarHeader {
+             flex-shrink: 0; /* Prevent header from shrinking */
+        }
+        #sidebarContentWrapper {
+            flex-grow: 1; /* Allow content to take remaining space */
+            overflow-y: auto; /* Enable scrolling for content */
+        }
+        #sidebar .item:hover { background: #f1f5f9; color: #2563eb; }
+        #sidebar .item.active { background-color: #e0f2fe; color: #0c4a6e; font-weight: 500; border-left: 3px solid #0ea5e9; padding-left: calc(1rem - 3px);} /* Active item style */
+
+        /* Main content area */
+        #mainContentWrapper {
+            transition: margin-left 0.3s ease-in-out;
+            padding: 1.5rem;
+            margin-left: 20rem; /* Default margin */
+        }
+
+        /* Card styling */
+        .card {
+             background-color: #ffffff;
+             border-radius: 0.5rem;
+             border: 1px solid #e2e8f0;
+             padding: 1.5rem; /* 24px */
+             margin-bottom: 1.5rem; /* 24px */
+             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .card-header {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* text-gray-800 */
+            margin-bottom: 1rem; /* 16px */
+            padding-bottom: 0.75rem; /* 12px */
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Table styles */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden; /* Clip content to rounded corners */
+        }
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.875rem; /* text-sm */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        tbody tr:nth-child(even) { background-color: #f9fafb; }
+        tbody tr:hover { background-color: #f3f4f6; }
+        .header-row td {
+            background-color: #e5e7eb;
+            font-weight: 600;
+            font-style: italic;
+            color: #1f2937;
+        }
+        .header-row:hover { background-color: #d1d5db; }
+
+        /* Input field styling */
+        .input-field {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+        }
+        textarea.input-field { min-height: 60px; }
+
+        /* Drag handle styling */
+        .drag-handle { cursor: move; width: 2rem; text-align: center; color: #9ca3af; vertical-align: middle; }
+        .drag-handle:hover { color: #374151; }
+
+        /* Button styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .btn:focus { outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4); }
+        .btn-primary { background-color: #2563eb; color: white; border-color: #1d4ed8; }
+        .btn-primary:hover { background-color: #1d4ed8; }
+        .btn-secondary { background-color: #4b5563; color: white; border-color: #374151; }
+        .btn-secondary:hover { background-color: #374151; }
+        .btn-success { background-color: #16a34a; color: white; border-color: #15803d; }
+        .btn-success:hover { background-color: #15803d; }
+        .btn-warning { background-color: #d97706; color: white; border-color: #b45309; }
+        .btn-warning:hover { background-color: #b45309; }
+        .btn-danger { background-color: #dc2626; color: white; border-color: #b91c1c; }
+        .btn-danger:hover { background-color: #b91c1c; }
+        .btn-outline { background-color: #fff; color: #4b5563; border-color: #d1d5db; }
+        .btn-outline:hover { background-color: #f9fafb; border-color: #9ca3af; }
+        .btn-icon { padding: 0.5rem; }
+
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            width: 1.15rem; height: 1.15rem; border-radius: 0.25rem; border-color: #9ca3af;
+            cursor: pointer; accent-color: #2563eb;
+        }
+        input[type="checkbox"]:focus { outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4); }
+
+        /* Notification styles */
+        #notification {
+            position: fixed; top: 1rem; right: 1rem; padding: 1rem 1.5rem; border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 100; opacity: 0;
+            transform: translateY(-20px); transition: opacity 0.3s ease, transform 0.3s ease;
+            font-weight: 500;
+        }
+        #notification.show { opacity: 1; transform: translateY(0); }
+        #notification.success { background-color: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        #notification.error { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        #notification.info { background-color: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+        #notification.warning { background-color: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
+        /* Photo Attachment Styles */
+        .photo-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .photo-preview {
+            max-width: 150px; /* Limit preview size */
+            max-height: 150px;
+            object-fit: cover; /* Crop image nicely */
+            border-radius: 0.375rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 768px) {
+            #sidebar { transform: translateX(-100%); width: 80%; max-width: 20rem; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+            #sidebar.open { transform: translateX(0); }
+            #mainContentWrapper { margin-left: 0; padding: 1rem; }
+            #overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); z-index: 30; opacity: 0;
+                visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+                pointer-events: none;
+            }
+            #overlay.active { opacity: 1; visibility: visible; pointer-events: auto;}
+            .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            table { min-width: 700px; } /* Increased min-width for better mobile table view */
+            .signoff-grid { grid-template-columns: 1fr; } /* Stack signoff columns on mobile */
+            .photo-grid { grid-template-columns: 1fr; } /* Stack photos on mobile */
+        }
+
+        /* Make table header sticky */
+        .table-container thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f9fafb; /* Match header bg */
+        }
+        /* Style for the hidden file inputs */
+        #fileInput, #photoInput { display: none; }
+
+    </style>
 </head>
-<body class="bg-gray-50 font-sans">
-  <div id="sidebar" class="sidebar">
-    <div class="p-4 border-b"><h2 class="text-lg font-bold">Divisions</h2></div>
-  </div>
+<body class="bg-gray-100">
 
-  <div id="mainContent" class="hidden">
-    <h1 id="selectedChecklistName" class="text-2xl font-bold mb-4"></h1>
-    <!-- Header Inputs -->
-    <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div><label class="block text-sm font-medium text-gray-700">Project Name</label><input type="text" id="projectName" class="w-full p-2 border border-gray-300 rounded-md"></div>
-        <div><label class="block text-sm font-medium text-gray-700">Project Number</label><input type="text" id="projectNumber" class="w-full p-2 border border-gray-300 rounded-md"></div>
-        <div><label class="block text-sm font-medium text-gray-700">Company Name</label><input type="text" id="companyName" class="w-full p-2 border border-gray-300 rounded-md"></div>
-        <div><label class="block text-sm font-medium text-gray-700">Date of Inspection</label><input type="date" id="inspectionDate" class="w-full p-2 border border-gray-300 rounded-md"></div>
-        <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700">Scope of Inspection</label><textarea id="inspectionScope" rows="2" class="w-full p-2 border border-gray-300 rounded-md"></textarea></div>
-      </div>
-    </div>
+    <aside id="sidebar">
+        <div id="sidebarHeader" class="p-4 border-b bg-white sticky top-0 z-10">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-xl font-bold text-gray-800">Divisions</h2>
+                <button id="closeSidebarBtn" class="md:hidden text-gray-500 hover:text-gray-800">
+                    <i class="fas fa-times fa-lg"></i>
+                </button>
+            </div>
+            <div class="relative">
+                <input type="text" id="sidebarSearch" placeholder="Search checklists..."
+                       class="input-field w-full pl-8 text-sm"
+                       oninput="filterSidebar()">
+                <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+        </div>
+        <div id="sidebarContentWrapper" class="p-2">
+            <div id="sidebarContent">
+                </div>
+        </div>
+    </aside>
 
-    <!-- Controls -->
-    <div class="mb-4 space-x-2">
-      <button onclick="addHeader()" class="px-4 py-2 bg-gray-600 text-white rounded-md">+ Add Header</button>
-      <button onclick="addItem()"   class="px-4 py-2 bg-blue-600 text-white rounded-md">+ Add Item</button>
-    </div>
+    <div id="overlay"></div>
 
-    <!-- Checklist -->
-    <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th style="width:40px;">#</th>
-            <th>Description</th>
-            <th style="width:60px;">Yes</th>
-            <th style="width:60px;">No</th>
-            <th style="width:60px;">N/A</th>
-            <th>Comment</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="checklist"></tbody>
-      </table>
-      <div class="mt-4 flex space-x-2">
-        <button onclick="saveChecklist()" class="px-4 py-2 bg-green-600 text-white rounded-md">💾 Save</button>
-        <button onclick="loadChecklist()" class="px-4 py-2 bg-yellow-600 text-white rounded-md">📂 Load</button>
-        <button onclick="resetChecklist()" class="px-4 py-2 bg-red-600 text-white rounded-md">🔄 Reset</button>
-      </div>
-    </div>
+    <div id="mainContentWrapper">
+        <div class="md:hidden flex justify-between items-center mb-4 p-2 bg-white rounded shadow-sm">
+             <button id="openSidebarBtn" class="text-gray-600 hover:text-gray-900 p-2">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+            <h1 class="text-lg font-semibold text-center flex-grow text-gray-700">ConstructCheck Pro</h1>
+            <div class="w-8"></div> </div>
 
-    <!-- Signoff -->
-    <div class="bg-white rounded-lg border border-gray-200 p-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div><label class="block text-sm font-medium text-gray-700">QA Inspector</label><input type="text" id="qaInspector" class="signoff-input"></div>
-        <div><label class="block text-sm font-medium text-gray-700">QA Signature</label><input type="text" id="qaSignature" class="signoff-input"></div>
-        <div><label class="block text-sm font-medium text-gray-700">QC Inspector</label><input type="text" id="qcInspector" class="signoff-input"></div>
-        <div><label class="block text-sm font-medium text-gray-700">QC Signature</label><input type="text" id="qcSignature" class="signoff-input"></div>
-      </div>
-      <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Signoff Date</label><input type="date" id="signoffDate" class="signoff-input"></div>
-    </div>
-  </div>
+        <div id="placeholderContent" class="text-center py-16 px-6 bg-white rounded-lg shadow border border-gray-200">
+             <i class="fas fa-clipboard-list fa-3x text-gray-400 mb-4"></i>
+             <h2 class="text-xl font-semibold text-gray-700 mb-2">Select a Checklist</h2>
+             <p class="text-gray-500">Choose a division and checklist from the sidebar to start.</p>
+         </div>
 
-  <script>
-    const checklistData = {
-      "Division 03": ["Concrete Formwork","Concrete Reinforcement","Concrete Placement","Concrete Curing & Stripping","Precast Elements / Flatwork"],
-      "Division 04": ["Stone Masonry & Anchored Veneers","Masonry Works (CMU & Brick)"],
-      "Division 05": ["Structural Steel Framing","Steel Stairs & Handrails","Miscellaneous Metals","Metal Decking (Floor & Roof)"],
-      "Division 06": ["Rough Carpentry (Framing)","Architectural Woodwork & Finish Carpentry"],
-      "Division 07": ["Foundation Waterproofing","EIFS","Firestopping / Fire-Resistive Joint Systems","Metal Wall Panels / Cladding Systems","Roof Accessories / Penetrations","Vapor Retarders & Barriers","Exterior Sheathing","Thermal Break Systems","Insulation","Low Slope Roofing","Weather Air Barrier","Sealant"],
-      "Division 08": ["Aluminum Windows & Glazing Systems","Hollow Metal / Wood Doors and Architectural Hardware","Glazed Aluminum Entrances (Manual & Automatic Doors)","Louvers, Vents & Architectural Grilles"],
-      "Division 09": ["Gypsum Board Systems (Drywall)","Acoustic Suspended Ceilings","Interior Painting & Coatings","Ceramic & Porcelain Tiling","Resilient Flooring (LVT, VCT, Sheet Vinyl, Rubber)","Wall Coverings (Vinyl, Fabric, Wood Panels, FRP)","Polished Concrete","Epoxy & Resinous Flooring Systems"],
-      "Division 10": ["Toilet Compartments and Accessories","Fire Extinguishers and Cabinets","Lockers","Interior Signage"],
-      "Division 11": ["Residential and Commercial Appliances"],
-      "Division 12": ["Window Treatments"],
-      "Division 13": ["Pre-Engineered Metal Building (PEMB)"],
-      "Division 14": ["Elevators"],
-      "Division 21": ["Fire Sprinkler Systems"],
-      "Division 22": ["Plumbing Rough-In & Final","Grease Interceptors and Oil Separators","Sump Pumps and Storm Water Pump-Out Systems","Storm Drainage Systems"],
-      "Division 23": ["Air Handling Units (AHUs)","Exhaust and Ventilation Systems","Fan Coil Units (FCUs)","Air-Cooled and Water-Cooled Chillers","Boilers and Hot Water Heating Systems","Hydronic Piping Systems","Cooling Towers","Radiant Heating and Cooling Systems"],
-      "Division 25": ["Building Automation System (BAS) Core Integration","Lighting Control System Integration"],
-      "Division 26": ["Electrical Distribution Equipment","Emergency Power Systems","Interior and Exterior Lighting Systems","Fire Alarm Systems","Wiring Devices"],
-      "Division 27": ["IDF/MDF & Server Room Infrastructure","Structured Cabling System"],
-      "Division 28": ["CCTV System","Access Control System"],
-      "Division 31": ["Excavation & Backfill","Grading & Site Prep","Shoring & Trench Safety","Soil Stabilization","Dewatering","Rock Excavation"],
-      "Division 32": ["Asphalt Paving","Curbs & Sidewalks","Fencing & Gates","Site Furnishings","Landscaping & Planting"]
-    };
 
-    const defaultItems = {
-      "Division 03::Concrete Formwork": [
+        <div id="mainContent" class="hidden">
+            <h1 id="selectedChecklistName" class="text-2xl md:text-3xl font-bold text-gray-800 mb-6"></h1>
+
+            <div class="card">
+                <h2 class="card-header">Project Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                    <div><label for="projectName" class="block text-sm font-medium text-gray-700 mb-1">Project Name</label><input type="text" id="projectName" class="input-field"></div>
+                    <div><label for="projectNumber" class="block text-sm font-medium text-gray-700 mb-1">Project Number</label><input type="text" id="projectNumber" class="input-field"></div>
+                    <div><label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label><input type="text" id="companyName" class="input-field"></div>
+                    <div><label for="inspectionDate" class="block text-sm font-medium text-gray-700 mb-1">Date of Inspection</label><input type="date" id="inspectionDate" class="input-field"></div>
+                    <div class="md:col-span-2"><label for="inspectionScope" class="block text-sm font-medium text-gray-700 mb-1">Scope of Inspection</label><textarea id="inspectionScope" rows="3" class="input-field"></textarea></div>
+                </div>
+            </div>
+
+            <div class="card">
+                 <h2 class="card-header">Checklist Controls</h2>
+                 <div class="flex flex-wrap gap-3">
+                    <button onclick="addHeader()" class="btn btn-secondary"><i class="fas fa-heading mr-2"></i>Add Header</button>
+                    <button onclick="addItem()" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Add Item</button>
+                    <button onclick="saveChecklist()" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save to Browser</button>
+                    <button onclick="resetChecklist()" class="btn btn-danger"><i class="fas fa-sync-alt mr-2"></i>Reset</button>
+                 </div>
+            </div>
+
+            <div class="card">
+                 <h2 class="card-header">Checklist Items</h2>
+                 <div class="table-container">
+                     <table>
+                        <thead>
+                            <tr>
+                                <th class="w-10"></th> <th class="w-12">#</th>
+                                <th>Description</th>
+                                <th class="w-16 text-center">Yes</th>
+                                <th class="w-16 text-center">No</th>
+                                <th class="w-16 text-center">N/A</th>
+                                <th class="w-1/3">Comment</th> <th class="w-12"></th> </tr>
+                        </thead>
+                        <tbody id="checklist">
+                            </tbody>
+                    </table>
+                 </div>
+            </div>
+
+             <div class="card">
+                <h2 class="card-header">Photo Attachments</h2>
+                <div class="mb-4">
+                    <button onclick="triggerPhotoUpload()" class="btn btn-outline">
+                        <i class="fas fa-camera mr-2"></i>Add Photo
+                    </button>
+                    <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="handlePhotoUpload(event)">
+                    <p class="text-xs text-gray-500 mt-1">Capture photo using device camera or upload an image file.</p>
+                </div>
+                <div id="photoGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 photo-grid">
+                    </div>
+            </div>
+
+
+            <div class="card">
+                <h2 class="card-header">Sign-off</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6 signoff-grid">
+                    <div class="border-r md:border-r-gray-200 md:pr-6">
+                        <h3 class="text-md font-semibold text-gray-600 mb-3">Internal Control / Quality Control</h3>
+                        <div class="space-y-3">
+                            <div><label for="sigIntName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigIntName" class="input-field"></div>
+                            <div><label for="sigIntPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigIntPos" class="input-field"></div>
+                            <div><label for="sigIntDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigIntDate" class="input-field"></div>
+                            <div><label for="sigIntSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigIntSig" class="input-field"></div>
+                        </div>
+                    </div>
+                    <div class="border-r md:border-r-gray-200 md:pr-6">
+                        <h3 class="text-md font-semibold text-gray-600 mb-3">External Control / 3rd Party</h3>
+                         <div class="space-y-3">
+                            <div><label for="sigExtName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigExtName" class="input-field"></div>
+                            <div><label for="sigExtPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigExtPos" class="input-field"></div>
+                            <div><label for="sigExtDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigExtDate" class="input-field"></div>
+                            <div><label for="sigExtSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigExtSig" class="input-field"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-md font-semibold text-gray-600 mb-3">Quality Assurance</h3>
+                         <div class="space-y-3">
+                            <div><label for="sigQaName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigQaName" class="input-field"></div>
+                            <div><label for="sigQaPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigQaPos" class="input-field"></div>
+                            <div><label for="sigQaDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigQaDate" class="input-field"></div>
+                            <div><label for="sigQaSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigQaSig" class="input-field"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="card">
+                 <h2 class="card-header">Export / Import</h2>
+                 <div class="flex flex-wrap gap-3">
+                     <button onclick="downloadChecklist()" class="btn btn-outline"><i class="fas fa-download mr-2"></i>Download Checklist (JSON)</button>
+                     <button onclick="triggerUpload()" class="btn btn-outline"><i class="fas fa-upload mr-2"></i>Upload Checklist (JSON)</button>
+                     <button onclick="exportToPDF()" class="btn btn-primary"><i class="fas fa-file-pdf mr-2"></i>Export as PDF</button>
+                 </div>
+                 <input type="file" id="fileInput" accept=".json" onchange="handleFileUpload(event)">
+            </div>
+
+        </div> </div> <div id="notification"></div>
+
+    <script>
+        // --- DATA ---
+        // Structure for sidebar navigation
+        const checklistData = {
+          "Division 03": ["Concrete Formwork","Concrete Reinforcement","Concrete Placement","Concrete Curing & Stripping","Precast Elements / Flatwork"],
+          "Division 04": ["Stone Masonry & Anchored Veneers","Masonry Works (CMU & Brick)"],
+          "Division 05": ["Structural Steel Framing","Steel Stairs & Handrails","Miscellaneous Metals","Metal Decking (Floor & Roof)"],
+          "Division 06": ["Rough Carpentry (Framing)","Architectural Woodwork & Finish Carpentry"],
+          "Division 07": ["Foundation Waterproofing","EIFS","Firestopping / Fire-Resistive Joint Systems","Metal Wall Panels / Cladding Systems","Roof Accessories / Penetrations","Vapor Retarders & Barriers","Exterior Sheathing","Thermal Break Systems","Insulation","Low Slope Roofing","Weather Air Barrier","Sealant"],
+          "Division 08": ["Aluminum Windows & Glazing Systems","Hollow Metal / Wood Doors and Architectural Hardware","Glazed Aluminum Entrances (Manual & Automatic Doors)","Louvers, Vents & Architectural Grilles"],
+          "Division 09": ["Gypsum Board Systems (Drywall)","Acoustic Suspended Ceilings","Interior Painting & Coatings","Ceramic & Porcelain Tiling","Resilient Flooring (LVT, VCT, Sheet Vinyl, Rubber)","Wall Coverings (Vinyl, Fabric, Wood Panels, FRP)","Polished Concrete","Epoxy & Resinous Flooring Systems"],
+          "Division 10": ["Toilet Compartments and Accessories","Fire Extinguishers and Cabinets","Lockers","Interior Signage"],
+          "Division 11": ["Residential and Commercial Appliances"],
+          "Division 12": ["Window Treatments"],
+          "Division 13": ["Pre-Engineered Metal Building (PEMB)"],
+          "Division 14": ["Elevators"],
+          "Division 21": ["Fire Sprinkler Systems"],
+          "Division 22": ["Plumbing Rough-In & Final","Grease Interceptors and Oil Separators","Sump Pumps and Storm Water Pump-Out Systems","Storm Drainage Systems"],
+          "Division 23": ["Air Handling Units (AHUs)","Exhaust and Ventilation Systems","Fan Coil Units (FCUs)","Air-Cooled and Water-Cooled Chillers","Boilers and Hot Water Heating Systems","Hydronic Piping Systems","Cooling Towers","Radiant Heating and Cooling Systems"],
+          "Division 25": ["Building Automation System (BAS) Core Integration","Lighting Control System Integration"],
+          "Division 26": ["Electrical Distribution Equipment","Emergency Power Systems","Interior and Exterior Lighting Systems","Fire Alarm Systems","Wiring Devices"],
+          "Division 27": ["IDF/MDF & Server Room Infrastructure","Structured Cabling System"],
+          "Division 28": ["CCTV System","Access Control System"],
+          "Division 31": ["Excavation & Backfill","Grading & Site Prep","Shoring & Trench Safety","Soil Stabilization","Dewatering","Rock Excavation"],
+          "Division 32": ["Asphalt Paving","Curbs & Sidewalks","Fencing & Gates","Site Furnishings","Landscaping & Planting"]
+        };
+
+        // Default checklist items data (replace with your full data)
+        const defaultItems = {
+            "Division 03::Concrete Formwork": [
         { "type": "header", "text": "A. General Formwork Requirements" },
         { "type": "item", "desc": "Approved shop drawings for formwork available on-site" },
         { "type": "item", "desc": "Form materials (plywood, steel, timber) clean and undamaged" },
@@ -2051,142 +2336,801 @@
         { "type": "item", "desc": "Irrigation system pressure-tested and zones verified prior to handover" },
         { "type": "item", "desc": "Landscape maintenance plan and warranty period (typically 1–2 years) confirmed" },
     ],
-
-
-    };
-
-    let currentChecklistKey = null;
-
-    function populateSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      Object.entries(checklistData).forEach(([div, list]) => {
-        const header = document.createElement('div'); header.innerText = div;
-        header.className = 'p-2 font-semibold text-gray-700'; sidebar.appendChild(header);
-        list.forEach(name => {
-          const item = document.createElement('div'); item.innerText = name;
-          item.className = 'item px-4 py-1 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-100 cursor-pointer';
-          item.addEventListener('click', () => selectChecklist(div, name)); sidebar.appendChild(item);
-        });
-      });
-    }
-
-    function selectChecklist(div, name) {
-      currentChecklistKey = `${div}::${name}`;
-      document.getElementById('selectedChecklistName').innerText = name;
-      document.getElementById('mainContent').classList.remove('hidden');
-      loadChecklist();
-    }
-
-    function updateNumbers() {
-      let count = 0;
-      document.querySelectorAll('#checklist tr').forEach(row => {
-        if (row.classList.contains('header-row')) {
-          row.cells[1].innerText = '';
-        } else {
-          row.cells[1].innerText = ++count;
-        }
-      });
-    }
-
-    function addHeader() {
-      const tbody = document.getElementById('checklist');
-      const row = document.createElement('tr'); row.classList.add('header-row');
-      row.innerHTML = `
-        <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
-        <td></td>
-        <td contenteditable="true" colspan="4" class="font-semibold italic bg-gray-100">Section title...</td>
-        <td></td>
-        <td class="text-center"><button onclick="deleteRow(this)" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button></td>
-      `;
-      tbody.appendChild(row); initSortable(); updateNumbers();
-    }
-
-    function addItem() {
-      const tbody = document.getElementById('checklist');
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
-        <td></td>
-        <td contenteditable="true">New item description</td>
-        <td class="text-center"><input type="checkbox"></td>
-        <td class="text-center"><input type="checkbox"></td>
-        <td class="text-center"><input type="checkbox"></td>
-        <td contenteditable="true"></td>
-        <td class="text-center"><button onclick="deleteRow(this)" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button></td>
-      `;
-      tbody.appendChild(row); initSortable(); updateNumbers();
-    }
-
-    function deleteRow(btn) {
-      const row = btn.closest('tr');
-      row.remove();
-      updateNumbers();
-    }
-
-    function saveChecklist() {
-      if (!currentChecklistKey) return;
-      const data = Array.from(document.querySelectorAll('#checklist tr')).map(row => {
-        if (row.classList.contains('header-row')) {
-          return { type:'header', text: row.cells[2].innerText.trim() };
-        }
-        return {
-          type: 'item',
-          desc: row.cells[2].innerText.trim(),
-          yes: row.cells[3].querySelector('input').checked,
-          no:  row.cells[4].querySelector('input').checked,
-          na:  row.cells[5].querySelector('input').checked,
-          comment: row.cells[6].innerText.trim()
+             // --- IMPORTANT: Add ALL other default checklist items here ---
+             // --- Make sure every key from checklistData has an entry in defaultItems ---
         };
-      });
-      localStorage.setItem(currentChecklistKey, JSON.stringify(data));
-      alert('Checklist saved for ' + currentChecklistKey);
-    }
 
-    function resetChecklist() {
-      if (!currentChecklistKey) return;
-      localStorage.removeItem(currentChecklistKey);
-      loadChecklist();
-      alert('Checklist reset to default items.');
-    }
+        // --- PDF Library ---
+        const { jsPDF } = window.jspdf; // Import jsPDF
 
-    function loadChecklist() {
-      const tbody = document.getElementById('checklist'); tbody.innerHTML = '';
-      let data = JSON.parse(localStorage.getItem(currentChecklistKey) || 'null');
-      if (!data) data = defaultItems[currentChecklistKey] || [];
-      data.forEach(entry => {
-        const row = document.createElement('tr');
-        if (entry.type === 'header') {
-          row.classList.add('header-row');
-          row.innerHTML = `
-            <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
-            <td></td>
-            <td contenteditable="true" colspan="4" class="font-semibold italic bg-gray-100">${entry.text}</td>
-            <td></td>
-            <td class="text-center"><button onclick="deleteRow(this)" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button></td>
-          `;
-        } else {
-          row.innerHTML = `
-            <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
-            <td></td>
-            <td contenteditable="true">${entry.desc}</td>
-            <td class="text-center"><input type="checkbox"${entry.yes?' checked':''}></td>
-            <td class="text-center"><input type="checkbox"${entry.no?' checked':''}></td>
-            <td class="text-center"><input type="checkbox"${entry.na?' checked':''}></td>
-            <td contenteditable="true">${entry.comment||''}</td>
-            <td class="text-center"><button onclick="deleteRow(this)" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button></td>
-          `;
+        // --- STATE ---
+        let currentChecklistKey = null;
+        let sortableInstance = null;
+        let notificationTimeout = null;
+        let activeSidebarItem = null; // To track the active item
+        let capturedImages = []; // Array to store { id, dataUrl, description, date }
+
+        // --- DOM ELEMENTS ---
+        const sidebar = document.getElementById('sidebar');
+        const sidebarContent = document.getElementById('sidebarContent');
+        const mainContent = document.getElementById('mainContent');
+        const placeholderContent = document.getElementById('placeholderContent');
+        const checklistNameEl = document.getElementById('selectedChecklistName');
+        const checklistBody = document.getElementById('checklist');
+        const notificationEl = document.getElementById('notification');
+        const overlay = document.getElementById('overlay');
+        const openSidebarBtn = document.getElementById('openSidebarBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const fileInputElement = document.getElementById('fileInput');
+        const photoInputElement = document.getElementById('photoInput');
+        const photoGrid = document.getElementById('photoGrid');
+        const sidebarSearchInput = document.getElementById('sidebarSearch');
+
+        // --- UI FUNCTIONS ---
+
+        /**
+         * Populates the sidebar based on checklistData and current search filter.
+         */
+        function populateSidebar(filter = '') {
+            sidebarContent.innerHTML = ''; // Clear existing content
+            const searchTerm = filter.toLowerCase().trim();
+
+            Object.entries(checklistData).forEach(([division, list]) => {
+                // Filter checklist names within the division
+                const filteredList = list.filter(name => name.toLowerCase().includes(searchTerm));
+
+                // Only show division if it matches or contains matching items
+                if (division.toLowerCase().includes(searchTerm) || filteredList.length > 0) {
+                    const header = document.createElement('div');
+                    header.textContent = division;
+                    header.className = 'p-3 font-semibold text-gray-700 border-t border-gray-200 text-sm uppercase tracking-wider';
+                    sidebarContent.appendChild(header);
+
+                    filteredList.forEach(name => {
+                        const item = document.createElement('div');
+                        item.textContent = name;
+                        const itemKey = `${division}::${name}`;
+                        item.dataset.key = itemKey;
+                        item.className = 'item px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-100 cursor-pointer rounded-md mx-2 my-1 transition-colors duration-150';
+                        // Re-apply active class if this item is the currently selected one
+                        if (itemKey === currentChecklistKey) {
+                             item.classList.add('active');
+                             activeSidebarItem = item; // Keep track of the active DOM element
+                        }
+                        item.addEventListener('click', () => selectChecklist(division, name, item));
+                        sidebarContent.appendChild(item);
+                    });
+                }
+            });
+             // Handle case where no results are found
+             if (sidebarContent.children.length === 0 && searchTerm) {
+                 const noResults = document.createElement('div');
+                 noResults.textContent = 'No checklists found.';
+                 noResults.className = 'p-4 text-center text-gray-500 text-sm';
+                 sidebarContent.appendChild(noResults);
+             }
         }
-        tbody.appendChild(row);
-      });
-      initSortable(); updateNumbers();
-    }
 
-    function initSortable() {
-      const tbody = document.getElementById('checklist');
-      Sortable.create(tbody, { handle: '.drag-handle', animation:150, ghostClass:'opacity-50', onEnd: updateNumbers });
-    }
+        /**
+         * Filters the sidebar content based on the search input value.
+         */
+        function filterSidebar() {
+            const searchTerm = sidebarSearchInput.value;
+            populateSidebar(searchTerm);
+        }
 
-    document.addEventListener('DOMContentLoaded', populateSidebar);
-  </script>
+
+        /**
+         * Toggles the mobile sidebar visibility.
+         */
+        function toggleSidebar(open) {
+            if (open) {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+            } else {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        }
+
+        /**
+         * Displays a notification message.
+         */
+        function showNotification(message, type = 'info', duration = 3000) {
+             clearTimeout(notificationTimeout);
+             notificationEl.textContent = message;
+             const baseClasses = 'fixed top-4 right-4 p-4 rounded-md shadow-lg z-50 transition-all duration-300';
+             let typeClasses = '';
+             switch (type) {
+                 case 'success': typeClasses = 'bg-green-100 border-green-300 text-green-800 border'; break;
+                 case 'error': typeClasses = 'bg-red-100 border-red-300 text-red-800 border'; break;
+                 case 'warning': typeClasses = 'bg-yellow-100 border-yellow-300 text-yellow-800 border'; break;
+                 case 'info': default: typeClasses = 'bg-blue-100 border-blue-300 text-blue-800 border'; break;
+             }
+             notificationEl.className = `${baseClasses} ${typeClasses} show`;
+             notificationTimeout = setTimeout(() => {
+                 notificationEl.classList.remove('show');
+                 setTimeout(() => { notificationEl.className = `${baseClasses} opacity-0 -translate-y-5`; }, 300);
+             }, duration);
+        }
+
+
+        /**
+         * Updates the numbering (#) column in the checklist table.
+         */
+        function updateNumbers() {
+            let count = 0;
+            checklistBody.querySelectorAll('tr').forEach(row => {
+                const numberCell = row.cells[1];
+                if (!numberCell) return;
+                if (row.classList.contains('header-row')) {
+                    numberCell.textContent = '';
+                } else {
+                    numberCell.textContent = ++count;
+                }
+            });
+        }
+
+        /**
+         * Initializes or re-initializes the SortableJS instance.
+         */
+        function initSortable() {
+            if (sortableInstance) {
+              sortableInstance.destroy();
+            }
+
+          
+            sortableInstance = Sortable.create(checklistBody, {
+              handle: '.drag-handle',    // only allow dragging via your little grip-icon cell
+              draggable: 'tr',           // explicitly make each table row draggable
+              animation: 150,
+              ghostClass: 'opacity-50',
+              fallbackOnBody: true,      // render the “ghost” row in the document body
+              forceFallback: true,       // always use the JS fallback (more reliable on tables)
+              onEnd: updateNumbers
+            });
+          
+        }
+
+        /**
+         * Renders the captured photos in the photo grid.
+         */
+        function renderPhotos() {
+            photoGrid.innerHTML = ''; // Clear existing photos
+            capturedImages.forEach((photo, index) => {
+                const photoItemDiv = document.createElement('div');
+                photoItemDiv.className = 'photo-item bg-gray-50';
+                photoItemDiv.dataset.index = index; // Store index for updates/deletion
+
+                // Image Preview
+                const imgPreview = document.createElement('img');
+                imgPreview.src = photo.dataUrl;
+                imgPreview.alt = `Photo ${index + 1}`;
+                imgPreview.className = 'photo-preview mb-2'; // Added margin bottom
+
+                // Description Input
+                const descLabel = document.createElement('label');
+                descLabel.textContent = 'Description:';
+                descLabel.className = 'text-sm font-medium text-gray-700';
+                const descInput = document.createElement('textarea');
+                descInput.value = photo.description;
+                descInput.rows = 2;
+                descInput.className = 'input-field text-sm';
+                descInput.placeholder = 'Enter photo description...';
+                descInput.oninput = (e) => updatePhotoDescription(index, e.target.value);
+
+                // Date Display
+                const dateLabel = document.createElement('label');
+                dateLabel.textContent = 'Date Taken:';
+                dateLabel.className = 'text-sm font-medium text-gray-700';
+                const dateDisplay = document.createElement('p');
+                dateDisplay.textContent = photo.date;
+                dateDisplay.className = 'text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded';
+
+                // Delete Button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = '<i class="fas fa-trash mr-1"></i> Delete';
+                deleteBtn.className = 'btn btn-danger btn-icon text-xs self-end mt-2'; // Align to bottom right
+                deleteBtn.onclick = () => deletePhoto(index);
+
+                // Append elements
+                photoItemDiv.appendChild(imgPreview);
+                photoItemDiv.appendChild(descLabel);
+                photoItemDiv.appendChild(descInput);
+                photoItemDiv.appendChild(dateLabel);
+                photoItemDiv.appendChild(dateDisplay);
+                photoItemDiv.appendChild(deleteBtn);
+                photoGrid.appendChild(photoItemDiv);
+            });
+        }
+
+
+        // --- CHECKLIST ACTIONS ---
+
+        /**
+         * Selects a checklist, updates UI, loads data, manages active state.
+         */
+        function selectChecklist(division, name, clickedElement) {
+             // Save current checklist before switching (optional, but good UX)
+             if (currentChecklistKey) {
+                 saveChecklist(false); // Save without showing notification
+             }
+
+            currentChecklistKey = `${division}::${name}`;
+
+            if (activeSidebarItem) {
+                activeSidebarItem.classList.remove('active');
+            }
+            clickedElement.classList.add('active');
+            activeSidebarItem = clickedElement;
+
+            checklistNameEl.textContent = name;
+            mainContent.classList.remove('hidden');
+            placeholderContent.classList.add('hidden');
+            loadChecklist(); // This will load items, meta, and photos
+            toggleSidebar(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * Adds a new header row.
+         */
+        function addHeader() {
+             if (!currentChecklistKey) { showNotification("Please select a checklist first.", "warning"); return; }
+            const row = checklistBody.insertRow();
+            row.className = 'header-row';
+            row.innerHTML = `
+                <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
+                <td></td>
+                <td contenteditable="true" colspan="4" class="font-semibold italic">New Section Title...</td>
+                <td></td>
+                <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Header"><i class="fas fa-trash"></i></button></td>
+            `;
+            initSortable(); updateNumbers();
+        }
+
+        /**
+         * Adds a new item row.
+         */
+        function addItem() {
+             if (!currentChecklistKey) { showNotification("Please select a checklist first.", "warning"); return; }
+            const row = checklistBody.insertRow();
+            row.innerHTML = `
+                <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
+                <td></td>
+                <td contenteditable="true">New item description...</td>
+                <td class="text-center"><input type="checkbox"></td>
+                <td class="text-center"><input type="checkbox"></td>
+                <td class="text-center"><input type="checkbox"></td>
+                <td contenteditable="true"></td>
+                <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Item"><i class="fas fa-trash"></i></button></td>
+            `;
+            initSortable(); updateNumbers(); 
+        }
+
+        /**
+         * Deletes the table row.
+         */
+        function deleteRow(btn) {
+            const row = btn.closest('tr');
+            if (row) { row.remove(); updateNumbers(); }
+        }
+
+        // --- PHOTO ACTIONS ---
+
+        /**
+         * Triggers the hidden photo input click.
+         */
+        function triggerPhotoUpload() {
+            if (!currentChecklistKey) {
+                showNotification("Please select a checklist first.", "warning");
+                return;
+            }
+            photoInputElement.click();
+        }
+
+        /**
+         * Handles the photo upload/capture event.
+         */
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                const newPhoto = {
+                    id: Date.now(), // Simple unique ID
+                    dataUrl: dataUrl,
+                    description: '',
+                    date: new Date().toLocaleDateString() // Format date nicely
+                };
+                capturedImages.push(newPhoto);
+                renderPhotos(); // Update the UI
+                showNotification("Photo added.", "success", 1500);
+            };
+            reader.onerror = function() {
+                console.error("Error reading photo file");
+                showNotification("Error reading the photo file.", "error");
+            };
+            reader.readAsDataURL(file);
+            photoInputElement.value = ''; // Reset input
+        }
+
+        /**
+         * Updates the description of a specific photo in the state.
+         */
+        function updatePhotoDescription(index, description) {
+            if (capturedImages[index]) {
+                capturedImages[index].description = description;
+                // No need to re-render, just update the state.
+                // Consider adding a debounce if saving frequently.
+            }
+        }
+
+        /**
+         * Deletes a photo from the state and UI.
+         */
+        function deletePhoto(index) {
+            if (confirm("Are you sure you want to delete this photo?")) {
+                capturedImages.splice(index, 1); // Remove from array
+                renderPhotos(); // Re-render the grid
+                showNotification("Photo deleted.", "info", 1500);
+            }
+        }
+
+
+        // --- DATA HELPER ---
+        /**
+         * Gathers all current checklist data (meta + items + photos).
+         */
+        function getCurrentChecklistData() {
+             const itemsData = Array.from(checklistBody.querySelectorAll('tr')).map(row => {
+                if (row.classList.contains('header-row')) {
+                    return { type: 'header', text: row.cells[2]?.textContent.trim() || '' };
+                } else {
+                    const descCell = row.cells[2];
+                    const yesCell = row.cells[3]?.querySelector('input');
+                    const noCell = row.cells[4]?.querySelector('input');
+                    const naCell = row.cells[5]?.querySelector('input');
+                    const commentCell = row.cells[6];
+                    return {
+                        type: 'item',
+                        desc: descCell ? descCell.textContent.trim() : '',
+                        yes: yesCell ? yesCell.checked : false,
+                        no: noCell ? noCell.checked : false,
+                        na: naCell ? naCell.checked : false,
+                        comment: commentCell ? commentCell.textContent.trim() : ''
+                    };
+                }
+            });
+
+            const metaData = {
+                projectName: document.getElementById('projectName').value,
+                projectNumber: document.getElementById('projectNumber').value,
+                companyName: document.getElementById('companyName').value,
+                inspectionDate: document.getElementById('inspectionDate').value,
+                inspectionScope: document.getElementById('inspectionScope').value,
+                sigIntName: document.getElementById('sigIntName').value,
+                sigIntPos: document.getElementById('sigIntPos').value,
+                sigIntDate: document.getElementById('sigIntDate').value,
+                sigIntSig: document.getElementById('sigIntSig').value,
+                sigExtName: document.getElementById('sigExtName').value,
+                sigExtPos: document.getElementById('sigExtPos').value,
+                sigExtDate: document.getElementById('sigExtDate').value,
+                sigExtSig: document.getElementById('sigExtSig').value,
+                sigQaName: document.getElementById('sigQaName').value,
+                sigQaPos: document.getElementById('sigQaPos').value,
+                sigQaDate: document.getElementById('sigQaDate').value,
+                sigQaSig: document.getElementById('sigQaSig').value,
+            };
+
+            // Important: Include capturedImages in the returned object
+            return { meta: metaData, items: itemsData, photos: capturedImages };
+        }
+
+         /**
+         * Loads data into the UI elements (meta, items, photos).
+         */
+        function loadChecklistData(data) {
+            // Basic validation
+            if (!data || typeof data !== 'object') {
+                 console.error("Invalid data structure passed to loadChecklistData:", data);
+                 showNotification("Failed to load checklist: Invalid data structure.", "error");
+                 // Load defaults instead?
+                 const defaultDataForCurrentKey = defaultItems[currentChecklistKey] || [];
+                 capturedImages = []; // Clear photos for default load
+                 loadChecklistData({ meta: {}, items: defaultDataForCurrentKey, photos: [] });
+                 return;
+            }
+
+            // Ensure all parts exist, provide defaults if missing
+            const meta = data.meta || {};
+            const items = data.items || [];
+            capturedImages = data.photos || []; // Load photos or default to empty array
+
+            // Load meta data
+            document.getElementById('projectName').value = meta.projectName || '';
+            document.getElementById('projectNumber').value = meta.projectNumber || '';
+            document.getElementById('companyName').value = meta.companyName || '';
+            document.getElementById('inspectionDate').value = meta.inspectionDate || '';
+            document.getElementById('inspectionScope').value = meta.inspectionScope || '';
+            document.getElementById('sigIntName').value = meta.sigIntName || '';
+            document.getElementById('sigIntPos').value = meta.sigIntPos || '';
+            document.getElementById('sigIntDate').value = meta.sigIntDate || '';
+            document.getElementById('sigIntSig').value = meta.sigIntSig || '';
+            document.getElementById('sigExtName').value = meta.sigExtName || '';
+            document.getElementById('sigExtPos').value = meta.sigExtPos || '';
+            document.getElementById('sigExtDate').value = meta.sigExtDate || '';
+            document.getElementById('sigExtSig').value = meta.sigExtSig || '';
+            document.getElementById('sigQaName').value = meta.sigQaName || '';
+            document.getElementById('sigQaPos').value = meta.sigQaPos || '';
+            document.getElementById('sigQaDate').value = meta.sigQaDate || '';
+            document.getElementById('sigQaSig').value = meta.sigQaSig || '';
+
+            // Load items data
+            checklistBody.innerHTML = '';
+            items.forEach(entry => {
+                const row = checklistBody.insertRow();
+                if (entry.type === 'header') {
+                    row.className = 'header-row';
+                    row.innerHTML = `
+                        <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
+                        <td></td>
+                        <td contenteditable="true" colspan="4" class="font-semibold italic">${entry.text || 'Section Title'}</td>
+                        <td></td>
+                        <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Header"><i class="fas fa-trash"></i></button></td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td>
+                        <td></td>
+                        <td contenteditable="true">${entry.desc || 'Item Description'}</td>
+                        <td class="text-center"><input type="checkbox"${entry.yes ? ' checked' : ''}></td>
+                        <td class="text-center"><input type="checkbox"${entry.no ? ' checked' : ''}></td>
+                        <td class="text-center"><input type="checkbox"${entry.na ? ' checked' : ''}></td>
+                        <td contenteditable="true">${entry.comment || ''}</td>
+                        <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Item"><i class="fas fa-trash"></i></button></td>
+                    `;
+                }
+            });
+
+            renderPhotos(); // Render loaded photos
+            initSortable();
+            updateNumbers();
+        }
+        
+
+
+        // --- DATA PERSISTENCE (LocalStorage & Files) ---
+
+        /**
+         * Saves the current checklist data to localStorage.
+         * @param {boolean} showNotif - Whether to show a notification. Defaults to true.
+         */
+        function saveChecklist(showNotif = true) {
+            if (!currentChecklistKey) {
+                 if (showNotif) showNotification("Please select a checklist first.", "warning");
+                 return;
+             }
+            const dataToSave = getCurrentChecklistData(); // Includes photos now
+            localStorage.setItem(currentChecklistKey, JSON.stringify(dataToSave));
+            if (showNotif) showNotification('Checklist saved to browser storage!', 'success');
+        }
+
+        /**
+         * Loads checklist data from localStorage or defaults.
+         */
+        function loadChecklist() {
+            if (!currentChecklistKey) return;
+
+            const savedData = JSON.parse(localStorage.getItem(currentChecklistKey) || 'null');
+
+            if (savedData && savedData.meta && savedData.items) {
+                loadChecklistData(savedData); // Will load photos if present
+                showNotification(`Loaded checklist: ${checklistNameEl.textContent} from browser storage`, 'info', 2000);
+            } else {
+                 const defaultDataForCurrentKey = defaultItems[currentChecklistKey] || [];
+                 const defaultStructure = {
+                     meta: {},
+                     items: defaultDataForCurrentKey,
+                     photos: [] // Ensure photos array exists for defaults
+                 };
+                 loadChecklistData(defaultStructure);
+                 showNotification(`Loaded default items for: ${checklistNameEl.textContent}`, 'info', 2000);
+            }
+        }
+
+
+        /**
+         * Resets the current checklist to defaults and clears localStorage.
+         */
+        function resetChecklist() {
+            if (!currentChecklistKey) return;
+            if (confirm(`Are you sure you want to reset the checklist "${checklistNameEl.textContent}" to its default state? This will clear any saved data in the browser for this checklist, including photos.`)) {
+                localStorage.removeItem(currentChecklistKey);
+                 const defaultDataForCurrentKey = defaultItems[currentChecklistKey] || [];
+                 const defaultStructure = { meta: {}, items: defaultDataForCurrentKey, photos: [] };
+                 loadChecklistData(defaultStructure);
+                showNotification('Checklist reset to default items.', 'warning');
+            }
+        }
+
+        /**
+         * Triggers the hidden JSON file input click.
+         */
+        function triggerUpload() {
+             if (!currentChecklistKey) {
+                 showNotification("Please select a checklist first before uploading.", "warning");
+                 return;
+             }
+            fileInputElement.click();
+        }
+
+        /**
+         * Handles the JSON file upload event. Reads the JSON file and loads the data.
+         */
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.name.endsWith('.json')) {
+                 showNotification("Invalid file type. Please upload a '.json' file.", "error");
+                 fileInputElement.value = ''; return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const fileContent = e.target.result;
+                    const data = JSON.parse(fileContent);
+
+                    // Validate structure slightly more robustly
+                    if (typeof data === 'object' && data !== null && data.meta && Array.isArray(data.items)) {
+                         // Check if the loaded data's key matches the current one (optional)
+                         if (data.checklistKey && data.checklistKey !== currentChecklistKey) {
+                             if (!confirm(`The uploaded file seems to be for checklist "${data.checklistKey.split('::')[1]}". Load it anyway for the current checklist "${checklistNameEl.textContent}"?`)) {
+                                 fileInputElement.value = ''; // Reset if user cancels
+                                 return;
+                             }
+                         }
+                         loadChecklistData(data); // Loads meta, items, and photos
+                         showNotification(`Checklist data loaded successfully from ${file.name}!`, 'success');
+                    } else {
+                        showNotification("Invalid JSON structure in the uploaded file.", "error");
+                    }
+                } catch (error) {
+                    console.error("Error reading or parsing file:", error);
+                    showNotification("Error reading or parsing the file. Ensure it's valid JSON.", "error");
+                } finally {
+                     fileInputElement.value = '';
+                }
+            };
+            reader.onerror = function() {
+                 console.error("Error reading file");
+                 showNotification("Error reading the selected file.", "error");
+                 fileInputElement.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+
+        /**
+         * Gathers current data and triggers a JSON file download.
+         */
+        function downloadChecklist() {
+            if (!currentChecklistKey) {
+                 showNotification("Please select a checklist first.", "warning");
+                 return;
+             }
+            const dataToDownload = getCurrentChecklistData(); // Includes photos
+            dataToDownload.checklistKey = currentChecklistKey;
+
+            // Warning about large file size if many photos
+            if (dataToDownload.photos && dataToDownload.photos.length > 5) {
+                showNotification("Warning: Checklist includes photos, JSON file may be large.", "warning", 5000);
+            }
+
+            const dataStr = JSON.stringify(dataToDownload, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.href = url;
+            const checklistName = checklistNameEl.textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            const dateStr = new Date().toISOString().slice(0, 10);
+            downloadLink.download = `checklist_${checklistName}_${dateStr}.json`;
+
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(url);
+
+            showNotification("Checklist JSON file download initiated.", "success");
+        }
+
+        // --- PDF EXPORT ---
+
+        /**
+         * Exports the current checklist view to a PDF document, including photos.
+         */
+        function exportToPDF() {
+             if (!currentChecklistKey) {
+                 showNotification("Please select a checklist first.", "warning");
+                 return;
+             }
+
+            const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+            const data = getCurrentChecklistData();
+            const checklistName = checklistNameEl.textContent;
+            const pageHeight = doc.internal.pageSize.height;
+            const pageWidth = doc.internal.pageSize.width;
+            const margin = 15;
+            let cursorY = margin;
+            const lineHeight = 5; // Approx line height for text
+            const titleFontSize = 16;
+            const headerFontSize = 12;
+            const textFontSize = 10;
+
+            // --- Helper to add text and handle page breaks ---
+            function addText(text, x, y, options = {}) {
+                doc.setFontSize(options.fontSize || textFontSize);
+                doc.setFont(undefined, options.fontStyle || 'normal');
+                const splitText = doc.splitTextToSize(text, options.maxWidth || (pageWidth - margin * 2));
+                const textHeight = splitText.length * (lineHeight * ( (options.fontSize || textFontSize) / textFontSize) ); // Estimate height based on font size
+
+                if (y + textHeight > pageHeight - margin) {
+                    doc.addPage();
+                    y = margin;
+                }
+                doc.text(splitText, x, y);
+                return y + textHeight; // Return new Y position
+            }
+
+            // --- PDF Header ---
+            cursorY = addText(`QA/QC Checklist: ${checklistName}`, margin, cursorY, { fontSize: titleFontSize, fontStyle: 'bold' });
+            cursorY += lineHeight;
+
+            // --- Project Details ---
+            cursorY = addText("Project Details", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
+            cursorY += lineHeight / 2;
+            const projectDetails = [
+                `Project Name: ${data.meta.projectName || 'N/A'}`,
+                `Project Number: ${data.meta.projectNumber || 'N/A'}`,
+                `Company Name: ${data.meta.companyName || 'N/A'}`,
+                `Inspection Date: ${data.meta.inspectionDate || 'N/A'}`,
+                `Scope: ${data.meta.inspectionScope || 'N/A'}`
+            ];
+            projectDetails.forEach(detail => {
+                cursorY = addText(detail, margin, cursorY);
+                cursorY += lineHeight / 2;
+            });
+            cursorY += lineHeight;
+
+            // --- Checklist Items Table ---
+             cursorY = addText("Checklist Items", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
+             cursorY += lineHeight;
+
+            const tableHeaders = [['#', 'Description', 'Y', 'N', 'NA', 'Comment']];
+            const tableBody = [];
+            let itemCounter = 0;
+            data.items.forEach(item => {
+                if (item.type === 'header') {
+                    tableBody.push([{ content: item.text, colSpan: 6, styles: { fillColor: [229, 231, 235], textColor: [31, 41, 55], fontStyle: 'bolditalic' } }]);
+                } else {
+                    itemCounter++;
+                    tableBody.push([ itemCounter.toString(), item.desc || '', item.yes ? 'X' : '', item.no ? 'X' : '', item.na ? 'X' : '', item.comment || '' ]);
+                }
+            });
+            doc.autoTable({
+                head: tableHeaders, body: tableBody, startY: cursorY, theme: 'grid',
+                headStyles: { fillColor: [243, 244, 246], textColor: [55, 65, 81], fontStyle: 'bold', fontSize: 9 },
+                bodyStyles: { fontSize: 9, cellPadding: 1.5 },
+                columnStyles: {
+                    0: { cellWidth: 8, halign: 'right' }, // #
+                    1: { cellWidth: 'auto' }, // Description
+                    2: { cellWidth: 8, halign: 'center' }, // Y
+                    3: { cellWidth: 8, halign: 'center' }, // N
+                    4: { cellWidth: 8, halign: 'center' }, // NA
+                    5: { cellWidth: 45 } // Comment
+                },
+                didDrawPage: (hookData) => { cursorY = hookData.cursor.y; }
+            });
+            cursorY = doc.lastAutoTable.finalY + lineHeight * 2;
+
+            // --- Photo Attachments ---
+            if (data.photos && data.photos.length > 0) {
+                 if (cursorY > pageHeight - 30) { doc.addPage(); cursorY = margin; } // Check space for section header
+                 cursorY = addText("Photo Attachments", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
+                 cursorY += lineHeight;
+
+                 data.photos.forEach((photo, index) => {
+                     const imgMaxHeight = 60; // Max height for image in PDF
+                     const imgMaxWidth = pageWidth - margin * 2; // Max width
+                     const textStartY = cursorY; // Remember Y before image attempt
+
+                     // Check if enough space for image + text
+                     if (cursorY + imgMaxHeight + (lineHeight * 2) > pageHeight - margin) {
+                         doc.addPage();
+                         cursorY = margin;
+                     }
+
+                     try {
+                         // Add image - jsPDF needs width/height. We'll scale based on height.
+                         // This requires knowing the image's original dimensions, which we don't
+                         // have easily from DataURL. Let's use a fixed width approach.
+                         const imgWidth = 50; // Fixed width for image in PDF
+                         doc.addImage(photo.dataUrl, 'JPEG', margin, cursorY, imgWidth, 0); // Width 50, height auto-scaled
+                         // Note: auto-scaling height might not be perfect in all jsPDF versions/formats.
+                         // A more robust way involves loading the image into an Image object first to get dimensions.
+
+                         // Add text next to image (or below if needed)
+                         let textX = margin + imgWidth + 5;
+                         let textY = cursorY;
+
+                         textY = addText(`Photo ${index + 1}: ${photo.description || '(No description)'}`, textX, textY, { maxWidth: pageWidth - textX - margin });
+                         textY += lineHeight / 2;
+                         textY = addText(`Date: ${photo.date || 'N/A'}`, textX, textY, { maxWidth: pageWidth - textX - margin });
+
+                         // Determine next cursor Y based on tallest element (image placeholder or text)
+                         cursorY = Math.max(cursorY + imgMaxHeight + lineHeight, textY + lineHeight);
+
+                     } catch (e) {
+                         console.error("Error adding image to PDF:", e);
+                         cursorY = addText(`Photo ${index + 1}: Error loading image. Desc: ${photo.description || '(No description)'}`, margin, textStartY);
+                         cursorY += lineHeight / 2;
+                         cursorY = addText(`Date: ${photo.date || 'N/A'}`, margin, cursorY);
+                         cursorY += lineHeight;
+                     }
+                 });
+                 cursorY += lineHeight; // Space after last photo
+            }
+
+
+            // --- Sign-off Section ---
+             if (cursorY > pageHeight - 50) { doc.addPage(); cursorY = margin; }
+             cursorY = addText("Sign-off", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
+             cursorY += lineHeight;
+
+             const signOffData = [
+                 { title: "Internal Control / Quality Control", data: { Name: data.meta.sigIntName, Position: data.meta.sigIntPos, Date: data.meta.sigIntDate, Signature: data.meta.sigIntSig } },
+                 { title: "External Control / 3rd Party", data: { Name: data.meta.sigExtName, Position: data.meta.sigExtPos, Date: data.meta.sigExtDate, Signature: data.meta.sigExtSig } },
+                 { title: "Quality Assurance", data: { Name: data.meta.sigQaName, Position: data.meta.sigQaPos, Date: data.meta.sigQaDate, Signature: data.meta.sigQaSig } }
+             ];
+             signOffData.forEach((section) => {
+                 if (cursorY > pageHeight - 40) { doc.addPage(); cursorY = margin; }
+                 cursorY = addText(section.title, margin, cursorY, { fontStyle: 'bold' });
+                 cursorY += lineHeight / 2;
+                 Object.entries(section.data).forEach(([key, value]) => {
+                      if (cursorY > pageHeight - 15) { doc.addPage(); cursorY = margin; }
+                      cursorY = addText(`${key}: ${value || '____________________'}`, margin + 5, cursorY);
+                      cursorY += lineHeight / 2;
+                 });
+                 cursorY += lineHeight;
+             });
+
+            // --- Save PDF ---
+            const pdfFilename = `checklist_${checklistName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${new Date().toISOString().slice(0, 10)}.pdf`;
+            try {
+                 doc.save(pdfFilename);
+                 showNotification("PDF export generated.", "success");
+            } catch (e) {
+                 console.error("Error saving PDF:", e);
+                 showNotification("Failed to generate PDF. See console for details.", "error");
+            }
+        }
+
+
+        // --- EVENT LISTENERS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            populateSidebar(); // Initial population
+            openSidebarBtn?.addEventListener('click', () => toggleSidebar(true));
+            closeSidebarBtn?.addEventListener('click', () => toggleSidebar(false));
+            overlay?.addEventListener('click', () => toggleSidebar(false));
+            checklistBody.addEventListener('click', (e) => { if (e.target.type === 'checkbox') { e.stopPropagation(); } });
+            // Search listener added directly in HTML via oninput="filterSidebar()"
+        });
+
+    </script>
 </body>
 </html>

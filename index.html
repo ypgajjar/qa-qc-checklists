@@ -355,6 +355,13 @@
                      <button onclick="downloadChecklist()" class="btn btn-outline"><i class="fas fa-download mr-2"></i>Download Checklist (JSON)</button>
                      <button onclick="triggerUpload()" class="btn btn-outline"><i class="fas fa-upload mr-2"></i>Upload Checklist (JSON)</button>
                      <button onclick="exportToPDF()" class="btn btn-primary"><i class="fas fa-file-pdf mr-2"></i>Export as PDF</button>
+                     <div class="flex items-center gap-3 mb-4">
+                      <label for="logoInput" class="btn btn-outline cursor-pointer">
+                        <i class="fas fa-image mr-2"></i>Select Company Logo
+                      </label>
+                      <input type="file" id="logoInput" accept="image/*" class="hidden">
+                      <span id="logoFilename" class="text-sm text-gray-600">No logo selected</span>
+                    </div>
                  </div>
                  <input type="file" id="fileInput" accept=".json" onchange="handleFileUpload(event)">
             </div>
@@ -364,6 +371,7 @@
     <script>
         // --- DATA ---
         // Structure for sidebar navigation
+        
         const checklistData = {
           "Division 03": ["Concrete Formwork","Concrete Reinforcement","Concrete Placement","Concrete Curing & Stripping","Precast Elements / Flatwork"],
           "Division 04": ["Stone Masonry & Anchored Veneers","Masonry Works (CMU & Brick)"],
@@ -2336,6 +2344,7 @@
         { "type": "item", "desc": "Irrigation system pressure-tested and zones verified prior to handover" },
         { "type": "item", "desc": "Landscape maintenance plan and warranty period (typically 1–2 years) confirmed" },
     ],
+      
              // --- IMPORTANT: Add ALL other default checklist items here ---
              // --- Make sure every key from checklistData has an entry in defaultItems ---
         };
@@ -2365,6 +2374,22 @@
         const photoInputElement = document.getElementById('photoInput');
         const photoGrid = document.getElementById('photoGrid');
         const sidebarSearchInput = document.getElementById('sidebarSearch');
+        
+        const logoInput     = document.getElementById('logoInput');
+        const logoFilename  = document.getElementById('logoFilename');
+        let   logoDataUrl   = null;    // will hold the image as a Data‑URL
+        
+        logoInput.addEventListener('change', e => {
+          const file = e.target.files[0];
+          if (!file) return;
+          logoFilename.textContent = file.name;
+          const reader = new FileReader();
+          reader.onload = evt => {
+            logoDataUrl = evt.target.result;  // store for PDF
+          };
+          reader.readAsDataURL(file);
+        });
+
 
         // --- UI FUNCTIONS ---
 
@@ -2960,216 +2985,190 @@
             return;
           }
         
+          // ← THIS MUST come before any use of “data”
+          const data = getCurrentChecklistData();                // ← make sure this is here
+          const title = checklistNameEl.textContent.trim();      // ← re‑introduce this
           const { jsPDF } = window.jspdf;
-          const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-          const data = getCurrentChecklistData();
-          const title = checklistNameEl.textContent;
-          const margin = 15;
-          const pageWidth = doc.internal.pageSize.getWidth();
-          let cursorY = margin;
+          const doc      = new jsPDF({ unit: 'mm', format: 'a4' });
+          const pageWidth= doc.internal.pageSize.getWidth();
+          const margin   = 15;
+          let   cursorY  = margin;
         
-          // — 1. Title —
-          doc.setFontSize(18);
-          doc.setFont("helvetica", "bold");
-          doc.text(title, pageWidth / 2, cursorY, { align: "center" });
+          // --- draw logo if we have one ---
+          if (logoDataUrl) {
+            // fit logo into a 40×20 mm box
+            const logoW = 40, logoH = 20;
+            doc.addImage(logoDataUrl, 'PNG', margin, margin, logoW, logoH);
+            cursorY += logoH + 5;  // push content below the logo
+          }
+        
+          // 1) Title
+          doc.setFont("helvetica", "bold").setFontSize(18);
+          doc.text(checklistNameEl.textContent, pageWidth / 2, cursorY, { align: "center" });
           cursorY += 4;
           doc.setLineWidth(0.5)
              .line(margin, cursorY, pageWidth - margin, cursorY);
           cursorY += 8;
         
-          // — 2. Project Details (no header) —
+          // 2. Project Details
           const projBody = [
-            ["Project Name", data.meta.projectName || "—"],
+            ["Project Name",   data.meta.projectName || "—"],
             ["Project Number", data.meta.projectNumber || "—"],
-            ["Company Name", data.meta.companyName || "—"],
-            ["Inspection Date", data.meta.inspectionDate || "—"],
-            ["Scope", data.meta.inspectionScope || "—"]
+            ["Company Name",   data.meta.companyName   || "—"],
+            ["Inspection Date",data.meta.inspectionDate|| "—"],
+            ["Scope",          data.meta.inspectionScope|| "—"]
           ];
           doc.autoTable({
             startY: cursorY,
-            head: [],                 // no header row
+            head: [],
             body: projBody,
             theme: 'plain',
             styles: { fontSize: 10, cellPadding: 2 },
             columnStyles: {
               0: { cellWidth: 40, fontStyle: 'bold' },
-              1: { cellWidth: pageWidth - margin * 2 - 40 }
+              1: { cellWidth: pageWidth - margin*2 - 40 }
             },
             margin: { left: margin, right: margin }
           });
           cursorY = doc.lastAutoTable.finalY + 8;
         
           // 3. Checklist Items
-          doc.setFontSize(14);
-          doc.setFont("helvetica","bold");
+          doc.setFont("helvetica", "bold").setFontSize(14);
           doc.text("Checklist Items", margin, cursorY);
           cursorY += 5;
-          
-          // --- DECLARE YOUR HEADS & BODY ARRAYS ---
+        
           const itemHead = [['#','Description','Y','N','N/A','Comment']];
-          let itemBody = [];               // ← make sure this line is present
+          let itemBody = [];
           let idx = 0;
-          
-          data.items.forEach(row => {
-            if (row.type === 'header') {
+          const makeCell = (chk,color) => ({
+            content: chk ? '✔' : '',
+            styles: { halign:'center', textColor:color, fontSize:12, fontStyle:'bold' }
+          });
+        
+          data.items.forEach(r => {
+            if (r.type === 'header') {
               itemBody.push([{
-                content: row.text,
-                colSpan: 6,
-                styles: {
-                  fillColor: [236, 240, 241],
-                  textColor: [44, 62, 80],
-                  fontStyle: 'bolditalic'
-                }
+                content: r.text, colSpan: 6,
+                styles: { fillColor:[236,240,241], textColor:[44,62,80], fontStyle:'bolditalic' }
               }]);
             } else {
               idx++;
-          
-              // create a styled checkmark cell or empty
-              const makeCell = (checked, color) => ({
-                content: checked ? '✔' : '',
-                styles: {
-                  halign: 'center',
-                  textColor: color,
-                  fontStyle: 'bold',
-                  fontSize: 12
-                }
-              });
-          
               itemBody.push([
                 idx.toString(),
-                row.desc,
-                makeCell(row.yes, [40, 167, 69]),  // green for Yes
-                makeCell(row.no,  [220, 53, 69]),  // red for No
-                makeCell(row.na,  [255,193,  7]),  // amber for N/A
-                row.comment
+                r.desc,
+                makeCell(r.yes,[40,167,69]),
+                makeCell(r.no, [220,53,69]),
+                makeCell(r.na, [255,193,7]),
+                r.comment
               ]);
             }
           });
-
         
           doc.autoTable({
             startY: cursorY,
             head: itemHead,
             body: itemBody,
             theme: 'grid',
-            styles: { fontSize: 9, cellPadding: 2 },
-            headStyles: {
-              fillColor: [149, 165, 166],
-              textColor: 255,
-              fontStyle: 'bold'
-            },
-            alternateRowStyles: { fillColor: [245, 245, 245] },
+            styles: { fontSize:9, cellPadding:2 },
+            headStyles: { fillColor:[149,165,166], textColor:255, fontStyle:'bold' },
+            alternateRowStyles: { fillColor:[245,245,245] },
             columnStyles: {
-              0: { cellWidth: 8, halign: 'center' },
-              1: { cellWidth: 60 },
-              2: { cellWidth: 10, halign: 'center' },
-              3: { cellWidth: 10, halign: 'center' },
-              4: { cellWidth: 10, halign: 'center' },
-              5: { cellWidth: pageWidth - margin * 2 - (8 + 60 + 10 * 3) }
+              0:{cellWidth:8, halign:'center'},
+              1:{cellWidth:60},
+              2:{cellWidth:10,halign:'center'},
+              3:{cellWidth:10,halign:'center'},
+              4:{cellWidth:10,halign:'center'},
+              5:{cellWidth: pageWidth - margin*2 - (8+60+10*3)}
             },
-            margin: { left: margin, right: margin },
-            didDrawPage: (hook) => { cursorY = hook.cursor.y + 8; }
+            margin:{left:margin, right:margin},
+            didDrawPage: h => { cursorY = h.cursor.y + 8; }
           });
         
-          // — 4. Photos in a two‑column grid —
+          // 4. Photo Attachments
           if (data.photos.length) {
-            doc.setFontSize(14);
-            doc.setFont("helvetica", "bold");
+            doc.setFont("helvetica","bold").setFontSize(14);
             doc.text("Photo Attachments", margin, cursorY);
             cursorY += 6;
         
-            const perRow = 2;
-            const gap    = 8;
-            const cellW  = (pageWidth - margin * 2 - gap) / perRow;
-            const cellH  = cellW * 0.7;
+            const cols = 2, gap = 8;
+            const w = (pageWidth - margin*2 - gap)/cols;
+            const h = w*0.7;
         
-            data.photos.forEach((photo, i) => {
-              const col = i % perRow;
-              const row = Math.floor(i / perRow);
-              const x = margin + col * (cellW + gap);
-              const y = cursorY + row * (cellH + 20);
+            data.photos.forEach((p,i) => {
+              const col = i%cols, row = Math.floor(i/cols);
+              let x = margin + col*(w+gap);
+              let y = cursorY + row*(h+20);
         
-              // page‑break check
-              if (y + cellH + 20 > doc.internal.pageSize.getHeight() - margin) {
-                doc.addPage();
-                cursorY = margin;
+              if (y + h + 20 > doc.internal.pageSize.getHeight() - margin) {
+                doc.addPage(); y = margin; cursorY = margin;
               }
-        
-              doc.addImage(photo.dataUrl, 'JPEG', x, y, cellW, cellH);
-              doc.setFontSize(9);
-              doc.setFont("helvetica", "normal");
-              doc.text(photo.description || "(No description)", x, y + cellH + 4, { maxWidth: cellW });
-              doc.text(photo.date, x, y + cellH + 8, { maxWidth: cellW });
+              doc.addImage(p.dataUrl,'JPEG',x,y,w,h);
+              doc.setFont("helvetica","normal").setFontSize(9);
+              doc.text(p.description||"(No description)", x,y+h+4, { maxWidth:w });
+              doc.text(p.date,                   x,y+h+8, { maxWidth:w });
             });
         
-            // advance cursorY below photos
-            const totalRows = Math.ceil(data.photos.length / perRow);
-            cursorY += totalRows * (cellH + 20) + 4;
+            cursorY += Math.ceil(data.photos.length/cols)*(h+20) + 4;
           }
         
-          // — 5. Sign‑off —
-          if (cursorY > doc.internal.pageSize.getHeight() - 80) {
+          // 5. Sign‑off (AutoTable for perfect alignment)
+          if (cursorY > doc.internal.pageSize.getHeight() - 90) {
             doc.addPage();
             cursorY = margin;
           }
-        
-          // Section title
-          doc.setFontSize(16);
-          doc.setFont("helvetica", "bold");
+          doc.setFont("helvetica","bold").setFontSize(14);
           doc.text("Sign‑off", margin, cursorY);
-          cursorY += 8;
+          cursorY += 6;
         
-          // Prepare the three sections
-          const sections = [
-            { title: "Internal Control",  name: data.meta.sigIntName, pos: data.meta.sigIntPos, date: data.meta.sigIntDate, sig: data.meta.sigIntSig },
-            { title: "External Control / 3rd Party",         name: data.meta.sigExtName, pos: data.meta.sigExtPos, date: data.meta.sigExtDate, sig: data.meta.sigExtSig },
-            { title: "Quality Assurance",                    name: data.meta.sigQaName,  pos: data.meta.sigQaPos,  date: data.meta.sigQaDate,  sig: data.meta.sigQaSig }
+          const signHead = [[
+            "Internal Control / Quality Control",
+            "External Control / 3rd Party",
+            "Quality Assurance"
+          ]];
+        
+          const signBody = [
+            [
+              `Name: ${data.meta.sigIntName || ""}`,
+              `Name: ${data.meta.sigExtName || ""}`,
+              `Name: ${data.meta.sigQaName  || ""}`
+            ],
+            [
+              `Position: ${data.meta.sigIntPos || ""}`,
+              `Position: ${data.meta.sigExtPos || ""}`,
+              `Position: ${data.meta.sigQaPos  || ""}`
+            ],
+            [
+              `Date: ${data.meta.sigIntDate || ""}`,
+              `Date: ${data.meta.sigExtDate || ""}`,
+              `Date: ${data.meta.sigQaDate  || ""}`
+            ],
+            [
+              `Signature: ${data.meta.sigIntSig || ""}`,
+              `Signature: ${data.meta.sigExtSig || ""}`,
+              `Signature: ${data.meta.sigQaSig  || ""}`
+            ]
           ];
         
-          // Column sizing
-          const colCount = sections.length;
-          const colWidth = (pageWidth - margin * 2) / colCount;
-          const labelGap = 4;    // gap between label and line
-          const lineOffset = 3;  // vertical offset for the underline
-        
-          // For each column
-          sections.forEach((sec, idx) => {
-            const x = margin + idx * colWidth;
-            let y = cursorY;
-        
-            // Section heading
-            doc.setFontSize(12);
-            doc.setFont("helvetica", "bold");
-            doc.text(sec.title, x, y, { maxWidth: colWidth });
-            y += 6;
-        
-            // Helper to draw a label + underline
-            function drawField(label, value) {
-              doc.setFontSize(10);
-              doc.setFont("helvetica", "normal");
-              doc.text(label + ":", x, y);
-              // underline: from just after the label to the right edge
-              const labelWidth = doc.getTextWidth(label + ":") + labelGap;
-              const lineX1 = x + labelWidth;
-              const lineX2 = x + colWidth - 2;
-              doc.setLineWidth(0.5);
-              doc.line(lineX1, y + lineOffset, lineX2, y + lineOffset);
-              y += 8;
-            }
-        
-            // Draw the four fields
-            drawField("Name",      sec.name);
-            drawField("Position",  sec.pos);
-            drawField("Date",      sec.date);
-            drawField("Signature", sec.sig);
+          doc.autoTable({
+            startY: cursorY,
+            head: signHead,
+            body: signBody,
+            theme: 'grid',
+            styles: { fontSize:10, cellPadding:4, valign:'middle' },
+            headStyles: { fillColor:[236,240,241], textColor:[44,62,80], fontStyle:'bold' },
+            columnStyles: {
+              0:{cellWidth:(pageWidth-margin*2)/3},
+              1:{cellWidth:(pageWidth-margin*2)/3},
+              2:{cellWidth:(pageWidth-margin*2)/3}
+            },
+            margin:{left:margin, right:margin}
           });
-
         
-          // — Save PDF —
-          doc.save(`QAQC_${title.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0,10)}.pdf`);
-          showNotification("Professional PDF exported!", "success");
+          // Save
+          const filename = `QAQC_${title.replace(/\s+/g,'_')}_${new Date().toISOString().slice(0,10)}.pdf`;
+          doc.save(filename);
+          showNotification("PDF export complete!", "success");
         }
-
 
 
 

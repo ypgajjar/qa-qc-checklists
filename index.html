@@ -2955,170 +2955,222 @@
          * Exports the current checklist view to a PDF document, including photos.
          */
         function exportToPDF() {
-             if (!currentChecklistKey) {
-                 showNotification("Please select a checklist first.", "warning");
-                 return;
-             }
-
-            const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-            const data = getCurrentChecklistData();
-            const checklistName = checklistNameEl.textContent;
-            const pageHeight = doc.internal.pageSize.height;
-            const pageWidth = doc.internal.pageSize.width;
-            const margin = 15;
-            let cursorY = margin;
-            const lineHeight = 5; // Approx line height for text
-            const titleFontSize = 16;
-            const headerFontSize = 12;
-            const textFontSize = 10;
-
-            // --- Helper to add text and handle page breaks ---
-            function addText(text, x, y, options = {}) {
-                doc.setFontSize(options.fontSize || textFontSize);
-                doc.setFont(undefined, options.fontStyle || 'normal');
-                const splitText = doc.splitTextToSize(text, options.maxWidth || (pageWidth - margin * 2));
-                const textHeight = splitText.length * (lineHeight * ( (options.fontSize || textFontSize) / textFontSize) ); // Estimate height based on font size
-
-                if (y + textHeight > pageHeight - margin) {
-                    doc.addPage();
-                    y = margin;
+          if (!currentChecklistKey) {
+            showNotification("Please select a checklist first.", "warning");
+            return;
+          }
+        
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+          const data = getCurrentChecklistData();
+          const title = checklistNameEl.textContent;
+          const margin = 15;
+          const pageWidth = doc.internal.pageSize.getWidth();
+          let cursorY = margin;
+        
+          // — 1. Title —
+          doc.setFontSize(18);
+          doc.setFont("helvetica", "bold");
+          doc.text(title, pageWidth / 2, cursorY, { align: "center" });
+          cursorY += 4;
+          doc.setLineWidth(0.5)
+             .line(margin, cursorY, pageWidth - margin, cursorY);
+          cursorY += 8;
+        
+          // — 2. Project Details (no header) —
+          const projBody = [
+            ["Project Name", data.meta.projectName || "—"],
+            ["Project Number", data.meta.projectNumber || "—"],
+            ["Company Name", data.meta.companyName || "—"],
+            ["Inspection Date", data.meta.inspectionDate || "—"],
+            ["Scope", data.meta.inspectionScope || "—"]
+          ];
+          doc.autoTable({
+            startY: cursorY,
+            head: [],                 // no header row
+            body: projBody,
+            theme: 'plain',
+            styles: { fontSize: 10, cellPadding: 2 },
+            columnStyles: {
+              0: { cellWidth: 40, fontStyle: 'bold' },
+              1: { cellWidth: pageWidth - margin * 2 - 40 }
+            },
+            margin: { left: margin, right: margin }
+          });
+          cursorY = doc.lastAutoTable.finalY + 8;
+        
+          // 3. Checklist Items
+          doc.setFontSize(14);
+          doc.setFont("helvetica","bold");
+          doc.text("Checklist Items", margin, cursorY);
+          cursorY += 5;
+          
+          // --- DECLARE YOUR HEADS & BODY ARRAYS ---
+          const itemHead = [['#','Description','Y','N','N/A','Comment']];
+          let itemBody = [];               // ← make sure this line is present
+          let idx = 0;
+          
+          data.items.forEach(row => {
+            if (row.type === 'header') {
+              itemBody.push([{
+                content: row.text,
+                colSpan: 6,
+                styles: {
+                  fillColor: [236, 240, 241],
+                  textColor: [44, 62, 80],
+                  fontStyle: 'bolditalic'
                 }
-                doc.text(splitText, x, y);
-                return y + textHeight; // Return new Y position
-            }
-
-            // --- PDF Header ---
-            cursorY = addText(`QA/QC Checklist: ${checklistName}`, margin, cursorY, { fontSize: titleFontSize, fontStyle: 'bold' });
-            cursorY += lineHeight;
-
-            // --- Project Details ---
-            cursorY = addText("Project Details", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
-            cursorY += lineHeight / 2;
-            const projectDetails = [
-                `Project Name: ${data.meta.projectName || 'N/A'}`,
-                `Project Number: ${data.meta.projectNumber || 'N/A'}`,
-                `Company Name: ${data.meta.companyName || 'N/A'}`,
-                `Inspection Date: ${data.meta.inspectionDate || 'N/A'}`,
-                `Scope: ${data.meta.inspectionScope || 'N/A'}`
-            ];
-            projectDetails.forEach(detail => {
-                cursorY = addText(detail, margin, cursorY);
-                cursorY += lineHeight / 2;
-            });
-            cursorY += lineHeight;
-
-            // --- Checklist Items Table ---
-             cursorY = addText("Checklist Items", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
-             cursorY += lineHeight;
-
-            const tableHeaders = [['#', 'Description', 'Y', 'N', 'NA', 'Comment']];
-            const tableBody = [];
-            let itemCounter = 0;
-            data.items.forEach(item => {
-                if (item.type === 'header') {
-                    tableBody.push([{ content: item.text, colSpan: 6, styles: { fillColor: [229, 231, 235], textColor: [31, 41, 55], fontStyle: 'bolditalic' } }]);
-                } else {
-                    itemCounter++;
-                    tableBody.push([ itemCounter.toString(), item.desc || '', item.yes ? 'X' : '', item.no ? 'X' : '', item.na ? 'X' : '', item.comment || '' ]);
+              }]);
+            } else {
+              idx++;
+          
+              // create a styled checkmark cell or empty
+              const makeCell = (checked, color) => ({
+                content: checked ? '✔' : '',
+                styles: {
+                  halign: 'center',
+                  textColor: color,
+                  fontStyle: 'bold',
+                  fontSize: 12
                 }
-            });
-            doc.autoTable({
-                head: tableHeaders, body: tableBody, startY: cursorY, theme: 'grid',
-                headStyles: { fillColor: [243, 244, 246], textColor: [55, 65, 81], fontStyle: 'bold', fontSize: 9 },
-                bodyStyles: { fontSize: 9, cellPadding: 1.5 },
-                columnStyles: {
-                    0: { cellWidth: 8, halign: 'right' }, // #
-                    1: { cellWidth: 'auto' }, // Description
-                    2: { cellWidth: 8, halign: 'center' }, // Y
-                    3: { cellWidth: 8, halign: 'center' }, // N
-                    4: { cellWidth: 8, halign: 'center' }, // NA
-                    5: { cellWidth: 45 } // Comment
-                },
-                didDrawPage: (hookData) => { cursorY = hookData.cursor.y; }
-            });
-            cursorY = doc.lastAutoTable.finalY + lineHeight * 2;
-
-            // --- Photo Attachments ---
-            if (data.photos && data.photos.length > 0) {
-                 if (cursorY > pageHeight - 30) { doc.addPage(); cursorY = margin; } // Check space for section header
-                 cursorY = addText("Photo Attachments", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
-                 cursorY += lineHeight;
-
-                 data.photos.forEach((photo, index) => {
-                     const imgMaxHeight = 60; // Max height for image in PDF
-                     const imgMaxWidth = pageWidth - margin * 2; // Max width
-                     const textStartY = cursorY; // Remember Y before image attempt
-
-                     // Check if enough space for image + text
-                     if (cursorY + imgMaxHeight + (lineHeight * 2) > pageHeight - margin) {
-                         doc.addPage();
-                         cursorY = margin;
-                     }
-
-                     try {
-                         // Add image - jsPDF needs width/height. We'll scale based on height.
-                         // This requires knowing the image's original dimensions, which we don't
-                         // have easily from DataURL. Let's use a fixed width approach.
-                         const imgWidth = 50; // Fixed width for image in PDF
-                         doc.addImage(photo.dataUrl, 'JPEG', margin, cursorY, imgWidth, 0); // Width 50, height auto-scaled
-                         // Note: auto-scaling height might not be perfect in all jsPDF versions/formats.
-                         // A more robust way involves loading the image into an Image object first to get dimensions.
-
-                         // Add text next to image (or below if needed)
-                         let textX = margin + imgWidth + 5;
-                         let textY = cursorY;
-
-                         textY = addText(`Photo ${index + 1}: ${photo.description || '(No description)'}`, textX, textY, { maxWidth: pageWidth - textX - margin });
-                         textY += lineHeight / 2;
-                         textY = addText(`Date: ${photo.date || 'N/A'}`, textX, textY, { maxWidth: pageWidth - textX - margin });
-
-                         // Determine next cursor Y based on tallest element (image placeholder or text)
-                         cursorY = Math.max(cursorY + imgMaxHeight + lineHeight, textY + lineHeight);
-
-                     } catch (e) {
-                         console.error("Error adding image to PDF:", e);
-                         cursorY = addText(`Photo ${index + 1}: Error loading image. Desc: ${photo.description || '(No description)'}`, margin, textStartY);
-                         cursorY += lineHeight / 2;
-                         cursorY = addText(`Date: ${photo.date || 'N/A'}`, margin, cursorY);
-                         cursorY += lineHeight;
-                     }
-                 });
-                 cursorY += lineHeight; // Space after last photo
+              });
+          
+              itemBody.push([
+                idx.toString(),
+                row.desc,
+                makeCell(row.yes, [40, 167, 69]),  // green for Yes
+                makeCell(row.no,  [220, 53, 69]),  // red for No
+                makeCell(row.na,  [255,193,  7]),  // amber for N/A
+                row.comment
+              ]);
             }
+          });
 
-
-            // --- Sign-off Section ---
-             if (cursorY > pageHeight - 50) { doc.addPage(); cursorY = margin; }
-             cursorY = addText("Sign-off", margin, cursorY, { fontSize: headerFontSize, fontStyle: 'bold' });
-             cursorY += lineHeight;
-
-             const signOffData = [
-                 { title: "Internal Control / Quality Control", data: { Name: data.meta.sigIntName, Position: data.meta.sigIntPos, Date: data.meta.sigIntDate, Signature: data.meta.sigIntSig } },
-                 { title: "External Control / 3rd Party", data: { Name: data.meta.sigExtName, Position: data.meta.sigExtPos, Date: data.meta.sigExtDate, Signature: data.meta.sigExtSig } },
-                 { title: "Quality Assurance", data: { Name: data.meta.sigQaName, Position: data.meta.sigQaPos, Date: data.meta.sigQaDate, Signature: data.meta.sigQaSig } }
-             ];
-             signOffData.forEach((section) => {
-                 if (cursorY > pageHeight - 40) { doc.addPage(); cursorY = margin; }
-                 cursorY = addText(section.title, margin, cursorY, { fontStyle: 'bold' });
-                 cursorY += lineHeight / 2;
-                 Object.entries(section.data).forEach(([key, value]) => {
-                      if (cursorY > pageHeight - 15) { doc.addPage(); cursorY = margin; }
-                      cursorY = addText(`${key}: ${value || '____________________'}`, margin + 5, cursorY);
-                      cursorY += lineHeight / 2;
-                 });
-                 cursorY += lineHeight;
-             });
-
-            // --- Save PDF ---
-            const pdfFilename = `checklist_${checklistName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${new Date().toISOString().slice(0, 10)}.pdf`;
-            try {
-                 doc.save(pdfFilename);
-                 showNotification("PDF export generated.", "success");
-            } catch (e) {
-                 console.error("Error saving PDF:", e);
-                 showNotification("Failed to generate PDF. See console for details.", "error");
+        
+          doc.autoTable({
+            startY: cursorY,
+            head: itemHead,
+            body: itemBody,
+            theme: 'grid',
+            styles: { fontSize: 9, cellPadding: 2 },
+            headStyles: {
+              fillColor: [149, 165, 166],
+              textColor: 255,
+              fontStyle: 'bold'
+            },
+            alternateRowStyles: { fillColor: [245, 245, 245] },
+            columnStyles: {
+              0: { cellWidth: 8, halign: 'center' },
+              1: { cellWidth: 60 },
+              2: { cellWidth: 10, halign: 'center' },
+              3: { cellWidth: 10, halign: 'center' },
+              4: { cellWidth: 10, halign: 'center' },
+              5: { cellWidth: pageWidth - margin * 2 - (8 + 60 + 10 * 3) }
+            },
+            margin: { left: margin, right: margin },
+            didDrawPage: (hook) => { cursorY = hook.cursor.y + 8; }
+          });
+        
+          // — 4. Photos in a two‑column grid —
+          if (data.photos.length) {
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "bold");
+            doc.text("Photo Attachments", margin, cursorY);
+            cursorY += 6;
+        
+            const perRow = 2;
+            const gap    = 8;
+            const cellW  = (pageWidth - margin * 2 - gap) / perRow;
+            const cellH  = cellW * 0.7;
+        
+            data.photos.forEach((photo, i) => {
+              const col = i % perRow;
+              const row = Math.floor(i / perRow);
+              const x = margin + col * (cellW + gap);
+              const y = cursorY + row * (cellH + 20);
+        
+              // page‑break check
+              if (y + cellH + 20 > doc.internal.pageSize.getHeight() - margin) {
+                doc.addPage();
+                cursorY = margin;
+              }
+        
+              doc.addImage(photo.dataUrl, 'JPEG', x, y, cellW, cellH);
+              doc.setFontSize(9);
+              doc.setFont("helvetica", "normal");
+              doc.text(photo.description || "(No description)", x, y + cellH + 4, { maxWidth: cellW });
+              doc.text(photo.date, x, y + cellH + 8, { maxWidth: cellW });
+            });
+        
+            // advance cursorY below photos
+            const totalRows = Math.ceil(data.photos.length / perRow);
+            cursorY += totalRows * (cellH + 20) + 4;
+          }
+        
+          // — 5. Sign‑off —
+          if (cursorY > doc.internal.pageSize.getHeight() - 80) {
+            doc.addPage();
+            cursorY = margin;
+          }
+        
+          // Section title
+          doc.setFontSize(16);
+          doc.setFont("helvetica", "bold");
+          doc.text("Sign‑off", margin, cursorY);
+          cursorY += 8;
+        
+          // Prepare the three sections
+          const sections = [
+            { title: "Internal Control / Quality Control",  name: data.meta.sigIntName, pos: data.meta.sigIntPos, date: data.meta.sigIntDate, sig: data.meta.sigIntSig },
+            { title: "External Control / 3rd Party",         name: data.meta.sigExtName, pos: data.meta.sigExtPos, date: data.meta.sigExtDate, sig: data.meta.sigExtSig },
+            { title: "Quality Assurance",                    name: data.meta.sigQaName,  pos: data.meta.sigQaPos,  date: data.meta.sigQaDate,  sig: data.meta.sigQaSig }
+          ];
+        
+          // Column sizing
+          const colCount = sections.length;
+          const colWidth = (pageWidth - margin * 2) / colCount;
+          const labelGap = 4;    // gap between label and line
+          const lineOffset = 3;  // vertical offset for the underline
+        
+          // For each column
+          sections.forEach((sec, idx) => {
+            const x = margin + idx * colWidth;
+            let y = cursorY;
+        
+            // Section heading
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "bold");
+            doc.text(sec.title, x, y, { maxWidth: colWidth });
+            y += 6;
+        
+            // Helper to draw a label + underline
+            function drawField(label, value) {
+              doc.setFontSize(10);
+              doc.setFont("helvetica", "normal");
+              doc.text(label + ":", x, y);
+              // underline: from just after the label to the right edge
+              const labelWidth = doc.getTextWidth(label + ":") + labelGap;
+              const lineX1 = x + labelWidth;
+              const lineX2 = x + colWidth - 2;
+              doc.setLineWidth(0.5);
+              doc.line(lineX1, y + lineOffset, lineX2, y + lineOffset);
+              y += 8;
             }
+        
+            // Draw the four fields
+            drawField("Name",      sec.name);
+            drawField("Position",  sec.pos);
+            drawField("Date",      sec.date);
+            drawField("Signature", sec.sig);
+          });
+
+        
+          // — Save PDF —
+          doc.save(`QAQC_${title.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0,10)}.pdf`);
+          showNotification("Professional PDF exported!", "success");
         }
+
+
 
 
         // --- EVENT LISTENERS ---

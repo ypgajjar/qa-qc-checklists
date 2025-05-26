@@ -59,8 +59,8 @@ ConstructCheck Pro is a web-based application designed to help construction prof
 
 ## Getting Started (Local Development)
 
-1.  Clone this repository or download the `New Text Document.html` file.
-2.  Open the `New Text Document.html` file in a modern web browser.
+1.  Clone this repository or download the `index.html` file.
+2.  Open the `index.html` file in a modern web browser.
 3.  **For AI Features:**
     *   You will need a Google Gemini API Key.
     *   Obtain a key from [Google AI Studio](https://aistudio.google.com/) or your Google Cloud project.

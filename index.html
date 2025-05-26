@@ -276,28 +276,31 @@
         </div>
 
         <div id="aiChecklistGeneratorCard" class="card">
-          <h2 class="card-header">AI Checklist Generator (Beta - Uses Google Gemini)</h2>
-          <p class="text-sm text-gray-600 mb-4">
-              Enter your Google Gemini API Key and upload a specification document (TXT, PDF, DOCX) to generate a draft checklist.
-              <br><strong>Warning:</strong> API key is stored in your browser's local storage for this session. Clear it if on a shared computer.
-          </p>
+        <h2 class="card-header">AI Checklist Generator (Beta - Uses Google Gemini)</h2>
+        <p class="text-sm text-gray-600 mb-4">
+            Enter your Google Gemini API Key and upload a specification document (TXT, PDF, DOCX) to generate a draft checklist.
+            <br><strong>Warning:</strong> API key is stored in your browser's local storage for this session. Clear it if on a shared computer.
+        </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div>
-                  <label for="geminiApiKey" class="block text-sm font-medium text-gray-700 mb-1">Gemini API Key:</label>
-                  <div class="flex gap-2">
-                      <input type="password" id="geminiApiKey" class="input-field flex-grow" placeholder="Enter your API Key">
-                      <button id="saveApiKeyBtn" class="btn btn-outline btn-sm">Save Key</button>
-                      <button id="clearApiKeyBtn" class="btn btn-outline btn-sm">Clear Key</button>
-                  </div>
-              </div>
-              <div>
-                  <label for="specFileInput" class="block text-sm font-medium text-gray-700 mb-1">Upload Specification Document:</label>
-                  <input type="file" id="specFileInput" class="input-field" accept=".txt,.pdf,.docx">
-                  <p class="text-xs text-gray-500 mt-1">Supports: TXT (best), PDF, DOCX (experimental client-side parsing).</p>
-              </div>
-          </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+                <label for="geminiApiKey" class="block text-sm font-medium text-gray-700 mb-1">
+                    Gemini API Key:
+                    <!-- MODIFIED: Added hyperlink -->
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-xs ml-1" title="Get your Google Gemini API Key">(Get Key <i class="fas fa-external-link-alt fa-xs"></i>)</a>
+                </label>
+                <div class="flex gap-2">
+                    <input type="password" id="geminiApiKey" class="input-field flex-grow" placeholder="Enter your API Key">
+                    <button id="saveApiKeyBtn" class="btn btn-outline btn-sm">Save Key</button>
+                    <button id="clearApiKeyBtn" class="btn btn-outline btn-sm">Clear Key</button>
+                </div>
+            </div>
+            <div>
+                <label for="specFileInput" class="block text-sm font-medium text-gray-700 mb-1">Upload Specification Document:</label>
+                <input type="file" id="specFileInput" class="input-field" accept=".txt,.pdf,.docx">
+                <p class="text-xs text-gray-500 mt-1">Supports: TXT (best), PDF, DOCX (experimental client-side parsing).</p>
+            </div>
+        </div>
           <button id="generateAiChecklistBtn" class="btn btn-primary mb-4"><i class="fas fa-cogs mr-2"></i>Generate Checklist with AI</button>
 
           <div id="aiGeneratedItemsContainer" class="hidden mt-4">

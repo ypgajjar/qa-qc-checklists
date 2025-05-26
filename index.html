@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Corrected GTM ID (replace 82CDRETM_B3 with your actual ID part) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-82CDRETM_B3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-82CDRETM_B3');
+      gtag('config', 'G-82CDRETM_B3'); // Ensure this is your correct GTM ID
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.17/mammoth.browser.min.js"></script>
 
     <style>
         /* Base styles */
@@ -226,29 +230,34 @@
 </head>
 <body class="bg-gray-100">
 
-    <aside id="sidebar">
-        <div id="sidebarHeader" class="p-4 border-b bg-white sticky top-0 z-10">
-            <div class="flex justify-between items-center mb-3">
-                <h2 class="text-xl font-bold text-gray-800">Divisions</h2>
-                <button id="closeSidebarBtn" class="md:hidden text-gray-500 hover:text-gray-800">
-                    <i class="fas fa-times fa-lg"></i>
-                </button>
-            </div>
-            <div class="relative">
-                <input type="text" id="sidebarSearch" placeholder="Search checklists..."
-                       class="input-field w-full pl-8 text-sm"
-                       oninput="filterSidebar()">
-                <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-        </div>
-        <div id="sidebarContentWrapper" class="p-2">
-            <div id="sidebarContent">
-                <!-- Sidebar items will be populated here -->
-            </div>
-        </div>
-    </aside>
+  <aside id="sidebar">
+      <div id="sidebarHeader" class="p-4 border-b bg-white sticky top-0 z-10">
+          <div class="flex justify-between items-center mb-3">
+              <h2 class="text-xl font-bold text-gray-800">Divisions</h2>
+              <div> <!-- Flex container for buttons -->
+                  <button id="createNewChecklistBtn" class="btn btn-outline btn-sm mr-2" title="Create New Checklist">
+                      <i class="fas fa-plus"></i> New
+                  </button>
+                  <button id="closeSidebarBtn" class="md:hidden text-gray-500 hover:text-gray-800">
+                      <i class="fas fa-times fa-lg"></i>
+                  </button>
+              </div>
+          </div>
+          <div class="relative">
+              <input type="text" id="sidebarSearch" placeholder="Search checklists..."
+                    class="input-field w-full pl-8 text-sm"
+                    oninput="filterSidebar()">
+              <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+                  <i class="fas fa-search"></i>
+              </span>
+          </div>
+      </div>
+      <div id="sidebarContentWrapper" class="p-2">
+          <div id="sidebarContent">
+              <!-- Sidebar items will be populated here -->
+          </div>
+      </div>
+  </aside>
 
     <div id="overlay"></div>
 
@@ -265,135 +274,174 @@
              <i class="fas fa-clipboard-list fa-3x text-gray-400 mb-4"></i>
              <h2 class="text-xl font-semibold text-gray-700 mb-2">Select a Checklist</h2>
              <p class="text-gray-500">Choose a division and checklist from the sidebar to start.</p>
-         </div>
+        </div>
 
+        <div id="aiChecklistGeneratorCard" class="card">
+          <h2 class="card-header">AI Checklist Generator (Beta - Uses Google Gemini)</h2>
+          <p class="text-sm text-gray-600 mb-4">
+              Enter your Google Gemini API Key and upload a specification document (TXT, PDF, DOCX) to generate a draft checklist.
+              <br><strong>Warning:</strong> API key is stored in your browser's local storage for this session. Clear it if on a shared computer.
+          </p>
 
-        <div id="mainContent" class="hidden">
-            <h1 id="selectedChecklistName" class="text-2xl md:text-3xl font-bold text-gray-800 mb-6"></h1>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                  <label for="geminiApiKey" class="block text-sm font-medium text-gray-700 mb-1">Gemini API Key:</label>
+                  <div class="flex gap-2">
+                      <input type="password" id="geminiApiKey" class="input-field flex-grow" placeholder="Enter your API Key">
+                      <button id="saveApiKeyBtn" class="btn btn-outline btn-sm">Save Key</button>
+                      <button id="clearApiKeyBtn" class="btn btn-outline btn-sm">Clear Key</button>
+                  </div>
+              </div>
+              <div>
+                  <label for="specFileInput" class="block text-sm font-medium text-gray-700 mb-1">Upload Specification Document:</label>
+                  <input type="file" id="specFileInput" class="input-field" accept=".txt,.pdf,.docx">
+                  <p class="text-xs text-gray-500 mt-1">Supports: TXT (best), PDF, DOCX (experimental client-side parsing).</p>
+              </div>
+          </div>
 
-            <div class="card">
-                <h2 class="card-header">Project Details</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
-                    <div><label for="projectName" class="block text-sm font-medium text-gray-700 mb-1">Project Name</label><input type="text" id="projectName" class="input-field"></div>
-                    <div><label for="projectNumber" class="block text-sm font-medium text-gray-700 mb-1">Project Number</label><input type="text" id="projectNumber" class="input-field"></div>
-                    <div><label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label><input type="text" id="companyName" class="input-field"></div>
-                    <div><label for="inspectionDate" class="block text-sm font-medium text-gray-700 mb-1">Date of Inspection</label><input type="date" id="inspectionDate" class="input-field"></div>
-                    <div class="md:col-span-2"><label for="inspectionScope" class="block text-sm font-medium text-gray-700 mb-1">Scope of Inspection</label><textarea id="inspectionScope" rows="3" class="input-field"></textarea></div>
+          <button id="generateAiChecklistBtn" class="btn btn-primary mb-4"><i class="fas fa-cogs mr-2"></i>Generate Checklist with AI</button>
+
+          <div id="aiGeneratedItemsContainer" class="hidden mt-4">
+              <h3 class="text-md font-semibold text-gray-700 mb-2">AI Generated Items:</h3>
+              <div id="aiOutputSpinner" class="hidden text-center py-4">
+                  <i class="fas fa-spinner fa-spin fa-2x text-blue-500"></i>
+                  <p class="text-sm text-gray-600 mt-2">Generating checklist, please wait...</p>
+              </div>
+              <div id="aiOutputError" class="hidden p-3 bg-red-100 border border-red-300 text-red-700 rounded-md mb-2"></div>
+              <textarea id="aiGeneratedChecklistArea" rows="10" class="input-field w-full mb-2" placeholder="AI generated items will appear here..."></textarea>
+              <p class="text-xs text-gray-500 mb-2">Review and edit the items above. Headers should start with "H: ". Items start with "I: " or just the text.</p>
+              <button id="addAiItemsToCurrentBtn" class="btn btn-success mr-2"><i class="fas fa-plus-circle mr-2"></i>Add to Current Checklist</button>
+              <button id="replaceCurrentWithAiItemsBtn" class="btn btn-warning"><i class="fas fa-exchange-alt mr-2"></i>Replace Current with AI Items</button>
+          </div>
+      </div>
+        
+      <div id="mainContent" class="hidden">
+          <h1 id="selectedChecklistName" class="text-2xl md:text-3xl font-bold text-gray-800 mb-6"></h1>
+
+          <div class="card">
+              <h2 class="card-header">Project Details</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                  <div><label for="projectName" class="block text-sm font-medium text-gray-700 mb-1">Project Name</label><input type="text" id="projectName" class="input-field"></div>
+                  <div><label for="projectNumber" class="block text-sm font-medium text-gray-700 mb-1">Project Number</label><input type="text" id="projectNumber" class="input-field"></div>
+                  <div><label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label><input type="text" id="companyName" class="input-field"></div>
+                  <div><label for="inspectionDate" class="block text-sm font-medium text-gray-700 mb-1">Date of Inspection</label><input type="date" id="inspectionDate" class="input-field"></div>
+                  <div class="md:col-span-2"><label for="inspectionScope" class="block text-sm font-medium text-gray-700 mb-1">Scope of Inspection</label><textarea id="inspectionScope" rows="3" class="input-field"></textarea></div>
+              </div>
+          </div>
+
+          <div class="card">
+                <h2 class="card-header">Checklist Controls</h2>
+                <div class="flex flex-wrap gap-3 items-center"> <!-- Added items-center -->
+                  <button onclick="addHeader()" class="btn btn-secondary"><i class="fas fa-heading mr-2"></i>Add Header</button>
+                  <button onclick="addItem()" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Add Item</button>
+                  <button onclick="saveChecklist()" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save to Browser</button>
+                  <span id="lastSavedTimestamp" class="text-xs text-gray-500"></span> <!-- NEW: Last Saved Timestamp -->
+                  <button onclick="resetChecklist()" class="btn btn-danger"><i class="fas fa-sync-alt mr-2"></i>Reset</button>
                 </div>
-            </div>
+                <div id="checklistProgress" class="mt-4 text-sm text-gray-600"></div> <!-- NEW: Checklist Progress -->
+          </div>
 
-            <div class="card">
-                 <h2 class="card-header">Checklist Controls</h2>
-                 <div class="flex flex-wrap gap-3 items-center"> <!-- Added items-center -->
-                    <button onclick="addHeader()" class="btn btn-secondary"><i class="fas fa-heading mr-2"></i>Add Header</button>
-                    <button onclick="addItem()" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Add Item</button>
-                    <button onclick="saveChecklist()" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save to Browser</button>
-                    <span id="lastSavedTimestamp" class="text-xs text-gray-500"></span> <!-- NEW: Last Saved Timestamp -->
-                    <button onclick="resetChecklist()" class="btn btn-danger"><i class="fas fa-sync-alt mr-2"></i>Reset</button>
-                 </div>
-                 <div id="checklistProgress" class="mt-4 text-sm text-gray-600"></div> <!-- NEW: Checklist Progress -->
-            </div>
-
-            <div class="card">
-                 <h2 class="card-header">Checklist Items</h2>
-                 <!-- NEW: Search input for checklist items -->
-                 <div class="mb-4">
-                    <input type="text" id="itemSearchInput" class="input-field w-full md:w-1/2 lg:w-1/3" placeholder="Search items in this checklist..." oninput="filterChecklistTable()">
-                 </div>
-                 <div class="table-container">
-                     <table>
-                        <thead>
-                            <tr>
-                                <th class="w-10"></th> <!-- Drag Handle -->
-                                <th class="w-12">#</th>
-                                <th>Description</th>
-                                <th class="w-16 text-center">Yes</th>
-                                <th class="w-16 text-center">No</th>
-                                <th class="w-16 text-center">N/A</th>
-                                <th class="w-1/3">Comment</th>
-                                <th class="w-12"></th> <!-- Delete button -->
-                            </tr>
-                        </thead>
-                        <tbody id="checklist">
-                            <!-- Checklist items will be populated here -->
-                        </tbody>
-                    </table>
-                 </div>
-            </div>
-
-             <div class="card">
-                <h2 class="card-header">Photo Attachments</h2>
+          <div class="card">
+                <h2 class="card-header">Checklist Items</h2>
+                <!-- NEW: Search input for checklist items -->
                 <div class="mb-4">
-                    <button onclick="triggerPhotoUpload()" class="btn btn-outline">
-                        <i class="fas fa-camera mr-2"></i>Add Photo
-                    </button>
-                    <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="handlePhotoUpload(event)">
-                    <p class="text-xs text-gray-500 mt-1">Capture photo using device camera or upload an image file.</p>
+                  <input type="text" id="itemSearchInput" class="input-field w-full md:w-1/2 lg:w-1/3" placeholder="Search items in this checklist..." oninput="filterChecklistTable()">
                 </div>
-                <div id="photoGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 photo-grid">
-                    <!-- Photo items will be populated here -->
+                <div class="table-container">
+                    <table>
+                      <thead>
+                          <tr>
+                              <th class="w-10"></th> <!-- Drag Handle -->
+                              <th class="w-12">#</th>
+                              <th>Description</th>
+                              <th class="w-16 text-center">Yes</th>
+                              <th class="w-16 text-center">No</th>
+                              <th class="w-16 text-center">N/A</th>
+                              <th class="w-1/3">Comment</th>
+                              <th class="w-12"></th> <!-- Delete button -->
+                          </tr>
+                      </thead>
+                      <tbody id="checklist">
+                          <!-- Checklist items will be populated here -->
+                      </tbody>
+                  </table>
                 </div>
-            </div>
-
+          </div>
 
             <div class="card">
-                <h2 class="card-header">Sign-off</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6 signoff-grid">
-                    <div class="border-r md:border-r-gray-200 md:pr-6">
-                        <h3 class="text-md font-semibold text-gray-600 mb-3">Internal Control / Quality Control</h3>
+              <h2 class="card-header">Photo Attachments</h2>
+              <div class="mb-4">
+                  <button onclick="triggerPhotoUpload()" class="btn btn-outline">
+                      <i class="fas fa-camera mr-2"></i>Add Photo
+                  </button>
+                  <input type="file" id="photoInput" accept="image/*" capture="environment" onchange="handlePhotoUpload(event)">
+                  <p class="text-xs text-gray-500 mt-1">Capture photo using device camera or upload an image file.</p>
+              </div>
+              <div id="photoGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 photo-grid">
+                  <!-- Photo items will be populated here -->
+              </div>
+          </div>
+
+
+          <div class="card">
+              <h2 class="card-header">Sign-off</h2>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-6 signoff-grid">
+                  <div class="border-r md:border-r-gray-200 md:pr-6">
+                      <h3 class="text-md font-semibold text-gray-600 mb-3">Internal Control / Quality Control</h3>
+                      <div class="space-y-3">
+                          <div><label for="sigIntName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigIntName" class="input-field"></div>
+                          <div><label for="sigIntPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigIntPos" class="input-field"></div>
+                          <div><label for="sigIntDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigIntDate" class="input-field"></div>
+                          <div><label for="sigIntSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigIntSig" class="input-field"></div>
+                      </div>
+                  </div>
+                  <div class="border-r md:border-r-gray-200 md:pr-6">
+                      <h3 class="text-md font-semibold text-gray-600 mb-3">External Control / 3rd Party</h3>
                         <div class="space-y-3">
-                            <div><label for="sigIntName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigIntName" class="input-field"></div>
-                            <div><label for="sigIntPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigIntPos" class="input-field"></div>
-                            <div><label for="sigIntDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigIntDate" class="input-field"></div>
-                            <div><label for="sigIntSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigIntSig" class="input-field"></div>
-                        </div>
-                    </div>
-                    <div class="border-r md:border-r-gray-200 md:pr-6">
-                        <h3 class="text-md font-semibold text-gray-600 mb-3">External Control / 3rd Party</h3>
-                         <div class="space-y-3">
-                            <div><label for="sigExtName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigExtName" class="input-field"></div>
-                            <div><label for="sigExtPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigExtPos" class="input-field"></div>
-                            <div><label for="sigExtDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigExtDate" class="input-field"></div>
-                            <div><label for="sigExtSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigExtSig" class="input-field"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-md font-semibold text-gray-600 mb-3">Quality Assurance</h3>
-                         <div class="space-y-3">
-                            <div><label for="sigQaName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigQaName" class="input-field"></div>
-                            <div><label for="sigQaPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigQaPos" class="input-field"></div>
-                            <div><label for="sigQaDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigQaDate" class="input-field"></div>
-                            <div><label for="sigQaSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigQaSig" class="input-field"></div>
-                        </div>
-                    </div>
+                          <div><label for="sigExtName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigExtName" class="input-field"></div>
+                          <div><label for="sigExtPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigExtPos" class="input-field"></div>
+                          <div><label for="sigExtDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigExtDate" class="input-field"></div>
+                          <div><label for="sigExtSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigExtSig" class="input-field"></div>
+                      </div>
+                  </div>
+                  <div>
+                      <h3 class="text-md font-semibold text-gray-600 mb-3">Quality Assurance</h3>
+                        <div class="space-y-3">
+                          <div><label for="sigQaName" class="block text-sm font-medium text-gray-700 mb-1">Name:</label><input type="text" id="sigQaName" class="input-field"></div>
+                          <div><label for="sigQaPos" class="block text-sm font-medium text-gray-700 mb-1">Position:</label><input type="text" id="sigQaPos" class="input-field"></div>
+                          <div><label for="sigQaDate" class="block text-sm font-medium text-gray-700 mb-1">Date:</label><input type="date" id="sigQaDate" class="input-field"></div>
+                          <div><label for="sigQaSig" class="block text-sm font-medium text-gray-700 mb-1">Signature:</label><input type="text" id="sigQaSig" class="input-field"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+            <div class="card">
+                <h2 class="card-header">Export / Import</h2>
+                <div class="flex flex-wrap gap-3 items-center"> <!-- Added items-center -->
+                    <button onclick="downloadChecklist()" class="btn btn-outline"><i class="fas fa-download mr-2"></i>Download Checklist (JSON)</button>
+                    <button onclick="triggerUpload()" class="btn btn-outline"><i class="fas fa-upload mr-2"></i>Upload Checklist (JSON)</button>
+                    <button onclick="exportToPDF()" class="btn btn-primary"><i class="fas fa-file-pdf mr-2"></i>Export as PDF</button>
+                    <div class="flex items-center gap-2"> <!-- Reduced gap -->
+                    <label for="logoInput" class="btn btn-outline cursor-pointer">
+                      <i class="fas fa-image mr-2"></i>Select Logo
+                    </label>
+                    <input type="file" id="logoInput" accept="image/*" class="hidden">
+                    <span id="logoFilename" class="text-sm text-gray-600">No logo selected</span>
+                  </div>
                 </div>
-            </div>
+                <input type="file" id="fileInput" accept=".json" onchange="handleFileUpload(event)">
+          </div>
 
-             <div class="card">
-                 <h2 class="card-header">Export / Import</h2>
-                 <div class="flex flex-wrap gap-3 items-center"> <!-- Added items-center -->
-                     <button onclick="downloadChecklist()" class="btn btn-outline"><i class="fas fa-download mr-2"></i>Download Checklist (JSON)</button>
-                     <button onclick="triggerUpload()" class="btn btn-outline"><i class="fas fa-upload mr-2"></i>Upload Checklist (JSON)</button>
-                     <button onclick="exportToPDF()" class="btn btn-primary"><i class="fas fa-file-pdf mr-2"></i>Export as PDF</button>
-                     <div class="flex items-center gap-2"> <!-- Reduced gap -->
-                      <label for="logoInput" class="btn btn-outline cursor-pointer">
-                        <i class="fas fa-image mr-2"></i>Select Logo
-                      </label>
-                      <input type="file" id="logoInput" accept="image/*" class="hidden">
-                      <span id="logoFilename" class="text-sm text-gray-600">No logo selected</span>
-                    </div>
-                 </div>
-                 <input type="file" id="fileInput" accept=".json" onchange="handleFileUpload(event)">
-            </div>
-
-        </div> <!-- End of #mainContent -->
-    </div> <!-- End of #mainContentWrapper -->
+      </div> 
+    </div> 
 
     <div id="notification"></div>
 
     <script>
         // --- DATA ---
-        const checklistData = {
+
+        const initialHardcodedChecklistData = { 
           "Division 03": ["Concrete Formwork","Concrete Reinforcement","Concrete Placement","Concrete Curing & Stripping","Precast Elements / Flatwork"],
           "Division 04": ["Stone Masonry & Anchored Veneers","Masonry Works (CMU & Brick)"],
           "Division 05": ["Structural Steel Framing","Steel Stairs & Handrails","Miscellaneous Metals","Metal Decking (Floor & Roof)"],
@@ -417,9 +465,8 @@
           "Division 32": ["Asphalt Paving","Curbs & Sidewalks","Fencing & Gates","Site Furnishings","Landscaping & Planting"]
         };
 
-        // Default checklist items data (replace with your full data)
-        const defaultItems = {
-            "Division 03::Concrete Formwork": [
+        const initialHardcodedDefaultItems = { 
+      "Division 03::Concrete Formwork": [
         { "type": "header", "text": "A. General Formwork Requirements" },
         { "type": "item", "desc": "Approved shop drawings for formwork available on-site" },
         { "type": "item", "desc": "Form materials (plywood, steel, timber) clean and undamaged" },
@@ -2365,10 +2412,16 @@
         { "type": "item", "desc": "Irrigation system pressure-tested and zones verified prior to handover" },
         { "type": "item", "desc": "Landscape maintenance plan and warranty period (typically 1–2 years) confirmed" },
     ],
-      
-             // --- IMPORTANT: Add ALL other default checklist items here ---
-             // --- Make sure every key from checklistData has an entry in defaultItems ---
         };
+
+        // This will be modified by loading from localStorage
+        let checklistData = JSON.parse(JSON.stringify(initialHardcodedChecklistData)); // Deep copy
+        // This will be modified by loading from localStorage and by creating custom checklists
+        let defaultItems = JSON.parse(JSON.stringify(initialHardcodedDefaultItems)); // Deep copy
+
+        // This one STAYS pristine for comparison
+        const pristineDefaultItems = JSON.parse(JSON.stringify(initialHardcodedDefaultItems)); // Deep copy
+
 
         // --- PDF Library ---
         const { jsPDF } = window.jspdf;
@@ -2380,6 +2433,10 @@
         let activeSidebarItem = null;
         let capturedImages = [];
         let logoDataUrl = null;
+
+        const GEMINI_API_KEY_STORAGE = 'geminiApiKey'; // NEW for AI
+        const CUSTOM_CHECKLIST_DATA_STORAGE_KEY = 'customChecklistApp_checklistData'; 
+        const CUSTOM_DEFAULT_ITEMS_STORAGE_KEY = 'customChecklistApp_defaultItems';
 
         // --- DOM ELEMENTS ---
         const sidebar = document.getElementById('sidebar');
@@ -2398,9 +2455,21 @@
         const sidebarSearchInput = document.getElementById('sidebarSearch');
         const logoInput = document.getElementById('logoInput');
         const logoFilename = document.getElementById('logoFilename');
-        const lastSavedTimestampEl = document.getElementById('lastSavedTimestamp'); // NEW
-        const checklistProgressEl = document.getElementById('checklistProgress'); // NEW
+        const lastSavedTimestampEl = document.getElementById('lastSavedTimestamp');
+        const checklistProgressEl = document.getElementById('checklistProgress'); 
         const itemSearchInputEl = document.getElementById('itemSearchInput'); // NEW
+        const geminiApiKeyInput = document.getElementById('geminiApiKey');
+        const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
+        const clearApiKeyBtn = document.getElementById('clearApiKeyBtn');
+        const specFileInput = document.getElementById('specFileInput');
+        const generateAiChecklistBtn = document.getElementById('generateAiChecklistBtn');
+        const aiGeneratedItemsContainer = document.getElementById('aiGeneratedItemsContainer');
+        const aiOutputSpinner = document.getElementById('aiOutputSpinner');
+        const aiOutputError = document.getElementById('aiOutputError');
+        const aiGeneratedChecklistArea = document.getElementById('aiGeneratedChecklistArea');
+        const addAiItemsToCurrentBtn = document.getElementById('addAiItemsToCurrentBtn');
+        const replaceCurrentWithAiItemsBtn = document.getElementById('replaceCurrentWithAiItemsBtn');
+        const createNewChecklistBtn = document.getElementById('createNewChecklistBtn');
 
 
         logoInput.addEventListener('change', e => {
@@ -2433,17 +2502,40 @@
                     sidebarContent.appendChild(header);
 
                     filteredList.forEach(name => {
-                        const item = document.createElement('div');
-                        item.textContent = name;
                         const itemKey = `${division}::${name}`;
-                        item.dataset.key = itemKey;
-                        item.className = 'item px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-100 cursor-pointer rounded-md mx-2 my-1 transition-colors duration-150';
+                        const isCustom = !pristineDefaultItems.hasOwnProperty(itemKey); // Check against pristine defaults
+
+                        const itemWrapper = document.createElement('div');
+                        itemWrapper.className = 'flex justify-between items-center item mx-2 my-1 rounded-md hover:bg-gray-100 group';
+                        // `group` class from Tailwind helps with hover effects on children
+
+                        const itemNameEl = document.createElement('div');
+                        itemNameEl.textContent = name;
+                        itemNameEl.dataset.key = itemKey;
+                        // Adjusted classes for the name part to allow space for the button
+                        itemNameEl.className = 'flex-grow px-4 py-2 text-sm text-gray-600 group-hover:text-blue-600 cursor-pointer transition-colors duration-150';
+
+
                         if (itemKey === currentChecklistKey) {
-                             item.classList.add('active');
-                             activeSidebarItem = item;
+                            itemNameEl.classList.add('active'); // Keeping active on name for simplicity with border
+                            activeSidebarItem = itemNameEl; // Assuming activeSidebarItem points to the clickable name part
                         }
-                        item.addEventListener('click', () => selectChecklist(division, name, item));
-                        sidebarContent.appendChild(item);
+                        itemNameEl.addEventListener('click', () => selectChecklist(division, name, itemNameEl)); // Pass itemNameEl
+
+                        itemWrapper.appendChild(itemNameEl);
+
+                        if (isCustom) {
+                            const deleteBtn = document.createElement('button');
+                            deleteBtn.innerHTML = '<i class="fas fa-trash-alt fa-xs"></i>'; // Smaller trash icon
+                            deleteBtn.className = 'px-2 py-1 text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100';
+                            deleteBtn.title = `Delete custom checklist: ${name}`;
+                            deleteBtn.onclick = (event) => {
+                                event.stopPropagation(); // Prevent selectChecklist from firing
+                                handleDeleteCustomChecklist(division, name);
+                            };
+                            itemWrapper.appendChild(deleteBtn);
+                        }
+                        sidebarContent.appendChild(itemWrapper);
                     });
                 }
             });
@@ -2473,7 +2565,6 @@
         function showNotification(message, type = 'info', duration = 3000) {
              clearTimeout(notificationTimeout);
              notificationEl.textContent = message;
-             // Using the classes from your provided HTML structure for notifications
              notificationEl.className = 'fixed top-4 right-4 p-4 rounded-md shadow-lg z-50 transition-all duration-300 opacity-0 -translate-y-5'; // Reset classes
              switch (type) {
                  case 'success': notificationEl.classList.add('success', 'bg-green-100', 'border-green-300', 'text-green-800', 'border'); break;
@@ -2490,7 +2581,6 @@
              notificationTimeout = setTimeout(() => {
                  notificationEl.classList.remove('show');
                  notificationEl.classList.add('opacity-0', '-translate-y-5');
-                 // Clean up classes after transition
                  setTimeout(() => {
                     notificationEl.className = 'fixed top-4 right-4 p-4 rounded-md shadow-lg z-50 transition-all duration-300 opacity-0 -translate-y-5';
                  }, 300);
@@ -2517,9 +2607,8 @@
                     }
                 }
             });
-            updateChecklistProgress(); // NEW: Update progress when numbers change
+            updateChecklistProgress(); 
         }
-
 
         function initSortable() {
             if (sortableInstance) {
@@ -2534,18 +2623,10 @@
               forceFallback: true,
               onEnd: () => {
                 updateNumbers();
-                // Potentially save checklist or mark as dirty after reorder
               }
             });
         }
 
-        function updatePhotoDate(index, newDate) {
-            if (capturedImages[index]) {
-                capturedImages[index].date = newDate; // newDate will be in 'YYYY-MM-DD' format from the input
-            }
-        }
-
-        // In renderPhotos() function:
         function renderPhotos() {
             photoGrid.innerHTML = '';
             capturedImages.forEach((photo, index) => {
@@ -2568,19 +2649,15 @@
                 descInput.placeholder = 'Enter photo description...';
                 descInput.oninput = (e) => updatePhotoDescription(index, e.target.value);
 
-                // --- MODIFIED DATE HANDLING ---
                 const dateLabel = document.createElement('label');
                 dateLabel.textContent = 'Date Reported:';
                 dateLabel.className = 'text-sm font-medium text-gray-700';
                 
                 const dateInput = document.createElement('input');
                 dateInput.type = 'date';
-                dateInput.className = 'input-field text-sm'; // Use same styling as other inputs
-                // For new photos, handlePhotoUpload will set a default.
-                dateInput.value = photo.date; // Assuming photo.date is 'YYYY-MM-DD'
-                dateInput.onchange = (e) => updatePhotoDate(index, e.target.value); // Call new update function
-
-                // --- END MODIFIED DATE HANDLING ---
+                dateInput.className = 'input-field text-sm'; 
+                dateInput.value = photo.date; 
+                dateInput.onchange = (e) => updatePhotoDate(index, e.target.value); 
 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.innerHTML = '<i class="fas fa-trash mr-1"></i> Delete';
@@ -2596,6 +2673,63 @@
                 photoGrid.appendChild(photoItemDiv);
             });
         }
+
+        function handleCreateNewChecklist() {
+            const divisionName = prompt("Enter the Division name for your new checklist (e.g., Division 99 - Custom):");
+            if (!divisionName || divisionName.trim() === "") { /* ... return ... */ }
+
+            const checklistName = prompt(`Enter the name for your new checklist under "${divisionName}":`);
+            if (!checklistName || checklistName.trim() === "") { /* ... return ... */ }
+
+            const trimmedDivision = divisionName.trim();
+            const trimmedChecklistName = checklistName.trim();
+            const newChecklistKey = `${trimmedDivision}::${trimmedChecklistName}`;
+
+            if (defaultItems.hasOwnProperty(newChecklistKey)) {
+                /* ... show error and offer to select ... */
+                showNotification(`Checklist "${trimmedChecklistName}" already exists in division "${trimmedDivision}".`, "error");
+                if (confirm(`Do you want to select the existing checklist: "${trimmedChecklistName}"?`)) {
+                    const existingItem = findSidebarItem(trimmedDivision, trimmedChecklistName);
+                    if (existingItem) existingItem.click();
+                }
+                return;
+            }
+
+            // Add to checklistData (in memory first)
+            if (!checklistData[trimmedDivision]) {
+                checklistData[trimmedDivision] = [];
+            }
+            if (!checklistData[trimmedDivision].includes(trimmedChecklistName)) {
+                 checklistData[trimmedDivision].push(trimmedChecklistName);
+                 checklistData[trimmedDivision].sort();
+            }
+
+            // Add to defaultItems with an empty array (blank checklist)
+            defaultItems[newChecklistKey] = []; // This is a custom checklist definition
+
+            // --- Save updated structures to localStorage ---
+            try {
+                localStorage.setItem(CUSTOM_CHECKLIST_DATA_STORAGE_KEY, JSON.stringify(checklistData));
+                localStorage.setItem(CUSTOM_DEFAULT_ITEMS_STORAGE_KEY, JSON.stringify(defaultItems)); // Save all defaultItems, including new custom one
+                showNotification("Custom checklist structure saved for future sessions.", "info", 2000);
+            } catch (e) {
+                console.error("Error saving custom checklist structure to localStorage:", e);
+                showNotification("Could not save custom checklist structure permanently due to storage error.", "error");
+            }
+            // --- END NEW ---
+
+            populateSidebar(sidebarSearchInput.value);
+            showNotification(`New checklist "${trimmedChecklistName}" created.`, "success");
+
+            const newItemElement = findSidebarItem(trimmedDivision, trimmedChecklistName);
+            if (newItemElement) {
+                newItemElement.click();
+            }
+            if (window.innerWidth <= 768) {
+                toggleSidebar(false);
+            }
+        }
+
 
         // --- CHECKLIST ACTIONS ---
         function selectChecklist(division, name, clickedElement) {
@@ -2638,7 +2772,7 @@
                 <td></td>
                 <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Header"><i class="fas fa-trash"></i></button></td>
             `;
-            // initSortable(); // Sortable is initialized once on load
+
             updateNumbers();
         }
 
@@ -2655,13 +2789,67 @@
                 <td contenteditable="true"></td>
                 <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Item"><i class="fas fa-trash"></i></button></td>
             `;
-            // initSortable(); // Sortable is initialized once on load
             updateNumbers();
         }
 
         function deleteRow(btn) {
             const row = btn.closest('tr');
             if (row) { row.remove(); updateNumbers(); }
+        }
+
+        function handleDeleteCustomChecklist(division, name) {
+            const checklistKey = `${division}::${name}`;
+
+            if (!confirm(`Are you sure you want to permanently delete the custom checklist "${name}" from division "${division}"? This will also remove any saved data for it.`)) {
+                return;
+            }
+
+            let itemWasSelected = false;
+            if (currentChecklistKey === checklistKey) {
+                itemWasSelected = true;
+            }
+
+            // 1. Remove from checklistData (sidebar structure)
+            if (checklistData[division]) {
+                const index = checklistData[division].indexOf(name);
+                if (index > -1) {
+                    checklistData[division].splice(index, 1);
+                }
+                // If the division becomes empty, remove the division itself
+                if (checklistData[division].length === 0) {
+                    delete checklistData[division];
+                }
+            }
+
+            // 2. Remove from defaultItems (the custom checklist's definition)
+            if (defaultItems.hasOwnProperty(checklistKey)) {
+                delete defaultItems[checklistKey];
+            }
+
+            // 3. Remove saved content from localStorage
+            localStorage.removeItem(checklistKey); 
+
+            // 4. Save updated checklistData and defaultItems structures to localStorage
+            try {
+                localStorage.setItem(CUSTOM_CHECKLIST_DATA_STORAGE_KEY, JSON.stringify(checklistData));
+                localStorage.setItem(CUSTOM_DEFAULT_ITEMS_STORAGE_KEY, JSON.stringify(defaultItems));
+                showNotification(`Custom checklist "${name}" deleted successfully.`, "success");
+            } catch (e) {
+                console.error("Error saving updated structures to localStorage after deletion:", e);
+                showNotification("Error making deletion permanent.", "error");
+            }
+
+            // 5. Re-populate sidebar
+            populateSidebar(sidebarSearchInput.value);
+
+            // 6. Handle UI if the deleted checklist was currently selected
+            if (itemWasSelected) {
+                currentChecklistKey = null;
+                activeSidebarItem = null; 
+                mainContent.classList.add('hidden');
+                placeholderContent.classList.remove('hidden');
+                checklistNameEl.textContent = '';
+            }
         }
 
         // --- PHOTO ACTIONS ---
@@ -2672,7 +2860,6 @@
             photoInputElement.click();
         }
 
-        // In handlePhotoUpload() function:
         function handlePhotoUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -2680,7 +2867,6 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 const dataUrl = e.target.result;
-                // Get today's date in YYYY-MM-DD format
                 const today = new Date();
                 const yyyy = today.getFullYear();
                 const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
@@ -2691,8 +2877,7 @@
                     id: Date.now(),
                     dataUrl: dataUrl,
                     description: '',
-                    // date: new Date().toLocaleDateString() // Original, might not be YYYY-MM-DD
-                    date: formattedToday // NEW: Set to today in YYYY-MM-DD, or "" if you prefer it blank
+                    date: formattedToday // Set to today in YYYY-MM-DD
                 };
                 capturedImages.push(newPhoto);
                 renderPhotos();
@@ -2718,6 +2903,12 @@
             }
         }
 
+        function updatePhotoDate(index, newDate) {
+            if (capturedImages[index]) {
+                capturedImages[index].date = newDate;
+            }
+        }
+
         // --- DATA HELPER ---
         function getCurrentChecklistData() {
             let itemCounter = 0; // For originalIndex
@@ -2733,7 +2924,7 @@
                     const commentCell = row.cells[6];
                     return {
                         type: 'item',
-                        originalIndex: itemCounter, // NEW: Store original index
+                        originalIndex: itemCounter, 
                         desc: descCell ? descCell.textContent.trim() : '',
                         yes: yesCell ? yesCell.checked : false,
                         no: noCell ? noCell.checked : false,
@@ -2808,6 +2999,17 @@
             initSortable(); // Re-init sortable after loading new items
             updateNumbers(); // Also calls updateChecklistProgress
             filterChecklistTable(); // Apply current filter if any
+        }
+
+        function findSidebarItem(division, name) {
+          const keyToFind = `${division}::${name}`;
+          const sidebarItems = sidebarContent.querySelectorAll('.item');
+          for (let item of sidebarItems) {
+              if (item.dataset.key === keyToFind) {
+                  return item;
+              }
+          }
+          return null;
         }
 
         // --- DATA PERSISTENCE ---
@@ -2902,7 +3104,6 @@
             showNotification("Checklist JSON download initiated.", "success");
         }
 
-        // --- NEW: Checklist Item Filtering ---
         function filterChecklistTable() {
             const searchTerm = itemSearchInputEl.value.toLowerCase().trim();
             const rows = checklistBody.querySelectorAll('tr');
@@ -2924,7 +3125,7 @@
                     }
                 }
             });
-            // updateNumbers should handle numbering of visible/all items based on its logic
+
             let count = 0;
             checklistBody.querySelectorAll('tr').forEach(r => {
                 const numberCell = r.cells[1];
@@ -2932,7 +3133,7 @@
                 if (r.classList.contains('header-row')) {
                     numberCell.textContent = '';
                 } else {
-                    if (r.style.display !== 'none') { // Only number visible items
+                    if (r.style.display !== 'none') { 
                         numberCell.textContent = ++count;
                     }
                 }
@@ -2942,8 +3143,6 @@
             }
         }
 
-
-        // --- NEW: Checklist Progress ---
         function updateChecklistProgress() {
             if (!currentChecklistKey) {
                 checklistProgressEl.textContent = '';
@@ -2983,8 +3182,330 @@
             `;
         }
 
+        // --- INITIALIZATION FUNCTION ---
+          function initializeApplicationData() {
+            const storedChecklistData = localStorage.getItem(CUSTOM_CHECKLIST_DATA_STORAGE_KEY);
+            if (storedChecklistData) {
+                // ... (try to parse and assign to checklistData) ...
+                try {
+                    const parsedData = JSON.parse(storedChecklistData);
+                    if (typeof parsedData === 'object' && parsedData !== null) {
+                        checklistData = parsedData; // Overwrite the cloned initial data
+                        console.log("Loaded checklistData structure from localStorage.");
+                    } else { /* ... */ }
+                } catch (e) { /* ... */ }
+            } else {
+                // If nothing in storage, save the initial (cloned) hardcoded version
+                localStorage.setItem(CUSTOM_CHECKLIST_DATA_STORAGE_KEY, JSON.stringify(checklistData));
+            }
 
-        // --- PDF EXPORT (Enhanced) ---
+            const storedDefaultItems = localStorage.getItem(CUSTOM_DEFAULT_ITEMS_STORAGE_KEY);
+            if (storedDefaultItems) {
+                // ... (try to parse and merge into defaultItems) ...
+                try {
+                    const parsedItems = JSON.parse(storedDefaultItems);
+                    if (typeof parsedItems === 'object' && parsedItems !== null) {
+                        // Merge: Start with a fresh copy of pristine, then apply stored custom items
+                        defaultItems = JSON.parse(JSON.stringify(pristineDefaultItems)); // Reset to original defaults
+                        Object.assign(defaultItems, parsedItems); // Apply stored, which includes custom [] and potentially user-saved item lists
+                        console.log("Loaded and merged defaultItems from localStorage.");
+                    } else { /* ... */ }
+                } catch (e) { /* ... */ }
+            } else {
+                 localStorage.setItem(CUSTOM_DEFAULT_ITEMS_STORAGE_KEY, JSON.stringify(defaultItems)); // Save initial (cloned) default items
+            }
+        }
+
+        // --- API Key Management ---
+        function saveApiKey() {
+            const apiKey = geminiApiKeyInput.value.trim();
+            if (apiKey) {
+                localStorage.setItem(GEMINI_API_KEY_STORAGE, apiKey);
+                showNotification("API Key saved to browser storage for this session.", "success");
+            } else {
+                showNotification("Please enter an API Key.", "warning");
+            }
+        }
+
+        function loadApiKey() {
+            const savedKey = localStorage.getItem(GEMINI_API_KEY_STORAGE);
+            if (savedKey) {
+                geminiApiKeyInput.value = savedKey;
+            }
+        }
+        function clearApiKey() {
+            localStorage.removeItem(GEMINI_API_KEY_STORAGE);
+            geminiApiKeyInput.value = '';
+            showNotification("API Key cleared from browser storage.", "info");
+        }
+
+
+        // --- File Content Extraction ---
+        async function extractTextFromFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => resolve(event.target.result);
+                reader.onerror = (error) => reject(error);
+
+                if (file.type === "text/plain") {
+                    reader.readAsText(file);
+                } else if (file.type === "application/pdf" && typeof pdfjsLib !== 'undefined') {
+                    reader.onload = async (event) => {
+                        try {
+                            const typedarray = new Uint8Array(event.target.result);
+                            const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                            let textContent = '';
+                            for (let i = 1; i <= pdf.numPages; i++) {
+                                const page = await pdf.getPage(i);
+                                const text = await page.getTextContent();
+                                textContent += text.items.map(s => s.str).join(' ') + '\n';
+                            }
+                            resolve(textContent);
+                        } catch (pdfError) {
+                            reject("Error parsing PDF: " + pdfError.message);
+                        }
+                    };
+                    reader.readAsArrayBuffer(file); // pdf.js needs ArrayBuffer
+                } else if ((file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.name.endsWith('.docx')) && typeof mammoth !== 'undefined') {
+                     reader.onload = async (event) => {
+                        try {
+                            const result = await mammoth.extractRawText({ arrayBuffer: event.target.result });
+                            resolve(result.value);
+                        } catch (docxError) {
+                            reject("Error parsing DOCX: " + docxError.message);
+                        }
+                    };
+                    reader.readAsArrayBuffer(file); // mammoth.js needs ArrayBuffer
+                }
+                else {
+                    reject("Unsupported file type. Please upload TXT, PDF, or DOCX.");
+                }
+            });
+        }
+
+        // --- Google Gemini API Interaction ---
+        async function callGeminiApi(apiKey, promptText) {
+            const MODEL_NAME = "gemini-2.0-flash"; //Temp "gemini-1.5-pro-latest", "gemini-1.5-flash-latest", "gemini-2.5-flash-preview-05-20", "gemini-2.5-pro-preview-05-06"
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${apiKey}`;
+
+            const requestBody = {
+                contents: [{
+                    parts: [{ text: promptText }]
+                }],
+                // Optional: Add generationConfig for temperature, topK, topP, maxOutputTokens etc.
+                generationConfig: {
+                  temperature: 0.7,
+                  topK: 1,
+                  topP: 1,
+                  maxOutputTokens: 2048,
+                }
+            };
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("Gemini API Error Response:", errorData);
+                    throw new Error(`Gemini API error: ${response.status} ${response.statusText}. ${errorData.error?.message || ''}`);
+                }
+
+                const data = await response.json();
+                // console.log("Gemini API Success Response:", data);
+
+                // Extract the generated text. The structure might vary slightly.
+                // For gemini-pro, it's often data.candidates[0].content.parts[0].text
+                if (data.candidates && data.candidates.length > 0 &&
+                    data.candidates[0].content && data.candidates[0].content.parts &&
+                    data.candidates[0].content.parts.length > 0) {
+                    return data.candidates[0].content.parts[0].text;
+                } else {
+                    console.error("Unexpected Gemini API response structure:", data);
+                    throw new Error("Could not extract text from Gemini response.");
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                throw error; // Re-throw to be caught by the caller
+            }
+        }
+
+        // --- Main AI Generation Logic ---
+        async function generateAiChecklist() {
+            const apiKey = localStorage.getItem(GEMINI_API_KEY_STORAGE);
+            if (!apiKey) {
+                showNotification("Please save your Gemini API Key first.", "error");
+                return;
+            }
+
+            const file = specFileInput.files[0];
+            if (!file) {
+                showNotification("Please select a specification file.", "warning");
+                return;
+            }
+            if (!currentChecklistKey) {
+                showNotification("Please select or create a checklist to add items to.", "warning");
+                return;
+            }
+
+
+            aiGeneratedItemsContainer.classList.remove('hidden');
+            aiOutputSpinner.classList.remove('hidden');
+            aiOutputError.classList.add('hidden');
+            aiOutputError.textContent = '';
+            aiGeneratedChecklistArea.value = '';
+            generateAiChecklistBtn.disabled = true;
+
+            try {
+                const specText = await extractTextFromFile(file);
+                if (specText.length > 30000) { // Temp - Gemini Pro context window limit for text is around 32k tokens (~100k chars)
+                    showNotification("Specification text is too long. Please use a smaller document or summarize it.", "warning");
+                    throw new Error("Spec too long");
+                }
+
+                const prompt = `
+                Based on the following construction specifications, generate a detailed Quality Assurance / Quality Control (QA/QC) checklist.
+                The checklist should consist of clear, actionable inspection items.
+                Where appropriate, group related items under a descriptive header.
+
+                Desired output format:
+                - For headers, start the line with "H: Header Text"
+                - For checklist items, start the line with "I: Item description" or just the item description.
+
+                Specifications:
+                ---
+                ${specText}
+                ---
+                Checklist:
+                `;
+
+                const generatedText = await callGeminiApi(apiKey, prompt);
+                aiGeneratedChecklistArea.value = generatedText;
+                showNotification("AI checklist generated! Please review and edit.", "success");
+
+            } catch (error) {
+                console.error("AI Generation Error:", error);
+                aiOutputError.textContent = "Error generating checklist: " + error.message;
+                aiOutputError.classList.remove('hidden');
+                showNotification("Error during AI checklist generation.", "error");
+            } finally {
+                aiOutputSpinner.classList.add('hidden');
+                generateAiChecklistBtn.disabled = false;
+            }
+        }
+
+        // --- Integrating AI Items ---
+        function parseAiGeneratedItems() {
+            let text = aiGeneratedChecklistArea.value.trim(); // Use let as we'll modify it
+            if (!text) return [];
+
+            // Strip common Markdown code block delimiters ---
+            // Matches ``` possibly followed by a language hint, then content, then ```
+            // The /s flag allows . to match newlines, crucial for multi-line code blocks.
+            const codeBlockRegex = /^```(?:[a-zA-Z0-9]*)?\s*\n([\s\S]*?)\n```$/s;
+            const match = text.match(codeBlockRegex);
+
+            if (match && match[1]) {
+                // If it's a code block, use the content inside
+                text = match[1].trim();
+            } else {
+                // Simpler check for just the triple backticks if the regex is too complex or not matching
+                if (text.startsWith("```") && text.endsWith("```")) {
+                    text = text.substring(3, text.length - 3).trim();
+                    // Remove potential language hint right after the first ```
+                    const firstNewlineIndex = text.indexOf('\n');
+                    if (firstNewlineIndex !== -1 && firstNewlineIndex < 30) { // Heuristic: language hint is usually short
+                        const potentialLangHint = text.substring(0, firstNewlineIndex).trim();
+                        // Basic check if it looks like a language hint (alphanumeric, no spaces)
+                        if (/^[a-zA-Z0-9_-]*$/.test(potentialLangHint) && potentialLangHint.length > 0) {
+                             text = text.substring(firstNewlineIndex + 1).trim();
+                        }
+                    }
+                }
+            }
+
+            const lines = text.split('\n');
+            const newItems = [];
+            lines.forEach(line => {
+                line = line.trim();
+                if (line.toLowerCase().startsWith("h:")) {
+                    newItems.push({ type: 'header', text: line.substring(2).trim() });
+                } else if (line.toLowerCase().startsWith("i:")) {
+                    newItems.push({ type: 'item', desc: line.substring(2).trim(), yes: false, no: false, na: false, comment: '' });
+                } else if (line) { // Treat non-empty lines without prefix as items
+                    // Further sanitize: remove potential list markers like "-", "*", "1." if AI adds them redundantly
+                    const sanitizedLine = line.replace(/^[\s*-\d\.]+\s*/, ''); // Removes leading list markers
+                    if (sanitizedLine) { // Ensure line is not empty after sanitization
+                        newItems.push({ type: 'item', desc: sanitizedLine, yes: false, no: false, na: false, comment: '' });
+                    }
+                }
+            });
+            return newItems;
+        }
+
+        function addAiItemsToCurrent() {
+            if (!currentChecklistKey) {
+                showNotification("No checklist selected to add items to.", "warning"); return;
+            }
+            const aiItems = parseAiGeneratedItems();
+            if (aiItems.length === 0) {
+                showNotification("No AI items to add. Generate or type them first.", "info"); return;
+            }
+
+            aiItems.forEach(entry => {
+                const row = checklistBody.insertRow(); // Add to end
+                if (entry.type === 'header') {
+                    row.className = 'header-row';
+                    row.innerHTML = `
+                        <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td> <td></td>
+                        <td contenteditable="true" colspan="4" class="font-semibold italic">${entry.text || 'Section Title'}</td> <td></td>
+                        <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Header"><i class="fas fa-trash"></i></button></td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td class="drag-handle"><i class="fas fa-grip-vertical"></i></td> <td></td>
+                        <td contenteditable="true">${entry.desc || 'Item Description'}</td>
+                        <td class="text-center"><input type="checkbox" onchange="updateChecklistProgress()"></td>
+                        <td class="text-center"><input type="checkbox" onchange="updateChecklistProgress()"></td>
+                        <td class="text-center"><input type="checkbox" onchange="updateChecklistProgress()"></td>
+                        <td contenteditable="true">${entry.comment || ''}</td>
+                        <td class="text-center"><button onclick="deleteRow(this)" class="btn btn-icon text-red-600 hover:text-red-800" title="Delete Item"><i class="fas fa-trash"></i></button></td>
+                    `;
+                }
+            });
+            updateNumbers();
+            initSortable(); 
+            showNotification(`${aiItems.length} AI items added to current checklist.`, "success");
+        }
+        
+        function replaceCurrentWithAiItems() {
+             if (!currentChecklistKey) {
+                showNotification("No checklist selected to replace.", "warning"); return;
+            }
+            const aiItems = parseAiGeneratedItems();
+            if (aiItems.length === 0) {
+                showNotification("No AI items to use for replacement.", "info"); return;
+            }
+            if (!confirm("Are you sure you want to replace all items in the current checklist with the AI generated items? This cannot be undone easily.")) {
+                return;
+            }
+
+            // Get current meta and photos to preserve them
+            const currentData = getCurrentChecklistData();
+
+            const newData = {
+                meta: currentData.meta, // Keep existing project details, signoffs
+                items: aiItems,
+                photos: currentData.photos // Keep existing photos
+            };
+            loadChecklistData(newData); // This function handles rendering and re-initializes sortable
+            showNotification("Current checklist items replaced with AI generated items.", "success");
+        }
+
+        // --- PDF EXPORT ---
 
         function exportToPDF() {
             if (!currentChecklistKey) {
@@ -3006,7 +3527,7 @@
             const headerReservedAreaHeight = 75;
             let cursorY = headerReservedAreaHeight;
 
-            const drawHeaderFooter = () => { /* ... same as previous correct version ... */
+            const drawHeaderFooter = () => { 
                 if (logoDataUrl) {
                     const logoW = 70;
                     doc.addImage(logoDataUrl, 'PNG', pageMargin, logoTopPaperOffset , logoW, logoHeight);
@@ -3017,11 +3538,11 @@
                 doc.text(checklistTitle, pageMargin, pageHeight - (pageMargin / 2) + 5, { align: "left" });
             };
 
-            const getContentStartYForManualDrawing = () => { /* ... same as previous correct version ... */
+            const getContentStartYForManualDrawing = () => { 
                  return headerReservedAreaHeight;
             };
 
-            const drawSectionTitle = (titleText, currentGlobalY) => { /* ... same as previous correct version ... */
+            const drawSectionTitle = (titleText, currentGlobalY) => { 
                 const titleVisualHeight = 20;
                 const spaceAfterTitle = 20;
                 const totalTitleBlockHeight = titleVisualHeight + spaceAfterTitle;
@@ -3054,7 +3575,7 @@
             cursorY += 35;
 
             // 2. Project Details
-            const projectDetailsDataArray = [ // Renamed for clarity, ensure this is the only declaration
+            const projectDetailsDataArray = [ 
                 ["Project Name", meta.projectName || "—"],
                 ["Project Number", meta.projectNumber || "—"],
                 ["Company Name", meta.companyName || "—"],
@@ -3064,7 +3585,7 @@
                  projectDetailsDataArray.push([{content: "Scope of Inspection", styles: {fontStyle: 'bold'}}, meta.inspectionScope || "—"]);
             }
             doc.autoTable({
-                startY: cursorY, head: [], body: projectDetailsDataArray, theme: 'plain', // Use the array
+                startY: cursorY, head: [], body: projectDetailsDataArray, theme: 'plain', 
                 styles: { fontSize: 10, cellPadding: 5 },
                 columnStyles: { 0: { cellWidth: 120, fontStyle: 'bold' }, 1: { cellWidth: pageWidth - (pageMargin * 2) - 120 }},
                 margin: { left: pageMargin, right: pageMargin, top: headerReservedAreaHeight },
@@ -3110,7 +3631,6 @@
             // 4. Photo Attachments
             if (photos.length > 0) {
                 cursorY = drawSectionTitle("Photo Attachments", cursorY);
-                /* ... same photo logic ... */
                 const photoCols = 2;
                 const photoOuterGap = 10;
                 const photoItemPadding = 8;
@@ -3180,7 +3700,6 @@
             const deficiencies = dataItems.filter(item => item.type === 'item' && item.no === true);
             if (deficiencies.length > 0) {
                 cursorY = drawSectionTitle("Deficiencies / Items Marked 'No'", cursorY);
-                // CORRECTED:
                 const deficiencyTableBodyArray = deficiencies.map(item => [
                     item.originalIndex.toString(), item.desc, item.comment
                 ]);
@@ -3204,7 +3723,6 @@
 
             // 6. Sign-off
             cursorY = drawSectionTitle("Sign-off", cursorY);
-            // CORRECTED:
             const signOffHeadersArray = ["Internal Control / QC", "External Control / 3rd Party", "Quality Assurance"];
             const signOffDataRowsArray = [
                 { label: "Name", values: [meta.sigIntName, meta.sigExtName, meta.sigQaName] },
@@ -3251,7 +3769,9 @@
 
         // --- EVENT LISTENERS ---
         document.addEventListener('DOMContentLoaded', () => {
+            initializeApplicationData();
             populateSidebar();
+            loadApiKey(); // Load API key from local storage on page load
             openSidebarBtn?.addEventListener('click', () => toggleSidebar(true));
             closeSidebarBtn?.addEventListener('click', () => toggleSidebar(false));
             overlay?.addEventListener('click', () => toggleSidebar(false));
@@ -3260,8 +3780,14 @@
                     updateChecklistProgress();
                 }
             });
-            // initSortable(); // Moved to loadChecklistData to ensure it's run after items are loaded
+            saveApiKeyBtn?.addEventListener('click', saveApiKey);
+            clearApiKeyBtn?.addEventListener('click', clearApiKey);
+            generateAiChecklistBtn?.addEventListener('click', generateAiChecklist);
+            addAiItemsToCurrentBtn?.addEventListener('click', addAiItemsToCurrent);
+            replaceCurrentWithAiItemsBtn?.addEventListener('click', replaceCurrentWithAiItems);
+            createNewChecklistBtn?.addEventListener('click', handleCreateNewChecklist);
         });
+
 
     </script>
 </body>

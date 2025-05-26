@@ -63,7 +63,7 @@ ConstructCheck Pro is a web-based application designed to help construction prof
 2.  Open the `index.html` file in a modern web browser.
 3.  **For AI Features:**
     *   You will need a Google Gemini API Key.
-    *   Obtain a key from [Google AI Studio](https://aistudio.google.com/apikey) or your Google Cloud project.
+    *   Obtain a key from your [Google Cloud](https://console.cloud.google.com/apis/credentials).
     *   Enter the API key into the designated field in the "AI Checklist Generator" section of the tool.
     *   **Security Warning:** The API key is stored in your browser's `localStorage`. This is suitable for local development but **NOT secure for a publicly hosted version without a backend proxy.**
 
